@@ -14,6 +14,7 @@ import Group from "@mui/icons-material/Group";
 import { Layers, Settings } from "@mui/icons-material";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Typography } from "@mui/material";
+import { isDark } from "@/core/createTheme";
 
 const BoxMenu = styled(Box)(({ theme }) => ({
 	background: theme.palette.primary.main,
@@ -40,11 +41,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 			icon: Dashboard,
 			title: "Inici",
 		},
-		{
-			href: "/admin/usuaris",
-			icon: Layers,
-			title: "Pàgines",
-		},
+
 		{
 			href: "/admin/usuaris",
 			icon: Group,
@@ -55,14 +52,28 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 			icon: Settings,
 			title: "Configuració",
 		},
+		{},
+		{
+			href: "/admin/usuaris",
+			icon: Layers,
+			title: "Pàgines",
+		},
+		...opcions?.pagines?.map((item) => {
+			return { title: item.titol, href: "/admin/pagines/" + item.slug, icon: Layers };
+		}),
 	];
 
 	const content = (
 		<BoxMenu>
 			<Box pt={2}>
 				<Link href="/">
-					{/* <Image src={"/logo.svg"} height={50} width={240} alt="G" /> */}
-					{opcions?.titol} - <small>ADMIN</small>
+					{opcions?.logo ? (
+						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={240} alt="Logo" style={{ objectFit: "contain" }} />
+					) : (
+						<Typography variant="h3" color={isDark(opcions?.primary ?? false) ? "white" : "black"}>
+							{opcions?.titol} - <small>ADMIN</small>
+						</Typography>
+					)}
 				</Link>
 				<Box mt={8} />
 

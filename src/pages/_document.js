@@ -4,7 +4,6 @@ import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "@/core/createEmotionCache";
 import clsx from "clsx";
 import { inter, montserrat, roboto } from "@/core/createTheme";
-import theme from "@/styles/theme";
 
 export default function MyDocument(props) {
 	const { emotionStyleTags } = props;

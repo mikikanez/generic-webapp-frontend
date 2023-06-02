@@ -8,7 +8,6 @@ const useStyles = makeStyles(() => ({
 	root: {
 		overflow: "hidden",
 		width: "100%",
-		backgroundColor: theme.palette.background.main,
 	},
 	wrapper: {
 		display: "flex",

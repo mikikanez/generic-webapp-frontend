@@ -17,8 +17,8 @@ const CrearTema = (data) => {
 		},
 		palette: {
 			background: {
-				main: "#1d1d1b",
-				secondary: "#be1622",
+				main: data?.primary ?? "#000",
+				secondary: data?.secondary ?? "#000",
 				third: "#1d1d1b",
 				light: "#dce1e4",
 			},

@@ -15,6 +15,16 @@ const nextConfig = {
 			transform: "@mui/lab/{{member}}",
 		},
 	},
+	images: {
+		domains: ["localhost"],
+		remotePatterns: [
+			{
+				protocol: "http",
+				hostname: "localhost",
+				port: "",
+			},
+		],
+	},
 };
 
 module.exports = nextConfig;

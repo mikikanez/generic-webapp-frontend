@@ -19,6 +19,7 @@ const Footer = () => {
 				borderTop: "1px solid " + theme.palette.secondary.main,
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
+				backgroundColor: opcions?.primary,
 			}}
 			displayPrint="none"
 		>

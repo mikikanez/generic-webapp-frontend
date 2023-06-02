@@ -31,31 +31,31 @@ const BoxButton = styled(Box)(({ theme }) => ({
 	textDecoration: "none",
 	position: "relative",
 	"&:hover": {
-		color: theme.palette.secondary.main,
+		color: "white",
 		marginLeft: 20,
 		marginRight: -10,
 		"& .icon": {
-			color: theme.palette.secondary.main,
+			color: "white",
 		},
 		"& .title": {
-			color: theme.palette.secondary.main,
+			color: "white",
 		},
 	},
 	"& .icon": {
-		color: theme.palette.secondary.main,
+		color: "white",
 	},
 	"&.active": {
-		backgroundColor: theme.palette.secondary.main,
+		backgroundColor: "white",
 		color: "white",
 		boxShadow: "0px 0px 8px 0px " + theme.palette.secondary.main,
 		marginLeft: 20,
 		marginRight: -10,
 
 		"& .title": {
-			color: "white",
+			color: theme.palette.primary.main,
 		},
 		"& .icon": {
-			color: "white",
+			color: theme.palette.primary.main,
 		},
 		"&:hover": {
 			backgroundColor: theme.palette.secondary.main,
@@ -71,13 +71,13 @@ const BoxButton = styled(Box)(({ theme }) => ({
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
-	color: theme.palette.secondary.main,
+	color: "white",
 	fontWeight: 400,
 }));
 
 const IconCustom = styled(Box)(({ theme }) => ({
 	"&.icon": {
-		color: theme.palette.primary.main,
+		color: "white",
 		marginRight: theme.spacing(1),
 	},
 }));
