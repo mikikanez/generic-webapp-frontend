@@ -4,21 +4,23 @@ import { getServerSession } from "next-auth";
 import PageAdmin from "@/components/layout/PageAdmin";
 import { addElement, getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { Settings } from "@mui/icons-material";
+import { Instagram, Settings, Twitter } from "@mui/icons-material";
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { Controller, useForm } from "react-hook-form";
 import CustomButton from "@/components/elements/CustomButton";
-import { Box, FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select } from "@mui/material";
 import ColorPicker from "mui-color-picker";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
+import Thumb from "@/components/elements/Thumb";
+import ImageInput from "@/components/elements/InputImage";
 
 export default function ConfiguracioAdmin({ configuracio }) {
 	const { enqueueSnackbar } = useSnackbar();
-	const { register, reset, watch, control, setValue, handleSubmit } = useForm();
+	const { register, trigger, getValues, watch, control, setValue, handleSubmit } = useForm();
 	const [loading, setLoading] = useState(false);
 	const { user } = useAuth();
 	const router = useRouter();
@@ -27,7 +29,12 @@ export default function ConfiguracioAdmin({ configuracio }) {
 		configuracio.map((item) => setValue(item.nom, item.valor));
 	}, [configuracio]);
 
+	function opcio(nom) {
+		return configuracio.filter((i) => i.nom === nom)[0];
+	}
+
 	const enviar = async (values) => {
+		console.log(values);
 		setLoading(true);
 		try {
 			const { message } = await addElement("opcions", values, user.token.accessToken);
@@ -47,27 +54,32 @@ export default function ConfiguracioAdmin({ configuracio }) {
 		<PageAdmin title="Configuració" Icon={Settings}>
 			<form onSubmit={handleSubmit(enviar)}>
 				<Grid spacing={3} container>
-					<Grid item md={6}>
+					<Grid item md={8}>
 						<CustomCard title={"Opcions generals"}>
-							<CustomTextField register={register} key={configuracio?.[0].id} name={configuracio?.[0].nom} label={configuracio?.[0].descripcio} />
+							<CustomTextField register={register} key={opcio("titol").id} name={opcio("titol").nom} label={opcio("titol").descripcio} />
 							<CustomTextField
 								register={register}
-								key={configuracio?.[1].id}
-								name={configuracio?.[1].nom}
-								label={configuracio?.[1].descripcio}
+								key={opcio("descripcio").id}
+								name={opcio("descripcio").nom}
+								label={opcio("descripcio").descripcio}
 								mt={3}
 								rows={3}
 								multiline
 							/>
 						</CustomCard>
 					</Grid>
-					<Grid item md={6}>
+					<Grid item md={4}>
+						<CustomCard title="Logotip">
+							<Thumb file={watch("logo")} />
+
+							<ImageInput name="logo" register={register} trigger={trigger} getValues={getValues} text={"Afegir logotip"} />
+						</CustomCard>
 						<CustomCard title={"Opcions de disseny"}>
 							<Grid spacing={3} container>
 								<Grid item md={6}>
 									<Controller
 										control={control}
-										name={configuracio?.[2].nom}
+										name={opcio("primary").nom}
 										render={({ field: { onChange, onBlur, value, name, ref } }) => (
 											<ColorPicker
 												onChange={(color) => onChange(color)}
@@ -75,7 +87,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 												value={watch("primary")}
 												defaultValue={"Color primary"}
 												name={name}
-												label={configuracio?.[2].descripcio}
+												label={opcio("primary").descripcio}
 												ref={ref}
 												fullWidth
 											/>
@@ -85,7 +97,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 								<Grid item md={6}>
 									<Controller
 										control={control}
-										name={configuracio?.[3].nom}
+										name={opcio("secondary").nom}
 										render={({ field: { onChange, onBlur, value, name, ref } }) => (
 											<ColorPicker
 												onChange={(color) => onChange(color)}
@@ -93,7 +105,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 												value={watch("secondary")}
 												defaultValue={"Color secondari"}
 												name={name}
-												label={configuracio?.[3].descripcio}
+												label={opcio("secondary").descripcio}
 												ref={ref}
 												fullWidth
 											/>
@@ -102,13 +114,13 @@ export default function ConfiguracioAdmin({ configuracio }) {
 								</Grid>
 								<Grid item md={12}>
 									<FormControl fullWidth>
-										<InputLabel htmlFor="tipus">{configuracio?.[6].descripcio}</InputLabel>
+										<InputLabel htmlFor="tipus">{opcio("font").descripcio}</InputLabel>
 										<Select
-											{...register(configuracio?.[6].nom)}
+											{...register(opcio("font").nom)}
 											fullWidth
 											variant="outlined"
-											label={configuracio?.[6].descripcio}
-											defaultValue={configuracio?.[6].valor}
+											label={opcio("font").descripcio}
+											defaultValue={opcio("font").valor}
 										>
 											{tipografies?.map((item) => (
 												<MenuItem key={item} value={item}>
@@ -122,20 +134,34 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						</CustomCard>
 						<CustomCard title={"Xarxes socials"}>
 							<Grid spacing={3} container>
-								<Grid item md={6}>
+								<Grid item md={12}>
 									<CustomTextField
 										register={register}
-										key={configuracio?.[7].id}
-										name={configuracio?.[7].nom}
-										label={configuracio?.[7].descripcio}
+										key={opcio("instagram").id}
+										name={opcio("instagram").nom}
+										label={opcio("instagram").descripcio}
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position="start">
+													<Instagram />
+												</InputAdornment>
+											),
+										}}
 									/>
 								</Grid>
-								<Grid item md={6}>
+								<Grid item md={12}>
 									<CustomTextField
 										register={register}
-										key={configuracio?.[8].id}
-										name={configuracio?.[8].nom}
-										label={configuracio?.[8].descripcio}
+										key={opcio("twitter").id}
+										name={opcio("twitter").nom}
+										label={opcio("twitter").descripcio}
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position="start">
+													<Twitter />
+												</InputAdornment>
+											),
+										}}
 									/>
 								</Grid>
 							</Grid>

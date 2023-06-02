@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { AppBar, Box, Toolbar, Typography, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import { styled } from "@mui/styles";
-import NavBarItem from "./NavBarItem";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import theme from "@/styles/theme";
 import { useOpcions } from "@/context/OpcionsContext";
+import MenuCustom1 from "@/components/custom/menus/MenuCustom1";
+import MenuCustom2 from "@/components/custom/menus/MenuCustom2";
 
 const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 	const [scrollY, setScrollY] = useState();
-	const router = useRouter();
-	const matches = useMediaQuery("(min-width:960px)");
 	const opcions = useOpcions();
 
 	const items = [
-		{
-			title: "Inici",
-			to: "/",
-		},
+		...opcions?.pagines?.map((item) => {
+			return { title: item.titol, to: "/" + item.slug };
+		}),
 	];
 
 	useEffect(() => {
@@ -31,57 +26,19 @@ const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 		setScrollY(window.scrollY);
 	};
 
-	return (
-		<BoxMain>
-			<AppBar
-				elevation={0}
-				style={{
-					backgroundColor: theme.palette.background.main,
-					boxShadow: "none",
-					zIndex: 10000,
-				}}
-			>
-				<Toolbar
-					style={{
-						transition: "0.2s",
-						borderBottom: "1px solid white",
-						justifyContent: "center",
-					}}
-				>
-					<Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-						<Box
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								cursor: "pointer",
-								transition: "0.2s",
-								transform: scrollY > 200 ? "scale(0.6)" : "scale(1)",
-								marginBottom: scrollY > 200 ? -20 : 0,
-								marginTop: scrollY > 200 ? -10 : 0,
-							}}
-							onClick={() => router.push("/")}
-						>
-							{/* <Image src={"/logo.svg"} width={matches ? 360 : 250} height={matches ? 100 : 70} alt="Portal Attack" /> */}
-							<Typography variant="h1" mb={2}>
-								{opcions?.titol}
-							</Typography>
-						</Box>
-						<Box
-							style={{
-								display: "flex",
-								justifyContent: "center",
-							}}
-							mb={2}
-						>
-							{items?.map((item) => (
-								<NavBarItem to={item.to} key={item.title} title={item.title} />
-							))}
-						</Box>
-					</Box>
-				</Toolbar>
-			</AppBar>
-		</BoxMain>
-	);
+	const returnMenu = () => {
+		switch (opcions.menu) {
+			case "1":
+				return <MenuCustom1 opcions={opcions} items={items} scrollY={scrollY} />;
+
+			case "2":
+				return <MenuCustom2 opcions={opcions} items={items} scrollY={scrollY} />;
+			default:
+				break;
+		}
+	};
+
+	return <BoxMain>{returnMenu()}</BoxMain>;
 };
 
 const BoxMain = styled(Box)(({ theme }) => ({

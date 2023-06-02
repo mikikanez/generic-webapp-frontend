@@ -1,24 +1,49 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import Link from "next/link";
-import styles from "@/styles/layout.module.css";
 import { useRouter } from "next/router";
+import { styled } from "@mui/material/styles";
+import { isDark } from "@/core/createTheme";
+
+const LinkCustom = styled(Link)(({ theme }) => ({
+	paddingLeft: 10,
+	paddingRight: 10,
+	transition: "0.2s",
+	marginLeft: 10,
+	marginRight: 10,
+	"& .MuiTypography-root": {
+		color: isDark(theme.palette.primary.main) ? "white" : "black",
+		padding: 5,
+		fontWeight: 600,
+		fontSize: 14,
+	},
+	"&.active": {
+		background: theme.palette.secondary.main,
+		"& .MuiTypography-root": {
+			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+		},
+	},
+	"&:hover": {
+		background: theme.palette.secondary.main,
+		"& .MuiTypography-root": {
+			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+		},
+	},
+}));
 
 const NavBarItem = ({ className, to, title, ...rest }) => {
 	const router = useRouter();
 
 	return (
-		<Link
-			className={router.pathname === to ? styles.menu_item_active : styles.menu_item}
+		<LinkCustom
+			className={router.pathname === to && "active"}
 			href={{
 				pathname: to,
 			}}
 			underline="none"
 		>
-			<Typography variant="link" color="primary" className={styles.menu_item_title}>
-				{title}
-			</Typography>
-		</Link>
+			<Typography>{title}</Typography>
+		</LinkCustom>
 	);
 };
 

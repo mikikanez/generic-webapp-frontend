@@ -15,6 +15,7 @@ export default function useGetOptions(url) {
 			try {
 				setLoading(true);
 				const response = await getOptions();
+				console.log(response);
 				setData(response);
 			} catch (err) {
 				setError(err);

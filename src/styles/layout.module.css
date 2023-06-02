@@ -122,11 +122,8 @@
 	padding-right: 15px;
 	padding-bottom: 5px;
 	padding-top: 5px;
-	background-color: white;
-	border-radius: 15px;
 	margin: 5px;
 	transition: 0.2s;
-	-webkit-box-shadow: 0 0 8px 2px rgb(178, 178, 178);
 }
 
 .menu_item_active .menu_item_title {
