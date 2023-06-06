@@ -11,13 +11,14 @@ import Link from "next/link";
 import Image from "next/image";
 import theme from "@/styles/theme";
 import Group from "@mui/icons-material/Group";
-import { Layers, Settings } from "@mui/icons-material";
+import { CircleOutlined, Layers, Settings } from "@mui/icons-material";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Typography } from "@mui/material";
 import { isDark } from "@/core/createTheme";
 
 const BoxMenu = styled(Box)(({ theme }) => ({
-	background: theme.palette.primary.main,
+	backgroundColor: "#f5f5f5",
+
 	textAlign: "center",
 	height: "100%",
 	display: "flex",
@@ -54,12 +55,12 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 		},
 		{},
 		{
-			href: "/admin/usuaris",
+			href: "/admin/pagines",
 			icon: Layers,
-			title: "Pàgines",
+			title: "Totes les pàgines",
 		},
 		...opcions?.pagines?.map((item) => {
-			return { title: item.titol, href: "/admin/pagines/" + item.slug, icon: Layers };
+			return { title: item.titol, href: "/admin/pagines/" + item.slug, icon: CircleOutlined, pagines: true };
 		}),
 	];
 
@@ -80,16 +81,18 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 				<List>
 					{items?.map((item, index) =>
 						item.href ? (
-							<NavBarItem href={item.href} key={index} title={item.title} icon={item.icon} onClose={onMobileClose} />
+							<NavBarItem href={item.href} key={index} title={item.title} pagines={item.pagines} icon={item.icon} onClose={onMobileClose} />
 						) : (
 							<Divider
 								key={index}
-								style={{
-									margin: 17,
-
-									borderColor: theme.palette.background.color + "40",
+								sx={{
+									marginBottom: 2,
+									marginTop: 4,
 								}}
-							/>
+								light={true}
+							>
+								<Typography>Pàgines</Typography>
+							</Divider>
 						)
 					)}
 				</List>

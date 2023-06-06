@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-
+import "nprogress/nprogress.css";
 import { SessionProvider } from "next-auth/react";
 import { CircularProgress, CssBaseline, Grow, IconButton, Typography } from "@mui/material";
 import { CacheProvider, ThemeProvider } from "@emotion/react";
@@ -44,7 +44,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, r
 		Router.events.on("routeChangeError", (url) => {
 			setIsLoading(false);
 		});
-	}, [Router]);
+	}, []);
 
 	return (
 		<CacheProvider value={emotionCache}>
@@ -68,7 +68,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, r
 						>
 							<SessionProvider session={session}>
 								<AuthContextProvider session={session}>
-									{isLoading && <Loader />}
+									{/* {isLoading && <Loader />} */}
 									{getLayout(<Component {...pageProps} />)}
 								</AuthContextProvider>
 							</SessionProvider>

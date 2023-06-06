@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
+import { isDark } from "@/core/createTheme";
 
 const BootstrapButton = styled(Button)(({ theme }) => ({
 	boxShadow: "none",
@@ -9,7 +10,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 	fontSize: 14,
 	borderRadius: 10,
 	lineHeight: 1,
-	color: "white",
+	color: isDark(theme.palette.primary.main) ? "white" : "black",
 	fontFamily: "Montserrat",
 	background: theme.palette.background.main,
 	border: "2px solid " + theme.palette.background.main,
@@ -17,7 +18,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 	"&:hover": {
 		backgroundColor: theme.palette.secondary.main,
 		border: "2px solid " + theme.palette.secondary.main,
-		color: "white",
+		color: isDark(theme.palette.primary.main) ? "white" : "black",
 		boxShadow: "0 0 0 0.2rem " + theme.palette.secondary.main,
 	},
 	"&:active": {

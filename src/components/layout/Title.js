@@ -5,8 +5,8 @@ import styles from "@/styles/layout.module.css";
 
 const Title = ({ children, button, Icon }) => {
 	return (
-		<Box className={styles.title}>
-			<Box display="flex" alignItems={"center"} mt={1}>
+		<Box className={styles.card} mx={3} mt={3}>
+			<Box display="flex" alignItems={"center"} p={1}>
 				{Icon && (
 					<Box mr={2}>
 						<Icon fontSize={"large"} />

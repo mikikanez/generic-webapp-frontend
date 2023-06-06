@@ -4,10 +4,11 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import React from "react";
+import styles from "@/styles/layout.module.css";
 
 function CustomCard({ title, children, button, onClick, addOn }) {
 	return (
-		<Box style={{ boxShadow: "#00000030 1px 3px 20px 5px ", padding: 0, borderRadius: 10, marginBottom: 50, position: "relative" }}>
+		<Box className={styles.card}>
 			<Box p={2} display="flex" justifyContent={"space-between"} alignItems="center">
 				<Typography variant="h5">{title}</Typography>
 				{button && (

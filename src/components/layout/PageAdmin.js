@@ -21,7 +21,7 @@ const PageAdmin = ({ children, title = "", button, Icon, noMargin, ...rest }) =>
 			}}
 		>
 			<Head>
-				<title>{title} - Portal Attack Admin</title>
+				<title>{title} - Admin</title>
 			</Head>
 			<Title button={button} Icon={Icon}>
 				{title}
@@ -30,10 +30,10 @@ const PageAdmin = ({ children, title = "", button, Icon, noMargin, ...rest }) =>
 				<div
 					style={{
 						overflow: "hidden",
-						backgroundColor: theme.palette.background.default,
+						backgroundColor: "#f5f5f5",
 					}}
 				>
-					<Box m={noMargin ? 0 : 3} mt={noMargin ? 9 : 13} zIndex={0}>
+					<Box m={noMargin ? 0 : 3} zIndex={0}>
 						{children}
 					</Box>
 				</div>
