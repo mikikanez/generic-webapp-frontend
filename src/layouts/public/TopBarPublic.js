@@ -43,7 +43,6 @@ const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 
 const BoxMain = styled(Box)(({ theme }) => ({
 	width: "100%",
-	zIndex: 100,
 	transition: "0.2s",
 	position: "fixed",
 }));

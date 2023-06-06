@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import NavBar from "./NavBar";
 import TopBarAdmin from "./TopBarAdmin";
 import styles from "@/styles/layout.module.css";
-import theme from "@/styles/theme";
 
 const AdminLayout = ({ children }) => {
 	const [isMobileNavOpen, setMobileNavOpen] = useState(false);
@@ -10,7 +9,7 @@ const AdminLayout = ({ children }) => {
 	return (
 		<div
 			style={{
-				backgroundColor: theme.palette.secondary.main,
+				backgroundColor: "#f5f5f5",
 			}}
 			className={styles.root}
 		>

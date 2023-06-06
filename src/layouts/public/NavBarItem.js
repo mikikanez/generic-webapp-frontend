@@ -33,10 +33,12 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 
 const NavBarItem = ({ className, to, title, ...rest }) => {
 	const router = useRouter();
+	console.log(router);
+	console.log(to);
 
 	return (
 		<LinkCustom
-			className={router.pathname === to && "active"}
+			className={(router.pathname === to || router.asPath === to) && "active"}
 			href={{
 				pathname: to,
 			}}

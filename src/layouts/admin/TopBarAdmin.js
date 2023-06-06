@@ -17,12 +17,10 @@ import { useOpcions } from "@/context/OpcionsContext";
 
 const AppBarCustom = styled(AppBar)(({ theme }) => ({
 	"& .MuiToolbar-root": {
-		boxShadow: "#00000020 1px 3px 20px 1px ",
-		backgroundColor: theme.palette.secondary.main,
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: "#f5f5f5",
 
 		[theme.breakpoints.down("sm")]: {
-			backgroundColor: theme.palette.background.main,
+			backgroundColor: "#f5f5f5",
 		},
 	},
 }));

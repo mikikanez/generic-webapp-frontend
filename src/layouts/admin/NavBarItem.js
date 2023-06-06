@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { styled, useTheme } from "@mui/material/styles";
+import { isDark } from "@/core/createTheme";
 
 const ListItemCustom = styled(ListItem)(({ theme }) => ({
 	display: "flex",
@@ -16,49 +17,39 @@ const ListItemCustom = styled(ListItem)(({ theme }) => ({
 
 const BoxButton = styled(Box)(({ theme }) => ({
 	marginTop: 5,
-	marginBottom: 15,
-	marginRight: 10,
-	marginLeft: 10,
-	borderRadius: 10,
+	marginBottom: 5,
+	marginRight: 15,
+	marginLeft: 0,
+	borderTopRightRadius: 50,
+	borderBottomRightRadius: 50,
 	justifyContent: "flex-start",
 	alignItems: "center",
 	letterSpacing: 0,
 	transition: "0.2s",
-	padding: 10,
+	padding: 8,
+	paddingLeft: 15,
 	textTransform: "none",
 	display: "flex",
 	width: "100%",
 	textDecoration: "none",
 	position: "relative",
 	"&:hover": {
-		color: "white",
-		marginLeft: 20,
-		marginRight: -10,
-		"& .icon": {
-			color: "white",
-		},
-		"& .title": {
-			color: "white",
-		},
-	},
-	"& .icon": {
-		color: "white",
+		marginRight: 20,
+		backgroundColor: "#000000" + "20",
 	},
 	"&.active": {
-		backgroundColor: "white",
-		color: "white",
-		boxShadow: "0px 0px 8px 0px " + theme.palette.secondary.main,
-		marginLeft: 20,
-		marginRight: -10,
+		backgroundColor: theme.palette.primary.main,
+		color: "black",
+		boxShadow: "0px 0px 8px 0px " + theme.palette.primary.main + 80,
 
 		"& .title": {
-			color: theme.palette.primary.main,
+			color: isDark(theme.palette.primary.main) ? "white" : "black",
 		},
 		"& .icon": {
-			color: theme.palette.primary.main,
+			color: isDark(theme.palette.primary.main) ? "white" : "black",
 		},
 		"&:hover": {
-			backgroundColor: theme.palette.secondary.main,
+			// backgroundColor: theme.palette.secondary.main,
 			color: theme.palette.primary.main,
 			"& title": {
 				color: theme.palette.primary.main,
@@ -71,7 +62,6 @@ const BoxButton = styled(Box)(({ theme }) => ({
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
-	color: "white",
 	fontWeight: 400,
 }));
 
@@ -82,11 +72,11 @@ const IconCustom = styled(Box)(({ theme }) => ({
 	},
 }));
 
-const NavBarItem = ({ className, href, icon: Icon, title, onClose, ...rest }) => {
+const NavBarItem = ({ className, href, icon: Icon, title, pagines, onClose, ...rest }) => {
 	const router = useRouter();
 
 	return (
-		<ListItemCustom disableGutters {...rest} sx={{ padding: 0 }}>
+		<ListItemCustom disableGutters {...rest}>
 			<BoxButton className={href === router.pathname ? "active" : ""} component={Link} href={href} onClick={onClose} color="secondary">
 				<IconCustom mr={1}>
 					<Icon className={"icon"} size="20" />
