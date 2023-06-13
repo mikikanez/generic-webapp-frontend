@@ -23,7 +23,7 @@ const Page = ({ children, title = "", ...rest }) => {
 			}}
 		>
 			<Head>
-				<title>{title} - Portal Attack</title>
+				<title>{title}</title>
 				<link rel="canonical" href={router.pathname} />
 			</Head>
 			<Fade in={appear} timeout={400}>

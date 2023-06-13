@@ -18,7 +18,7 @@ const ListItemCustom = styled(ListItem)(({ theme }) => ({
 const BoxButton = styled(Box)(({ theme }) => ({
 	marginTop: 5,
 	marginBottom: 5,
-	marginRight: 15,
+	marginRight: 20,
 	marginLeft: 0,
 	borderTopRightRadius: 50,
 	borderBottomRightRadius: 50,
@@ -34,7 +34,7 @@ const BoxButton = styled(Box)(({ theme }) => ({
 	textDecoration: "none",
 	position: "relative",
 	"&:hover": {
-		marginRight: 20,
+		marginRight: 10,
 		backgroundColor: "#000000" + "20",
 	},
 	"&.active": {
@@ -77,7 +77,13 @@ const NavBarItem = ({ className, href, icon: Icon, title, pagines, onClose, ...r
 
 	return (
 		<ListItemCustom disableGutters {...rest}>
-			<BoxButton className={href === router.pathname ? "active" : ""} component={Link} href={href} onClick={onClose} color="secondary">
+			<BoxButton
+				className={router.pathname === href || router.asPath === href ? "active" : ""}
+				component={Link}
+				href={href}
+				onClick={onClose}
+				color="secondary"
+			>
 				<IconCustom mr={1}>
 					<Icon className={"icon"} size="20" />
 				</IconCustom>

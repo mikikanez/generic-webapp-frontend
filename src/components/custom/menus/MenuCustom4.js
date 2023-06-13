@@ -8,12 +8,12 @@ import { useTheme } from "@mui/material/styles";
 import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
+import NavBarItemLight from "@/layouts/public/NavBarItemLight";
 
-export default function MenuCustom1() {
+export default function MenuCustom4() {
 	const router = useRouter();
 	const [menu, setMenu] = useState(null);
 	const opcions = useOpcions();
-	const theme = useTheme();
 
 	const items = [
 		...opcions?.pagines?.map((item) => {
@@ -34,7 +34,6 @@ export default function MenuCustom1() {
 			style={{
 				transition: "0.2s",
 				borderBottom: "1px solid white",
-				backgroundColor: theme.palette.background.main,
 			}}
 		>
 			<Hidden mdDown>
@@ -51,9 +50,7 @@ export default function MenuCustom1() {
 					{opcions?.logo ? (
 						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={100} alt="G" style={{ objectFit: "contain" }} />
 					) : (
-						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"}>
-							{opcions?.titol}
-						</Typography>
+						<Typography variant="h3">{opcions?.titol}</Typography>
 					)}
 				</Box>
 			</Hidden>
@@ -66,7 +63,7 @@ export default function MenuCustom1() {
 					}}
 				>
 					{items?.map((item) => (
-						<NavBarItem to={item.to} key={item.title} title={item.title} />
+						<NavBarItemLight to={item.to} key={item.title} title={item.title} />
 					))}
 				</Box>
 			</Hidden>
@@ -96,12 +93,12 @@ export default function MenuCustom1() {
 				<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 					{opcions?.instagram && (
 						<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-							<Instagram color="info" />
+							<Instagram color="primary" />
 						</a>
 					)}
 					{opcions?.twitter && (
 						<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-							<Twitter color="info" />
+							<Twitter color="primary" />
 						</a>
 					)}
 				</Stack>
