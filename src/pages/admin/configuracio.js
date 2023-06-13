@@ -9,7 +9,7 @@ import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { Controller, useForm } from "react-hook-form";
 import CustomButton from "@/components/elements/CustomButton";
-import { Box, FormControl, Grid, InputAdornment, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, FormControl, FormControlLabel, FormLabel, Grid, InputAdornment, InputLabel, MenuItem, Radio, RadioGroup, Select } from "@mui/material";
 import ColorPicker from "mui-color-picker";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useSnackbar } from "notistack";
@@ -17,6 +17,9 @@ import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
 import Thumb from "@/components/elements/Thumb";
 import ImageInput from "@/components/elements/InputImage";
+import { tipografies } from "@/core/fonts";
+import { menus } from "@/components/custom/menus";
+import { useTheme } from "@emotion/react";
 
 export default function ConfiguracioAdmin({ configuracio }) {
 	const { enqueueSnackbar } = useSnackbar();
@@ -24,6 +27,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 	const [loading, setLoading] = useState(false);
 	const { user } = useAuth();
 	const router = useRouter();
+	const theme = useTheme();
 
 	useEffect(() => {
 		configuracio.map((item) => setValue(item.nom, item.valor));
@@ -66,6 +70,16 @@ export default function ConfiguracioAdmin({ configuracio }) {
 								rows={3}
 								multiline
 							/>
+						</CustomCard>
+						<CustomCard title={"Tipus de menú"}>
+							{menus?.map((Item) => (
+								<Box key={Item.id} display={"flex"} alignItems={"center"} mb={2}>
+									<Radio checked={watch("menu") === String(Item.id)} onClick={() => setValue("menu", String(Item.id))} />
+									<Box style={{ width: "100%" }} borderRadius={1} overflow={"hidden"}>
+										<Item.component />
+									</Box>
+								</Box>
+							))}
 						</CustomCard>
 					</Grid>
 					<Grid item md={4}>
@@ -173,8 +187,6 @@ export default function ConfiguracioAdmin({ configuracio }) {
 		</PageAdmin>
 	);
 }
-
-const tipografies = ["Montserrat", "Roboto"];
 
 export const getServerSideProps = async (context) => {
 	let session = [];

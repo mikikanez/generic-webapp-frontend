@@ -9,7 +9,7 @@ import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 
-export default function MenuCustom1() {
+export default function MenuCustom3() {
 	const router = useRouter();
 	const [menu, setMenu] = useState(null);
 	const opcions = useOpcions();
@@ -43,6 +43,7 @@ export default function MenuCustom1() {
 						flex: 1,
 						display: "flex",
 						justifyContent: "flex-start",
+						alignItems: "center",
 						cursor: "pointer",
 						padding: 15,
 					}}
@@ -55,19 +56,19 @@ export default function MenuCustom1() {
 							{opcions?.titol}
 						</Typography>
 					)}
-				</Box>
-			</Hidden>
-			<Hidden mdDown>
-				<Box
-					style={{
-						flex: 1,
-						display: "flex",
-						justifyContent: "center",
-					}}
-				>
-					{items?.map((item) => (
-						<NavBarItem to={item.to} key={item.title} title={item.title} />
-					))}
+					<Hidden mdDown>
+						<Box
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								marginLeft: 50,
+							}}
+						>
+							{items?.map((item) => (
+								<NavBarItem to={item.to} key={item.title} title={item.title} />
+							))}
+						</Box>
+					</Hidden>
 				</Box>
 			</Hidden>
 

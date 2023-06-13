@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { createBreakpoints } from "@mui/system";
-import { Inter, Montserrat, Roboto } from "next/font/google";
+import { font } from "./fonts";
 
 const CrearTema = (data) => {
 	const breakpoints = createBreakpoints({});
@@ -33,10 +33,10 @@ const CrearTema = (data) => {
 			},
 			danger: {
 				main: "#be1622",
-				light: "#be1622",
+				light: "#be162290",
 			},
 			success: {
-				main: "#9f1e25",
+				main: "#22bb33",
 			},
 			info: {
 				main: "#FFF",
@@ -51,7 +51,7 @@ const CrearTema = (data) => {
 				third: "#be1622",
 			},
 			typography: {
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 		},
 		typography: {
@@ -64,7 +64,7 @@ const CrearTema = (data) => {
 					fontSize: "2rem",
 				},
 				textTransform: "uppercase",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			h2: {
 				fontSize: "2.5rem",
@@ -78,7 +78,7 @@ const CrearTema = (data) => {
 					fontSize: "2rem",
 				},
 				textTransform: "uppercase",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			h3: {
 				fontSize: "1.3rem",
@@ -88,7 +88,7 @@ const CrearTema = (data) => {
 				[breakpoints.down("sm")]: {
 					fontSize: "1.2rem",
 				},
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			h4: {
 				fontSize: "1.2rem",
@@ -98,14 +98,14 @@ const CrearTema = (data) => {
 				[breakpoints.down("sm")]: {
 					fontSize: "1.2rem",
 				},
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			h5: {
 				fontSize: "1.21rem",
 				textTransform: "uppercase",
 				fontWeight: 800,
 				color: data?.secondary ?? "#000",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			h6: {
 				fontSize: "1rem",
@@ -115,7 +115,7 @@ const CrearTema = (data) => {
 				[breakpoints.down("sm")]: {
 					fontSize: "0.8rem",
 				},
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			body1: {
 				fontSize: "1rem",
@@ -125,7 +125,7 @@ const CrearTema = (data) => {
 				[breakpoints.down("sm")]: {
 					fontSize: "1rem",
 				},
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			body2: {
 				fontSize: "1rem",
@@ -137,7 +137,7 @@ const CrearTema = (data) => {
 			caption: {
 				color: "#1d1d1b",
 				fontSize: 14,
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			root: {
 				"& a": {
@@ -148,34 +148,34 @@ const CrearTema = (data) => {
 						color: "black",
 					},
 				},
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			error: {
 				color: "#d32f2f",
 				fontSize: "0.9rem",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			title: {
 				fontSize: "3.5rem",
 				color: "#1d1d1b",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			link: {
 				transition: "0.2s",
 				fontSize: "0.8rem",
 				color: "#FFF",
 				textTransform: "uppercase",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			footer: {
 				fontSize: "0.9rem",
 				color: "white",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 			menu: {
 				fontSize: 18,
 				textDecoration: "none",
-				fontFamily: data?.font,
+				...font(data).style,
 			},
 		},
 		"& a": {
@@ -187,27 +187,6 @@ const CrearTema = (data) => {
 };
 
 export default CrearTema;
-
-export const montserrat = Montserrat({
-	weight: ["300", "400", "500", "700"],
-	subsets: ["latin"],
-	display: "swap",
-	fallback: ["Helvetica", "Arial", "sans-serif"],
-});
-
-export const roboto = Roboto({
-	weight: ["300", "400", "500", "700"],
-	subsets: ["latin"],
-	display: "swap",
-	fallback: ["Helvetica", "Arial", "sans-serif"],
-});
-
-export const inter = Inter({
-	weight: ["300", "400", "500", "700"],
-	subsets: ["latin"],
-	display: "swap",
-	fallback: ["Helvetica", "Arial", "sans-serif"],
-});
 
 export const isDark = (c) => {
 	let c1 = c?.substring(1); // strip #

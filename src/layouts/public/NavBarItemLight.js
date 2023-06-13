@@ -12,7 +12,7 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 	marginLeft: 10,
 	marginRight: 10,
 	"& .MuiTypography-root": {
-		color: isDark(theme.palette.primary.main) ? "white" : "black",
+		color: theme.palette.primary.main,
 		padding: 5,
 		fontWeight: 600,
 		fontSize: 14,
@@ -31,7 +31,7 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 	},
 }));
 
-const NavBarItem = ({ className, to, title, ...rest }) => {
+const NavBarItemLight = ({ className, to, title, ...rest }) => {
 	const router = useRouter();
 
 	return (
@@ -47,4 +47,4 @@ const NavBarItem = ({ className, to, title, ...rest }) => {
 	);
 };
 
-export default NavBarItem;
+export default NavBarItemLight;

@@ -28,6 +28,7 @@ export default function App({ Component, pageProps: { session, ...pageProps }, r
 		notistackRef.current.closeSnackbar(key);
 	};
 	const { data, loading } = useGetOptions();
+
 	const theme = CrearTema(data);
 
 	useEffect(() => {

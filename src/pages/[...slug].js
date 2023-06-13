@@ -1,13 +1,15 @@
 import Page from "@/components/layout/Page";
 import { getData, getDataIds } from "@/lib/API";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 export default function Pagina({ pagina }) {
 	console.log(pagina);
 	return (
 		<Page title={pagina?.titol}>
-			<Typography>{pagina?.titol}</Typography>
+			<Box style={{ height: "20vh" }}>
+				<Typography variant="h1">{pagina?.titol}</Typography>
+			</Box>
 		</Page>
 	);
 }

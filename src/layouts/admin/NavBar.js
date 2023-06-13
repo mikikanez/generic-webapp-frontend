@@ -53,14 +53,21 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 			icon: Settings,
 			title: "Configuració",
 		},
-		{},
+		{
+			title: "Pàgines",
+		},
 		{
 			href: "/admin/pagines",
 			icon: Layers,
 			title: "Totes les pàgines",
 		},
+		{
+			href: "/admin/pagina",
+			icon: CircleOutlined,
+			title: "Inici",
+		},
 		...opcions?.pagines?.map((item) => {
-			return { title: item.titol, href: "/admin/pagines/" + item.slug, icon: CircleOutlined, pagines: true };
+			return item.slug && { title: item.titol, href: "/admin/pagina/" + item.slug, icon: CircleOutlined, pagines: true };
 		}),
 	];
 
@@ -68,31 +75,33 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 		<BoxMenu>
 			<Box pt={2}>
 				<Link href="/">
-					{opcions?.logo ? (
+					{/* {opcions?.logo ? (
 						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={240} alt="Logo" style={{ objectFit: "contain" }} />
-					) : (
-						<Typography variant="h3" color={isDark(opcions?.primary ?? false) ? "white" : "black"}>
-							{opcions?.titol} - <small>ADMIN</small>
-						</Typography>
-					)}
+					) : ( */}
+					<Typography variant="h4">
+						{opcions?.titol} <br /> <small>ADMIN</small>
+					</Typography>
+					{/* )} */}
 				</Link>
-				<Box mt={8} />
+				<Box mt={2} />
 
 				<List>
 					{items?.map((item, index) =>
 						item.href ? (
 							<NavBarItem href={item.href} key={index} title={item.title} pagines={item.pagines} icon={item.icon} onClose={onMobileClose} />
 						) : (
-							<Divider
-								key={index}
-								sx={{
-									marginBottom: 2,
-									marginTop: 4,
-								}}
-								light={true}
-							>
-								<Typography>Pàgines</Typography>
-							</Divider>
+							item.title && (
+								<Divider
+									key={index}
+									sx={{
+										marginBottom: 2,
+										marginTop: 4,
+									}}
+									textAlign="left"
+								>
+									<Typography variant="caption">{item.title}</Typography>
+								</Divider>
+							)
 						)
 					)}
 				</List>
