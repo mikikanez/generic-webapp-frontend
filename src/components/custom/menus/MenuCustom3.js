@@ -16,9 +16,11 @@ export default function MenuCustom3() {
 	const theme = useTheme();
 
 	const items = [
-		...opcions?.pagines?.map((item) => {
-			return { title: item.titol, to: "/" + item.slug };
-		}),
+		...opcions?.pagines
+			?.filter((i) => i.menu === 1)
+			?.map((item) => {
+				return { title: item.titol, to: "/" + item.slug };
+			}),
 	];
 
 	const openMenu = (event) => {

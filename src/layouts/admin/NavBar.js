@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Hidden from "@mui/material/Hidden";
@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Typography } from "@mui/material";
 import PaginesItems from "./PaginesItems";
+import CustomButton from "@/components/elements/CustomButton";
+import { DialogAddPagina } from "@/views/pagines/DialogAddPagina";
 
 const BoxMenu = styled(Box)(({ theme }) => ({
 	backgroundColor: "#f5f5f5",
@@ -26,6 +28,7 @@ const DrawerCustom = styled(Drawer)(({ theme }) => ({
 }));
 
 const NavBar = ({ onMobileClose, openMobile }) => {
+	const [open, setOpen] = useState();
 	const opcions = useOpcions();
 
 	const content = (
@@ -45,6 +48,10 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 				<PaginesItems onMobileClose={onMobileClose} />
 			</Box>
 			<Box flexGrow={1} />
+			<Box p={2}>
+				<CustomButton title={"Nova pàgina"} fullWidth onClick={() => setOpen(true)} />
+			</Box>
+			<DialogAddPagina open={open} setOpen={setOpen} />
 		</BoxMenu>
 	);
 
