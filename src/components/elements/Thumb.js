@@ -1,6 +1,7 @@
-import { Image } from "@mui/icons-material";
 import { Image as ImageIcon } from "@mui/icons-material/Image";
+import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Thumb = (props) => {
@@ -24,17 +25,9 @@ const Thumb = (props) => {
 	}, [props?.file]);
 
 	return (
-		<Avatar
-			variant="rounded"
-			src={thumb}
-			alt={props?.file?.name}
-			sx={{
-				width: "100%",
-				height: 300,
-			}}
-		>
-			<Image style={{ fontSize: 150 }} />
-		</Avatar>
+		<Box borderRadius={2} p={3} display={"flex"} justifyContent={"center"} backgroundColor="#cacaca">
+			<Image variant="rounded" src={thumb} alt={props?.file?.name} width={150} height={150} style={{ objectFit: "contain" }} />
+		</Box>
 	);
 };
 

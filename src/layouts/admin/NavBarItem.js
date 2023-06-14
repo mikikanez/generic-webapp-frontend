@@ -16,8 +16,8 @@ const ListItemCustom = styled(ListItem)(({ theme }) => ({
 }));
 
 const BoxButton = styled(Box)(({ theme }) => ({
-	marginTop: 5,
-	marginBottom: 5,
+	marginTop: 3,
+	marginBottom: 3,
 	marginRight: 20,
 	marginLeft: 0,
 	borderTopRightRadius: 50,
@@ -26,7 +26,7 @@ const BoxButton = styled(Box)(({ theme }) => ({
 	alignItems: "center",
 	letterSpacing: 0,
 	transition: "0.2s",
-	padding: 8,
+	padding: 6,
 	paddingLeft: 15,
 	textTransform: "none",
 	display: "flex",

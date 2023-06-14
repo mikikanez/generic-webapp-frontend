@@ -25,6 +25,7 @@ const useStyles = makeStyles(() => ({
 		flex: "1 1 auto",
 		height: "100%",
 		overflow: "auto",
+		backgroundColor: "white",
 	},
 }));
 

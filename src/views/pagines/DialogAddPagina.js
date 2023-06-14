@@ -20,7 +20,8 @@ export function DialogAddPagina({ open, setOpen }) {
 		formState: { errors },
 		clearErrors,
 		reset,
-	} = useForm();
+		control,
+	} = useForm({ defaultValues: { idioma_id: 1 } });
 	const [idiomes, setIdiomes] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const { user } = useAuth();
@@ -60,6 +61,7 @@ export function DialogAddPagina({ open, setOpen }) {
 	};
 
 	const crear = async (values) => {
+		console.log(values);
 		const slugOcupat = await exist();
 		if (!slugOcupat) {
 			console.log(values);
@@ -113,7 +115,7 @@ export function DialogAddPagina({ open, setOpen }) {
 							/>
 						</Grid>
 						<Grid item md={6}>
-							<CustomSelect register={register} label={"Idioma"} list={idiomes} name={"idioma_id"} defaultValue={"1"} />
+							<CustomSelect register={register} label={"Idioma"} list={idiomes} name={"idioma_id"} defaultValue={1} control={control} />
 						</Grid>
 						<Grid item md={6}>
 							<CustomTextField register={register} name={"keywords"} label={"Paraules clau"} />

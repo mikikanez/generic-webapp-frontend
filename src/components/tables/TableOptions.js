@@ -1,11 +1,19 @@
+import { useRouter } from "next/router";
+
 const TableOptions = () => {
 	// const { enqueueSnackbar } = useSnackbar();
+	const router = useRouter();
 
 	const options = {
 		rowsPerPage: 20,
 		enableNestedDataAccess: ".",
 		filterType: "checkbox",
 		selectableRows: "none",
+		draggableColumns: { enabled: true },
+		print: "false",
+		onRowClick: (row) => {
+			router.push("/admin/pagina/" + row[0]);
+		},
 		// customToolbar: () => <CustomToolbar />,
 		// onFilterChange: filterFunc ? filterFunc : () => null,
 		// onRowsDelete: (rowsDeleted) => {
