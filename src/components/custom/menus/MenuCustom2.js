@@ -41,11 +41,11 @@ export default function MenuCustom2({ scrollY = 0 }) {
 					onClick={() => router.push("/")}
 				>
 					{opcions?.logo ? (
-						<Box height={100} width={100}>
+						<Box height={120} width={150}>
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} fill alt="G" style={{ objectFit: "contain" }} />
 						</Box>
 					) : (
-						<Typography variant="h1" mb={2} color={isDark(opcions?.primary) ? "black" : "white"}>
+						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"} my={3}>
 							{opcions?.titol}
 						</Typography>
 					)}

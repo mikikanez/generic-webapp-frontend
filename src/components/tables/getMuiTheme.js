@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 
 const getMuiTheme = () =>
 	createTheme({
@@ -13,7 +13,6 @@ const getMuiTheme = () =>
 						marginBottom: 80,
 						overflow: "hidden",
 						position: "relative",
-						fontFamily: "Roboto",
 					},
 					paper: {
 						boxShadow: "none",
@@ -23,16 +22,14 @@ const getMuiTheme = () =>
 			MuiTableCell: {
 				styleOverrides: {
 					root: {
-						fontFamily: "Roboto",
 						fontSize: 16,
-						padding: 5,
+						padding: 20,
 					},
 				},
 			},
 			MuiButton: {
 				styleOverrides: {
 					root: {
-						fontFamily: "Roboto",
 						fontSize: 16,
 					},
 				},
@@ -40,25 +37,18 @@ const getMuiTheme = () =>
 
 			MUIDataTableSelectCell: {
 				styleOverrides: {
-					headerCell: {
-						fontFamily: "Roboto",
-					},
+					headerCell: {},
 				},
 			},
 			MuiTablePagination: {
 				styleOverrides: {
-					selectLabel: {
-						fontFamily: "Roboto",
-					},
-					displayedRows: {
-						fontFamily: "Roboto",
-					},
+					selectLabel: {},
+					displayedRows: {},
 				},
 			},
 			MuiSelect: {
 				styleOverrides: {
 					select: {
-						fontFamily: "Roboto",
 						fontSize: 16,
 					},
 				},

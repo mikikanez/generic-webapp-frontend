@@ -3,7 +3,7 @@ import PageAdmin from "@/components/layout/PageAdmin";
 import { CircleOutlined, Layers } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
-import { getData, getList } from "@/lib/API";
+import { getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -11,11 +11,16 @@ import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
+import { existSlug, slugify } from "@/core/utils";
+import { useSnackbar } from "notistack";
+import { useAuth } from "@/core/hooks/useAuth";
 
 export default function PaginesAdmin({ pagina }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [idiomes, setIdiomes] = useState([]);
+	const { enqueueSnackbar } = useSnackbar();
+	const { user } = useAuth();
 
 	const {
 		register,
@@ -23,27 +28,54 @@ export default function PaginesAdmin({ pagina }) {
 		watch,
 		setValue,
 		setError,
+		control,
 		formState: { errors },
 		clearErrors,
 		reset,
-	} = useForm();
+	} = useForm({ shouldUnregister: false, defaultValues: pagina });
 
 	useEffect(() => {
 		reset(pagina);
-	}, [pagina, reset]);
+		setValue("idioma_id", Number(pagina.idioma_id ?? ""));
+		setValue("menu", Number(pagina.menu) ?? 0);
+	}, [pagina, reset, setValue]);
 
 	useEffect(() => {
 		const obtenir = async () => {
 			setLoading(true);
 			const data = await getList("idiomes");
+
 			setIdiomes(data);
 			setLoading(false);
 		};
 		open ? obtenir() : reset();
 	}, [open]);
 
+	useEffect(() => {
+		const slug = slugify(watch("titol") ?? "");
+		setValue("slug", slug);
+	}, [watch("titol")]);
+
 	const guardar = async (values) => {
 		console.log(values);
+		setLoading(true);
+		try {
+			const { message } = await updateElement("pagines", pagina.id, values, user.token.accessToken);
+			enqueueSnackbar(message, {
+				variant: "success",
+			});
+			console.log(values.slug);
+			router.push("/admin/pagina/" + values.slug);
+			setTimeout(() => {
+				router.reload();
+			}, 500);
+		} catch (e) {
+			enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
+				variant: "error",
+			});
+			console.log(e);
+		}
+		setLoading(false);
 	};
 
 	return (
@@ -89,14 +121,38 @@ export default function PaginesAdmin({ pagina }) {
 								}}
 								mt={3}
 							/>
-							<CustomSelect register={register} label={"Idioma"} list={idiomes} name={"idioma_id"} defaultValue={"1"} mt={3} />
+							<CustomSelect
+								register={register}
+								label={"Idioma"}
+								list={idiomes}
+								name={"idioma_id"}
+								control={control}
+								mt={3}
+								defaultValue={Number(pagina?.idioma_id) ?? "0"}
+							/>
+							<CustomSelect
+								register={register}
+								label={"Ubicació de la pàgina"}
+								list={[
+									{ id: 0, nom: "Altres" },
+									{ id: 1, nom: "Menú principal" },
+									{ id: 2, nom: "Peu de pàgina" },
+								]}
+								InputLabelProps={{
+									shrink: true,
+								}}
+								defaultValue={Number(pagina?.menu) ?? 0}
+								name={"menu"}
+								control={control}
+								mt={3}
+							/>
 
 							<Grid spacing={2} container mt={3}>
 								<Grid item md={6}>
 									<CustomButton title={"Veure pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" />
 								</Grid>
 								<Grid item md={6}>
-									<CustomButton title={"Guardar"} success fullWidth loading={loading} />
+									<CustomButton type="submit" title={"Guardar"} success fullWidth loading={loading} />
 								</Grid>
 							</Grid>
 						</CustomCard>

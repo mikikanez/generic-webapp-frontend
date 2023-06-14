@@ -3,10 +3,14 @@ import { Fade } from "@mui/material";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import theme from "@/styles/theme";
+import { useOpcions } from "@/context/OpcionsContext";
+import { menus } from "../custom/menus";
 
 const Page = ({ children, title = "", ...rest }) => {
 	const [appear, setApperar] = useState(false);
+	const [marginTop, setMarginTop] = useState(100);
 	const router = useRouter();
+	const opcions = useOpcions();
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -15,13 +19,13 @@ const Page = ({ children, title = "", ...rest }) => {
 		}, 300);
 	}, []);
 
+	useEffect(() => {
+		console.log(menus.filter((menu) => menu.id === Number(opcions?.menu))[0]);
+		setMarginTop(menus.filter((menu) => menu.id === Number(opcions?.menu))[0]?.marginTop);
+	}, [opcions?.menu]);
+
 	return (
-		<div
-			{...rest}
-			style={{
-				backgroundColor: theme.palette.background.main,
-			}}
-		>
+		<div {...rest}>
 			<Head>
 				<title>{title}</title>
 				<link rel="canonical" href={router.pathname} />
@@ -33,7 +37,7 @@ const Page = ({ children, title = "", ...rest }) => {
 						backgroundImage: `url(fons.jpg)`,
 						backgroundSize: "cover",
 						backgroundPosition: "center",
-						marginTop: 100,
+						marginTop: marginTop,
 					}}
 				>
 					{children}

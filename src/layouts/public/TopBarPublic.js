@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import { AppBar, Box } from "@mui/material";
 import { styled } from "@mui/styles";
 import { useOpcions } from "@/context/OpcionsContext";
-import MenuCustom1 from "@/components/custom/menus/MenuCustom1";
-import MenuCustom2 from "@/components/custom/menus/MenuCustom2";
-import { useTheme } from "@emotion/react";
-import MenuCustom4 from "@/components/custom/menus/MenuCustom4";
-import MenuCustom3 from "@/components/custom/menus/MenuCustom3";
+import { menus } from "@/components/custom/menus";
 
 const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 	const [scrollY, setScrollY] = useState();
 	const opcions = useOpcions();
-	const theme = useTheme();
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
@@ -25,35 +20,13 @@ const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 	};
 
 	const returnMenu = () => {
-		switch (opcions.menu) {
-			case "1":
-				return <MenuCustom1 scrollY={scrollY} />;
-
-			case "2":
-				return <MenuCustom2 scrollY={scrollY} />;
-
-			case "3":
-				return <MenuCustom3 scrollY={scrollY} />;
-
-			case "4":
-				return <MenuCustom4 scrollY={scrollY} />;
-			default:
-				break;
-		}
+		const Menu = menus.filter((menu) => menu.id === Number(opcions?.menu))[0].component;
+		return <Menu scrollY={scrollY} />;
 	};
 
 	return (
 		<BoxMain>
-			<AppBar
-				elevation={0}
-				style={{
-					boxShadow: "none",
-					zIndex: 10000,
-					backgroundColor: "transparent",
-				}}
-			>
-				{returnMenu()}
-			</AppBar>
+			<CustomAppBar elevation={0}>{returnMenu()}</CustomAppBar>
 		</BoxMain>
 	);
 };
@@ -62,6 +35,12 @@ const BoxMain = styled(Box)(({ theme }) => ({
 	width: "100%",
 	transition: "0.2s",
 	position: "fixed",
+}));
+
+const CustomAppBar = styled(AppBar)(({ theme }) => ({
+	boxShadow: "none",
+	zIndex: 10000,
+	backgroundColor: "transparent",
 }));
 
 export default TopBarPublic;

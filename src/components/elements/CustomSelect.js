@@ -3,7 +3,7 @@ import { Chip, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Box } from "@mui/system";
 import { Controller } from "react-hook-form";
 
-export default function CustomSelect({ name, label, register, list, multiple, control, defaultValue, mt, keyName }) {
+export default function CustomSelect({ name, label, register, list, multiple, control, defaultValue, mt, keyName, ...rest }) {
 	return (
 		<Box mt={mt}>
 			<FormControl fullWidth>
@@ -48,13 +48,30 @@ export default function CustomSelect({ name, label, register, list, multiple, co
 						)}
 					/>
 				) : (
-					<Select {...register(name)} fullWidth variant="outlined" label={label} defaultValue={defaultValue}>
-						{list?.map((item) => (
-							<MenuItem key={item.id} value={item.id}>
-								{keyName ? item[keyName] : item.nom}
-							</MenuItem>
-						))}
-					</Select>
+					<Controller
+						control={control}
+						name={name}
+						render={({ field: { onChange, onBlur, value, name, ref } }) => (
+							<Select
+								onChange={onChange}
+								onBlur={onBlur}
+								value={value}
+								name={name}
+								label={label}
+								ref={ref}
+								fullWidth
+								variant="outlined"
+								defaultValue={defaultValue}
+								{...rest}
+							>
+								{list?.map((item) => (
+									<MenuItem key={item.id} value={item.id}>
+										{keyName ? item[keyName] : item.nom}
+									</MenuItem>
+								))}
+							</Select>
+						)}
+					/>
 				)}
 			</FormControl>
 		</Box>

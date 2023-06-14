@@ -7,15 +7,10 @@ export default function useGetOptions(url) {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		console.log(loading);
-	}, [loading]);
-
-	useEffect(() => {
 		(async function () {
 			try {
 				setLoading(true);
 				const response = await getOptions();
-				console.log(response);
 				setData(response);
 			} catch (err) {
 				setError(err);
