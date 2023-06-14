@@ -13,9 +13,11 @@ export default function MenuCustom2({ scrollY = 0 }) {
 	const opcions = useOpcions();
 
 	const items = [
-		...opcions?.pagines?.map((item) => {
-			return { title: item.titol, to: "/" + item.slug };
-		}),
+		...opcions?.pagines
+			?.filter((i) => i.menu === 1)
+			?.map((item) => {
+				return { title: item.titol, to: "/" + item.slug };
+			}),
 	];
 
 	return (
@@ -36,7 +38,7 @@ export default function MenuCustom2({ scrollY = 0 }) {
 						transition: "0.2s",
 						transform: scrollY > 200 ? "scale(0.6)" : "scale(1)",
 						marginBottom: scrollY > 200 ? -20 : 0,
-						marginTop: scrollY > 200 ? -10 : 0,
+						marginTop: scrollY > 200 ? -10 : 10,
 					}}
 					onClick={() => router.push("/")}
 				>

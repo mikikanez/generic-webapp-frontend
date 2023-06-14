@@ -4,36 +4,13 @@ import { getServerSession } from "next-auth";
 import PageAdmin from "@/components/layout/PageAdmin";
 import { addElement, getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { BarChart, Instagram, Language, Menu, Palette, Settings, Twitter } from "@mui/icons-material";
-import CustomCard from "@/components/layout/CustomCard";
-import CustomTextField from "@/components/elements/CustomTextField";
-import { Controller, useForm } from "react-hook-form";
+import { BarChart, Language, Menu, Palette, Settings, Twitter } from "@mui/icons-material";
+import { useForm } from "react-hook-form";
 import CustomButton from "@/components/elements/CustomButton";
-import {
-	Box,
-	FormControl,
-	FormControlLabel,
-	FormLabel,
-	Grid,
-	InputAdornment,
-	InputLabel,
-	MenuItem,
-	Radio,
-	RadioGroup,
-	Select,
-	Typography,
-} from "@mui/material";
-import ColorPicker from "mui-color-picker";
+import { Box, Typography } from "@mui/material";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
-import CustomSelect from "@/components/elements/CustomSelect";
-import Thumb from "@/components/elements/Thumb";
-import ImageInput from "@/components/elements/InputImage";
-import { tipografies } from "@/core/fonts";
-import { menus } from "@/components/custom/menus";
-import { useTheme } from "@emotion/react";
-import { footers } from "@/components/custom/footers";
 import { TabContext, TabPanel } from "@mui/lab";
 import { CustomTab, CustomTabs } from "@/components/elements/CustomTabs";
 import General from "@/views/personalitzacio/General";
@@ -131,10 +108,10 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						/>
 					</TabPanel>
 					<TabPanel value={3} index={0} style={{ padding: 0 }}>
-						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} />
+						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
 					</TabPanel>
 					<TabPanel value={4} index={0} style={{ padding: 0 }}>
-						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} />
+						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
 					</TabPanel>
 					<TabPanel value={5} index={0} style={{ padding: 0 }}>
 						<Idiomes watch={watch} getValues={getValues} />

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	reactStrictMode: true,
+	reactStrictMode: false,
 	modularizeImports: {
 		"@mui/material": {
 			transform: "@mui/material/{{member}}",
