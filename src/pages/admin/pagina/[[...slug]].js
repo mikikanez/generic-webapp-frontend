@@ -14,6 +14,8 @@ import CustomSelect from "@/components/elements/CustomSelect";
 import { existSlug, slugify } from "@/core/utils";
 import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
+import { components } from "@/components/custom/components";
+import ComponentChooser from "@/views/pagines/ComponentChooser";
 
 export default function PaginesAdmin({ pagina }) {
 	const router = useRouter();
@@ -38,6 +40,7 @@ export default function PaginesAdmin({ pagina }) {
 		reset(pagina);
 		setValue("idioma_id", Number(pagina.idioma_id ?? ""));
 		setValue("menu", Number(pagina.menu) ?? 0);
+		console.log(pagina);
 	}, [pagina, reset, setValue]);
 
 	useEffect(() => {
@@ -64,7 +67,6 @@ export default function PaginesAdmin({ pagina }) {
 			enqueueSnackbar(message, {
 				variant: "success",
 			});
-			console.log(values.slug);
 			router.push("/admin/pagina/" + values.slug);
 			setTimeout(() => {
 				router.reload();
@@ -95,8 +97,8 @@ export default function PaginesAdmin({ pagina }) {
 				<Grid container spacing={3}>
 					<Grid item md={8}>
 						<CustomCard title="Editor">
-							{pagina.component_pagina.map((component) => (
-								<Typography key={component.id}>{toString(component.component)}</Typography>
+							{pagina.component.map((com) => (
+								<ComponentChooser key={com.id} com={com} />
 							))}
 						</CustomCard>
 					</Grid>
@@ -172,7 +174,6 @@ export const getServerSideProps = async (context) => {
 	try {
 		session = await getServerSession(context.req, context.res, authOptions);
 		pagina = await getData("pagines", context?.query.slug ?? "-");
-		console.log(pagina);
 	} catch (error) {
 		console.log(error);
 	}

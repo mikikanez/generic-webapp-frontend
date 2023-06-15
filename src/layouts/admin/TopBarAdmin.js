@@ -47,7 +47,7 @@ const TopBarAdmin = ({ className, onMobileNavOpen, ...rest }) => {
 				<Box flexGrow={1} />
 				<Box display="flex" alignItems={"center"} justifyContent="space-between">
 					<Hidden mdDown>
-						<Typography color="white" variant="body1" mr={2}>
+						<Typography variant="body1" mr={2}>
 							{user?.name}
 						</Typography>
 					</Hidden>

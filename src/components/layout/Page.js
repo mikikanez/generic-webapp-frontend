@@ -38,6 +38,7 @@ const Page = ({ children, title = "", ...rest }) => {
 						backgroundSize: "cover",
 						backgroundPosition: "center",
 						marginTop: marginTop,
+						zIndex: 0,
 					}}
 				>
 					{children}

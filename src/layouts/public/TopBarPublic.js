@@ -35,6 +35,7 @@ const BoxMain = styled(Box)(({ theme }) => ({
 	width: "100%",
 	transition: "0.2s",
 	position: "fixed",
+	zIndex: 10000,
 }));
 
 const CustomAppBar = styled(AppBar)(({ theme }) => ({

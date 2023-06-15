@@ -56,12 +56,12 @@ const CrearTema = (data) => {
 		},
 		typography: {
 			h1: {
-				fontSize: "3rem",
+				fontSize: "4rem",
 				color: data?.primary ?? "#000",
-				fontWeight: 400,
+				fontWeight: 800,
 				lineHeight: 0.9,
 				[breakpoints.down("sm")]: {
-					fontSize: "2rem",
+					fontSize: "2.5rem",
 				},
 				textTransform: "uppercase",
 				...font(data).style,
@@ -118,7 +118,7 @@ const CrearTema = (data) => {
 				...font(data).style,
 			},
 			body1: {
-				fontSize: "1rem",
+				fontSize: "1.1rem",
 				lineHeight: 1.3,
 				color: "#1d1d1b",
 				fontWeight: 400,
@@ -128,11 +128,15 @@ const CrearTema = (data) => {
 				...font(data).style,
 			},
 			body2: {
-				fontSize: "1rem",
+				fontSize: "1.2rem",
+				color: "#1d1d1b",
 				fontWeight: 400,
 				lineHeight: 1.3,
 				paddingBottom: 20,
 				fontFamily: data?.font,
+				[breakpoints.down("sm")]: {
+					fontSize: "1rem",
+				},
 			},
 			caption: {
 				color: "#1d1d1b",
