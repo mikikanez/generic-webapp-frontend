@@ -1,5 +1,6 @@
 import Page from "@/components/layout/Page";
 import { getData, getDataIds } from "@/lib/API";
+import ComponentChooser from "@/views/pagines/ComponentChooser";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
@@ -7,8 +8,10 @@ export default function Pagina({ pagina }) {
 	console.log(pagina);
 	return (
 		<Page title={pagina?.titol}>
-			<Box style={{ height: "20vh" }}>
-				<Typography variant="h1">{pagina?.titol}</Typography>
+			<Box>
+				{pagina.component.map((com) => (
+					<ComponentChooser key={com.id} com={com} />
+				))}
 			</Box>
 		</Page>
 	);
@@ -30,7 +33,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const pagina = await getData("pagines", params.slug[0]);
+	const pagina = await getData("pagines", params.slug ? params.slug[0] : "-");
 
 	return {
 		props: { pagina },

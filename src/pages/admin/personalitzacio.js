@@ -67,7 +67,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 
 	return (
 		<form onSubmit={handleSubmit(enviar)}>
-			<PageAdmin title="Personalització" Icon={Settings} button={<CustomButton type="submit" title={"Guardar"} loading={loading} />}>
+			<PageAdmin title="Personalització" Icon={Settings} button={<CustomButton type="submit" title={"Guardar"} loading={loading} success />}>
 				<TabContext value={tab}>
 					<Box my={3}>
 						<CustomTabs onChange={handleChange} aria-label="alta select">
