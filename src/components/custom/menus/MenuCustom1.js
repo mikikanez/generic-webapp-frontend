@@ -36,7 +36,7 @@ export default function MenuCustom1() {
 			style={{
 				transition: "0.2s",
 				borderBottom: "1px solid white",
-				backgroundColor: theme.palette.background.main,
+				backgroundColor: theme.palette.primary.main,
 			}}
 		>
 			<Hidden mdDown>
@@ -98,12 +98,12 @@ export default function MenuCustom1() {
 				<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 					{opcions?.instagram && (
 						<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-							<Instagram color="info" />
+							<Instagram color={isDark(opcions?.background) ? "info" : "primary"} />
 						</a>
 					)}
 					{opcions?.twitter && (
 						<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-							<Twitter color="info" />
+							<Twitter color={isDark(opcions?.background) ? "info" : "primary"} />
 						</a>
 					)}
 				</Stack>
