@@ -3,7 +3,6 @@ import { Box, Container, Divider, Grid, Typography, useMediaQuery } from "@mui/m
 import Image from "next/image";
 import { valor } from "..";
 import { useTheme } from "@mui/material/styles";
-import ItailoredButton from "@/components/elements/ItailoredButton";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component4({ component }) {
