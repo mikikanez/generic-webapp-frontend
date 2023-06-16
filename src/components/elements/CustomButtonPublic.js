@@ -9,15 +9,11 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 	textTransform: "none",
 	borderRadius: 0,
 	lineHeight: 1,
-	background: theme.palette.background.main,
-	border: "2px solid " + theme.palette.background.main,
 
 	"&:hover": {
 		backgroundColor: theme.palette.secondary.main,
-		border: "2px solid " + theme.palette.secondary.main,
 		boxShadow: "0 0 0 0.2rem " + theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.primary.main) ? "white" : "black",
 			fontSize: 18,
 		},
 	},
@@ -31,7 +27,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 	},
 }));
 
-const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small, light, ...rest }) => {
+const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small, light, secondary, ...rest }) => {
 	const theme = useTheme();
 
 	return (
@@ -39,9 +35,10 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 			style={{
 				width: fullWidth ? "100%" : "auto",
 				padding: small ? "2px 10px" : "10px 40px",
-				background: danger ? theme.palette.error.main : success ? theme.palette.success.main : light ? "white" : theme.palette.primary.main,
-				borderColor: danger ? theme.palette.error.main : success ? theme.palette.success.main : theme.palette.primary.main,
+				// background: danger ? theme.palette.error.main : success ? theme.palette.success.main : light ? "white" : theme.palette.primary.main,
+				// borderColor: danger ? theme.palette.error.main : success ? theme.palette.success.main : theme.palette.primary.main,
 			}}
+			color={danger ? "danger" : success ? "success" : light ? "info" : secondary ? "secondary" : "primary"}
 			{...rest}
 			variant="contained"
 		>
@@ -50,9 +47,9 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 			) : (
 				<Typography
 					style={{
-						color: light ? "black" : isDark(theme.palette.primary.main) ? "white" : "black",
 						fontSize: 18,
 					}}
+					color={light ? "black" : secondary ? (isDark(theme.palette.secondary.main) ? "white" : "black") : "white"}
 				>
 					{title}
 				</Typography>
