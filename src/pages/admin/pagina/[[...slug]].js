@@ -17,12 +17,14 @@ import { useAuth } from "@/core/hooks/useAuth";
 import { components } from "@/components/custom/components";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
 
-export default function PaginesAdmin({ pagina }) {
+export default function PaginesAdmin({ pagina, components }) {
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [idiomes, setIdiomes] = useState([]);
 	const { enqueueSnackbar } = useSnackbar();
 	const { user } = useAuth();
+
+	console.log(components);
 
 	const {
 		register,
@@ -61,23 +63,23 @@ export default function PaginesAdmin({ pagina }) {
 
 	const guardar = async (values) => {
 		console.log(values);
-		setLoading(true);
-		try {
-			const { message } = await updateElement("pagines", pagina.id, values, user.token.accessToken);
-			enqueueSnackbar(message, {
-				variant: "success",
-			});
-			router.push("/admin/pagina/" + values.slug);
-			setTimeout(() => {
-				router.reload();
-			}, 500);
-		} catch (e) {
-			enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
-				variant: "error",
-			});
-			console.log(e);
-		}
-		setLoading(false);
+		// setLoading(true);
+		// try {
+		// 	const { message } = await updateElement("pagines", pagina.id, values, user.token.accessToken);
+		// 	enqueueSnackbar(message, {
+		// 		variant: "success",
+		// 	});
+		// 	router.push("/admin/pagina/" + values.slug);
+		// 	setTimeout(() => {
+		// 		router.reload();
+		// 	}, 500);
+		// } catch (e) {
+		// 	enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
+		// 		variant: "error",
+		// 	});
+		// 	console.log(e);
+		// }
+		// setLoading(false);
 	};
 
 	return (
@@ -96,7 +98,7 @@ export default function PaginesAdmin({ pagina }) {
 
 				<Grid container spacing={3}>
 					<Grid item md={8}>
-						<CustomCard title="Editor">
+						<CustomCard title="Editor" sticky button={() => alert("hols")}>
 							{pagina.component.map((com) => (
 								<ComponentChooser key={com.id} com={com} />
 							))}
@@ -171,9 +173,11 @@ export default function PaginesAdmin({ pagina }) {
 export const getServerSideProps = async (context) => {
 	let session = [];
 	let pagina = "";
+	let components = [];
 	try {
 		session = await getServerSession(context.req, context.res, authOptions);
 		pagina = await getData("pagines", context?.query.slug ?? "-");
+		components = await getList("components", session?.user?.token?.accessToken);
 	} catch (error) {
 		console.log(error);
 	}
@@ -182,6 +186,7 @@ export const getServerSideProps = async (context) => {
 		props: {
 			session: session,
 			pagina: pagina,
+			components: components,
 		},
 	};
 };

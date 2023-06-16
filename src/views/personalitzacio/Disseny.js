@@ -10,6 +10,7 @@ import ImageInput from "@/components/elements/InputImage";
 import { tipografies } from "@/core/fonts";
 import { menus } from "@/components/custom/menus";
 import { footers } from "@/components/custom/footers";
+import { Circle } from "@mui/icons-material";
 
 export default function Disseny({ register, opcio, watch, setValue, control, trigger, getValues }) {
 	return (
@@ -17,41 +18,68 @@ export default function Disseny({ register, opcio, watch, setValue, control, tri
 			<Grid item md={4}>
 				<CustomCard title={"Opcions de colors"}>
 					<Grid spacing={3} container>
-						<Grid item md={6}>
-							<Controller
-								control={control}
-								name={opcio("primary").nom}
-								render={({ field: { onChange, onBlur, value, name, ref } }) => (
-									<ColorPicker
-										onChange={(color) => onChange(color)}
-										onBlur={onBlur}
-										value={watch("primary")}
-										defaultValue={"Color primary"}
-										name={name}
-										label={opcio("primary").descripcio}
-										ref={ref}
-										fullWidth
-									/>
-								)}
-							/>
+						<Grid item md={12}>
+							<Box display={"flex"} alignItems={"center"}>
+								<Circle style={{ color: watch("primary"), height: 50, width: 50, marginRight: 10 }} />
+								<Controller
+									control={control}
+									name={opcio("primary").nom}
+									render={({ field: { onChange, onBlur, value, name, ref } }) => (
+										<ColorPicker
+											onChange={(color) => onChange(color)}
+											onBlur={onBlur}
+											value={watch("primary")}
+											defaultValue={"Color primary"}
+											name={name}
+											label={opcio("primary").descripcio}
+											ref={ref}
+											fullWidth
+										/>
+									)}
+								/>
+							</Box>
 						</Grid>
-						<Grid item md={6}>
-							<Controller
-								control={control}
-								name={opcio("secondary").nom}
-								render={({ field: { onChange, onBlur, value, name, ref } }) => (
-									<ColorPicker
-										onChange={(color) => onChange(color)}
-										onBlur={onBlur}
-										value={watch("secondary")}
-										defaultValue={"Color secondari"}
-										name={name}
-										label={opcio("secondary").descripcio}
-										ref={ref}
-										fullWidth
-									/>
-								)}
-							/>
+						<Grid item md={12}>
+							<Box display={"flex"} alignItems={"center"}>
+								<Circle style={{ color: watch("secondary"), height: 50, width: 50, marginRight: 10 }} />
+								<Controller
+									control={control}
+									name={opcio("secondary").nom}
+									render={({ field: { onChange, onBlur, value, name, ref } }) => (
+										<ColorPicker
+											onChange={(color) => onChange(color)}
+											onBlur={onBlur}
+											value={watch("secondary")}
+											defaultValue={"Color secondari"}
+											name={name}
+											label={opcio("secondary").descripcio}
+											ref={ref}
+											fullWidth
+										/>
+									)}
+								/>
+							</Box>
+						</Grid>
+						<Grid item md={12}>
+							<Box display={"flex"} alignItems={"center"}>
+								<Circle style={{ color: watch("background"), height: 50, width: 50, marginRight: 10 }} />
+								<Controller
+									control={control}
+									name={opcio("background").nom}
+									render={({ field: { onChange, onBlur, value, name, ref } }) => (
+										<ColorPicker
+											onChange={(color) => onChange(color)}
+											onBlur={onBlur}
+											value={watch("background")}
+											defaultValue={"Color de fons"}
+											name={name}
+											label={opcio("background").descripcio}
+											ref={ref}
+											fullWidth
+										/>
+									)}
+								/>
+							</Box>
 						</Grid>
 					</Grid>
 				</CustomCard>
