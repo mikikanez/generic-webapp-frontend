@@ -14,7 +14,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 		backgroundColor: theme.palette.secondary.main,
 		boxShadow: "0 0 0 0.2rem " + theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			fontSize: 18,
+			color: isDark(theme.palette.secondary.main) ? "white" : "black",
 		},
 	},
 	"&:active": {
@@ -34,7 +34,7 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 		<BootstrapButton
 			style={{
 				width: fullWidth ? "100%" : "auto",
-				padding: small ? "2px 10px" : "10px 40px",
+				padding: small ? "2px 10px" : "15px 50px",
 				// background: danger ? theme.palette.error.main : success ? theme.palette.success.main : light ? "white" : theme.palette.primary.main,
 				// borderColor: danger ? theme.palette.error.main : success ? theme.palette.success.main : theme.palette.primary.main,
 			}}
@@ -48,6 +48,7 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 				<Typography
 					style={{
 						fontSize: 18,
+						transition: "0.2s",
 					}}
 					color={light ? "black" : secondary ? (isDark(theme.palette.secondary.main) ? "white" : "black") : "white"}
 				>
