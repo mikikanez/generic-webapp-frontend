@@ -56,7 +56,7 @@ const CrearTema = (data) => {
 		},
 		typography: {
 			h1: {
-				fontSize: "4rem",
+				fontSize: "3rem",
 				color: data?.primary ?? "#000",
 				fontWeight: 800,
 				lineHeight: 0.9,
@@ -133,7 +133,7 @@ const CrearTema = (data) => {
 				fontWeight: 400,
 				lineHeight: 1.3,
 				paddingBottom: 20,
-				fontFamily: data?.font,
+				...font(data).style,
 				[breakpoints.down("sm")]: {
 					fontSize: "1rem",
 				},

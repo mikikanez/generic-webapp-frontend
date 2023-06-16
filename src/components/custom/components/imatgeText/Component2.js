@@ -5,7 +5,6 @@ import { valor } from "..";
 import { useTheme } from "@mui/material/styles";
 
 export default function Component2({ component }) {
-	console.log(component);
 
 	const theme = useTheme();
 
