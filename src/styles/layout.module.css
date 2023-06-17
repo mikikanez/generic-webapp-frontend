@@ -153,7 +153,7 @@
 .is_sticky {
 	position: fixed;
 	top: 64px;
-	width: 80%;
+	width: 100%;
 	left: 250px;
 	z-index: 999;
 	box-shadow: 0 2px 24px 0 rgb(0 0 0 / 15%);

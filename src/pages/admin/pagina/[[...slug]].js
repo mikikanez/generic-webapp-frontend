@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Layers } from "@mui/icons-material";
+import { CircleOutlined, Delete, Edit, Layers } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Fab, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
@@ -16,15 +16,22 @@ import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
 import { components } from "@/components/custom/components";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
+import { DialogAddComponent } from "@/views/pagines/DialogAddComponent";
+import { DialogEditComponent } from "@/views/pagines/DialogEditComponent";
+import { styled, useTheme } from "@mui/material/styles";
+import { DialogEliminar } from "@/components/elements/DialogEliminar";
 
 export default function PaginesAdmin({ pagina, components }) {
+	const [open, setOpen] = useState(false);
+	const [openEdit, setOpenEdit] = useState(false);
+	const [openEliminar, setOpenEliminar] = useState(false);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [idiomes, setIdiomes] = useState([]);
+	const [componentsPreview, setComponentsPreview] = useState([]);
+	const [componentSel, setComponentSel] = useState();
 	const { enqueueSnackbar } = useSnackbar();
 	const { user } = useAuth();
-
-	console.log(components);
 
 	const {
 		register,
@@ -42,7 +49,8 @@ export default function PaginesAdmin({ pagina, components }) {
 		reset(pagina);
 		setValue("idioma_id", Number(pagina.idioma_id ?? ""));
 		setValue("menu", Number(pagina.menu) ?? 0);
-		console.log(pagina);
+		setComponentsPreview(pagina.components);
+		console.log(components);
 	}, [pagina, reset, setValue]);
 
 	useEffect(() => {
@@ -61,7 +69,13 @@ export default function PaginesAdmin({ pagina, components }) {
 		setValue("slug", slug);
 	}, [watch("titol")]);
 
+	const deleteComponent = (id) => {
+		setComponentsPreview((prev) => prev.filter((i) => i.id !== id));
+		setOpenEliminar(false);
+	};
+
 	const guardar = async (values) => {
+		values.components = componentsPreview;
 		console.log(values);
 		setLoading(true);
 		try {
@@ -98,9 +112,31 @@ export default function PaginesAdmin({ pagina, components }) {
 
 				<Grid container spacing={3}>
 					<Grid item md={8}>
-						<CustomCard title="Editor" sticky button={() => alert("hols")}>
-							{pagina.components.map((com) => (
-								<ComponentChooser key={com.id} com={com} />
+						<CustomCard title="Editor" sticky button onClick={() => setOpen(true)} style={{ overflow: "hidden" }}>
+							{componentsPreview?.map((com) => (
+								<Box key={com.id} style={{ position: "relative", overflow: "hidden" }}>
+									<Overlay>
+										<Fab
+											onClick={() => {
+												setComponentSel(com);
+												setOpenEdit(true);
+											}}
+											style={{ marginRight: 10 }}
+										>
+											<Edit />
+										</Fab>
+										<Fab
+											onClick={() => {
+												setComponentSel(com);
+												setOpenEliminar(true);
+											}}
+											color="danger"
+										>
+											<Delete />
+										</Fab>
+									</Overlay>
+									{com && <ComponentChooser com={com} />}
+								</Box>
 							))}
 						</CustomCard>
 					</Grid>
@@ -165,10 +201,41 @@ export default function PaginesAdmin({ pagina, components }) {
 						</CustomCard>
 					</Grid>
 				</Grid>
+				<DialogAddComponent
+					open={open}
+					setOpen={setOpen}
+					componentsList={components}
+					componentsPreview={componentsPreview}
+					setComponentsPreview={setComponentsPreview}
+				/>
+				<DialogEditComponent
+					open={openEdit}
+					setOpen={setOpenEdit}
+					componentSel={componentSel}
+					setComponentsPreview={setComponentsPreview}
+					componentsPreview={componentsPreview}
+				/>
+				<DialogEliminar open={openEliminar} setOpen={setOpenEliminar} element={"component"} onClick={() => deleteComponent(componentSel.id)} />
 			</form>
 		</PageAdmin>
 	);
 }
+
+const Overlay = styled(Box)(({ theme }) => ({
+	position: "absolute",
+	width: "100%",
+	height: "100%",
+	zIndex: 500,
+	transition: "0.2s",
+	justifyContent: "center",
+	alignItems: "center",
+	backgroundColor: "#FFFFFF40",
+	display: "flex",
+	opacity: 0,
+	"&:hover": {
+		opacity: 1,
+	},
+}));
 
 export const getServerSideProps = async (context) => {
 	let session = [];

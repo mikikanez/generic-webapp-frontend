@@ -4,7 +4,6 @@ import { useTheme, styled } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component3({ component }) {
-	console.log(component);
 	const matches = useMediaQuery("(min-width:960px)");
 	const theme = useTheme();
 
@@ -31,11 +30,11 @@ export default function Component3({ component }) {
 }
 
 const BoxBlur = styled(Box)(({ theme }) => ({
-	filter: "blur(150px)",
+	filter: "blur(100px)",
 	backgroundColor: theme.palette.secondary.main,
 	opacity: 0.3,
-	width: 700,
-	height: 400,
+	width: 600,
+	height: 300,
 	transform: "rotate(-15deg)",
 	position: "absolute",
 	top: 0,
