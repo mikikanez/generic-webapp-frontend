@@ -6,7 +6,6 @@ import { useTheme } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component4({ component }) {
-	console.log(component);
 	const matches = useMediaQuery("(min-width:960px)");
 
 	const theme = useTheme();

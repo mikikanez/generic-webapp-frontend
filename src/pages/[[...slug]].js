@@ -9,7 +9,7 @@ export default function Pagina({ pagina }) {
 	return (
 		<Page title={pagina?.titol}>
 			<Box>
-				{pagina.component.map((com) => (
+				{pagina.components.map((com) => (
 					<ComponentChooser key={com.id} com={com} />
 				))}
 			</Box>
