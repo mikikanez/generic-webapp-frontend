@@ -3,6 +3,7 @@ import Component1 from "./imatgeText/Component1";
 import Component2 from "./imatgeText/Component2";
 import Component3 from "./imatgeText/Component3";
 import Component4 from "./imatgeText/Component4";
+import Component5 from "./imatgeText/Component5";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
