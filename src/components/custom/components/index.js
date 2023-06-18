@@ -10,6 +10,7 @@ export const components = [
 	{ id: 2, component: Component2, icon: VerticalSplit },
 	{ id: 3, component: Component3, icon: VerticalSplit },
 	{ id: 4, component: Component4, icon: VerticalSplit },
+	{ id: 5, component: Component5, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {

@@ -13,18 +13,17 @@ export default function Component5({ component }) {
 
 	return (
         <Container disableGutters maxWidth={false} style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }}>
-            <Grid container spacing={4} height={"50vh"}>
-                <Grid item md={1}></Grid>
+            <Grid container spacing={4}>
                 <Grid
                     item
-                    md={5}
+                    md={6}
                     xs={12}
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"flex-start"}
-                    mt={10}
                     zIndex={100}
                     justifyContent={"space-between"}
+                    sx={{padding:'15% 10% !important'}}
                 >
                     <Box display={"flex"} flexDirection={"column"} alignItems={"flex-start"}>
                         <Typography variant="h3" textAlign={"left"} fontWeight={'bold'} textTransform={'unset'} mb={4} color="black">
@@ -38,9 +37,9 @@ export default function Component5({ component }) {
                         <CustomButtonPublic background title={valor(3, component)} light={component.dark} />
                     </Box>
                 </Grid>
-                <Grid item md={6} xs={12}>
-                    <Box style={{ backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main, display:'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}>
-                        <div style={{ width: "100%", height: "100%", position: "relative", textAlign: "left", maxWidth: '320px', maxHeight: '360px' }}>
+                <Grid item md={6} xs={12} sx={{backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main}}>
+                    <Box style={{ display:'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}>
+                        <div style={{ width: "100%", height: "100%", position: "relative", textAlign: "left", maxWidth: '66.66%', maxHeight: '66.66%' }}>
                             <Image alt="Imatge" src={process.env.NEXT_PUBLIC_STORAGE + "exemple.jpg"} fill objectFit="cover" />
                         </div>
                     </Box>
