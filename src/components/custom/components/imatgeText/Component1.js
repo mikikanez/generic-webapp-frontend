@@ -1,13 +1,9 @@
-import { Box, Container, Divider, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
-import { useTheme } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component1({ component }) {
-	const matches = useMediaQuery("(min-width:960px)");
-	const theme = useTheme();
-
+export default function Component1({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }}>
 			<Container maxWidth="xl">
@@ -29,7 +25,7 @@ export default function Component1({ component }) {
 						</Grid>
 						<Grid item md={7} xs={12}>
 							<div style={{ width: "100%", height: matches ? 700 : 500, position: "relative", textAlign: "left" }}>
-								<Image alt="Imatge" src={process.env.NEXT_PUBLIC_STORAGE + "exemple.jpg"} fill objectFit="cover" />
+								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
 							</div>
 						</Grid>
 					</Grid>

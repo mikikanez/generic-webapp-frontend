@@ -4,4 +4,4 @@ export default withAuth({
 	secret: process.env.NEXTAUTH_SECRET,
 });
 
-export const config = { matcher: ["/admin", "/admin/configuracio"] };
+export const config = { matcher: ["/admin", "/admin/configuracio", "/admin/pagines", "/admin/pagina"] };

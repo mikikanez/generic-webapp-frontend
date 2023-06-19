@@ -5,9 +5,9 @@ import MenuCustom4 from "./MenuCustom4";
 import MenuCustom5 from "./MenuCustom5";
 
 export const menus = [
-	{ id: 1, component: MenuCustom1, marginTop: 100 },
+	{ id: 1, component: MenuCustom1, marginTop: 90 },
 	{ id: 2, component: MenuCustom2, marginTop: 200 },
-	{ id: 3, component: MenuCustom3, marginTop: 100 },
+	{ id: 3, component: MenuCustom3, marginTop: 90 },
 	{ id: 4, component: MenuCustom4, marginTop: 100 },
 	{ id: 5, component: MenuCustom5, marginTop: 100 },
 ];

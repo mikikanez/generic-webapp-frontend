@@ -16,10 +16,12 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 		handleSubmit,
 		watch,
 		setValue,
+		getValues,
 		setError,
 		control,
 		formState: { errors },
 		clearErrors,
+		trigger,
 		reset,
 	} = useForm({ shouldUnregister: false, defaultValues: componentLive });
 
@@ -33,9 +35,20 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 			const com = {
 				id: componentSel?.id,
 				component_id: componentSel?.component_id,
-				dark: value["dark"],
+				dark: value["dark"] ? 1 : 0,
 				component_pagina_element: componentSel?.component_pagina_element?.map((elementSel) => {
-					return { id: elementSel?.id, element: elementSel.element, valor: value[elementSel?.id] };
+					return {
+						id: elementSel?.id,
+						element: elementSel.element,
+						valor:
+							elementSel.element.nom === "boto"
+								? JSON.stringify({
+										titol: value[elementSel.id + "titol"],
+										link: value[elementSel.id + "link"],
+										extern: value[elementSel.id + "extern"] ? 1 : 0,
+								  })
+								: value[elementSel?.id],
+					};
 				}),
 			};
 			setComponentLive(com);
@@ -69,7 +82,6 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 				<DialogTitle>Editar component</DialogTitle>
 				<DialogContent>
 					<Box style={{ transform: "scale(0.5)", marginTop: "-15%", height: 800, width: "100%" }}>
-						{/* <Box> */}
 						<Box style={{ borderRadius: 20, border: "1px solid", overflow: "hidden" }}>
 							{componentLive && <ComponentChooser com={componentLive} />}
 						</Box>
@@ -77,11 +89,21 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 					<Grid spacing={2} container mt={1}>
 						{componentSel?.component_pagina_element?.map((el) => (
 							<Grid item md={6} key={el.id}>
-								<RenderElement defaultValue={el.valor} element={el.element} name={el.id} register={register} control={control} />
+								<RenderElement
+									defaultValue={el.valor}
+									element={el.element}
+									name={el.id}
+									register={register}
+									control={control}
+									setValue={setValue}
+									watch={watch}
+									trigger={trigger}
+									getValues={getValues}
+								/>
 							</Grid>
 						))}
 					</Grid>
-					<CustomCheckbox control={control} setValue={setValue} label="Mode fosc" name="dark" />
+					<CustomCheckbox control={control} setValue={setValue} label="Mode fosc/alternatiu" name="dark" />
 				</DialogContent>
 				<DialogActions>
 					<CustomButton onClick={() => setOpen(false)} title="Tancar" fullWidth />

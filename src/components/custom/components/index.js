@@ -10,8 +10,13 @@ export const components = [
 	{ id: 2, component: Component2, icon: VerticalSplit },
 	{ id: 3, component: Component3, icon: VerticalSplit },
 	{ id: 4, component: Component4, icon: VerticalSplit },
+	{ id: 5, component: Component5, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
-	return component?.component_pagina_element[index]?.valor;
+	if (component?.component_pagina_element[index]?.element?.nom === "boto") {
+		return JSON.parse(component?.component_pagina_element[index]?.valor);
+	} else {
+		return component?.component_pagina_element[index]?.valor;
+	}
 };
