@@ -14,5 +14,9 @@ export const components = [
 ];
 
 export const valor = (index, component) => {
-	return component?.component_pagina_element[index]?.valor;
+	if (component?.component_pagina_element[index]?.element?.nom === "boto") {
+		return JSON.parse(component?.component_pagina_element[index]?.valor);
+	} else {
+		return component?.component_pagina_element[index]?.valor;
+	}
 };

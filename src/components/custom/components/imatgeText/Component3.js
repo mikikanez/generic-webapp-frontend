@@ -1,12 +1,9 @@
-import { Box, Container, Typography, useMediaQuery } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import { valor } from "..";
-import { useTheme, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component3({ component }) {
-	const matches = useMediaQuery("(min-width:960px)");
-	const theme = useTheme();
-
+export default function Component3({ component, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }}>
 			<Container maxWidth="md">
@@ -20,7 +17,7 @@ export default function Component3({ component }) {
 								{valor(1, component)}
 							</Typography>
 						</Box>
-						<CustomButtonPublic title={valor(3, component)} light={component.dark} />
+						<CustomButtonPublic title={valor(2, component)?.titol} onClick={() => router.push(valor(2, component)?.link)} light={component.dark} />
 					</Box>
 				</Box>
 				<BoxBlur />

@@ -1,15 +1,9 @@
-import { Circle } from "@mui/icons-material";
-import { Box, Container, Divider, Grid, Typography, useMediaQuery } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
-import { useTheme } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component4({ component }) {
-	const matches = useMediaQuery("(min-width:960px)");
-
-	const theme = useTheme();
-
+export default function Component4({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.primary.main }}>
 			<Container maxWidth="lg">
@@ -24,7 +18,12 @@ export default function Component4({ component }) {
 							</Typography>
 						</Box>
 
-						<CustomButtonPublic secondary title={valor(3, component)} light={component.dark} />
+						<CustomButtonPublic
+							secondary
+							title={valor(3, component)?.titol}
+							onClick={() => router.push(valor(3, component)?.link)}
+							light={component.dark}
+						/>
 					</Box>
 					<div
 						style={{
@@ -33,7 +32,7 @@ export default function Component4({ component }) {
 					>
 						<Image
 							alt="Imatge"
-							src={"http://127.0.0.1:8000/storage/" + valor(2, component)}
+							src={imatges.filter((i) => i.id === 2)[0]?.imatge}
 							width={0}
 							height={0}
 							sizes="100vw"

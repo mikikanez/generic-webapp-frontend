@@ -50,7 +50,6 @@ export default function PaginesAdmin({ pagina, components }) {
 		setValue("idioma_id", Number(pagina.idioma_id ?? ""));
 		setValue("menu", Number(pagina.menu) ?? 0);
 		setComponentsPreview(pagina.components);
-		console.log(components);
 	}, [pagina, reset, setValue]);
 
 	useEffect(() => {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-export default function CustomCheckbox({ control, setValue, name, label }) {
+export default function CustomCheckbox({ control, setValue, name, label, ...rest }) {
 	return (
 		<FormControlLabel
 			control={
@@ -11,7 +11,16 @@ export default function CustomCheckbox({ control, setValue, name, label }) {
 					control={control}
 					defaultValue={false}
 					render={({ field: { value, ref, ...field } }) => (
-						<Checkbox {...field} inputRef={ref} checked={!!value} color="primary" size={"medium"} disableRipple onClick={() => setValue(name, 0)} />
+						<Checkbox
+							{...field}
+							{...rest}
+							inputRef={ref}
+							checked={value}
+							color="primary"
+							size={"medium"}
+							disableRipple
+							onClick={() => setValue(name, !value)}
+						/>
 					)}
 				/>
 			}

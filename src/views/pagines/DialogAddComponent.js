@@ -16,7 +16,12 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 			component_id: componentSel.id,
 			dark: 0,
 			component_pagina_element: componentSel.elements.map((elementSel) => {
-				return { id: elementSel.id, element: elementSel, valor: elementSel.nom === "imatge" ? "exemple.jpg" : "Lorem Ipsum" };
+				return {
+					id: elementSel.id,
+					element: elementSel,
+					valor:
+						elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : "Text",
+				};
 			}),
 		};
 		setComponentsPreview((prev) => [...prev, elements]);

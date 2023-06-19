@@ -5,7 +5,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 export default function Pagina({ pagina }) {
-	console.log(pagina);
 	return (
 		<Page title={pagina?.titol}>
 			<Box>
