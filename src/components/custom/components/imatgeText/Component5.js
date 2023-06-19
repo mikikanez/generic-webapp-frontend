@@ -72,5 +72,6 @@ export default function Component5({ component, matches, imatges, theme, router 
 				</Grid>
 			</Grid>
 		</Container>
+
 	);
 }
