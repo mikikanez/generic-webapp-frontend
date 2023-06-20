@@ -3,7 +3,7 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component5({ component, matches, imatges, theme, router }) {
+export default function Component8({ component, matches, imatges, theme, router }) {
 	return (
 		<Container
 			disableGutters
@@ -12,6 +12,31 @@ export default function Component5({ component, matches, imatges, theme, router 
 		>
 			<Grid container spacing={4}>
 				<Grid
+					item
+					md={6}
+					xs={12}
+					style={{
+						backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+					}}
+					paddingY={'0 !important'}
+				>
+					<Box
+						p={10}
+						style={{
+							backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							width: "100%",
+							height: "100%",
+						}}
+					>
+						<div style={{ width: "100%", height: "100%", maxWidth: '320px', maxHeight: '360px', position: "relative", textAlign: "left" }}>
+							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+						</div>
+					</Box>
+				</Grid>
+                <Grid
 					item
 					md={6}
 					xs={12}
@@ -44,31 +69,6 @@ export default function Component5({ component, matches, imatges, theme, router 
 							onClick={() => router.push(valor(3, component)?.link)}
 							light={component.dark}
 						/>
-					</Box>
-				</Grid>
-				<Grid
-					item
-					md={6}
-					xs={12}
-					style={{
-						backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
-					}}
-					paddingY={'0 !important'}
-				>
-					<Box
-						p={10}
-						style={{
-							backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
-							display: "flex",
-							justifyContent: "center",
-							alignItems: "center",
-							width: "100%",
-							height: "100%",
-						}}
-					>
-						<div style={{ width: "100%", height: "100%", maxWidth: '320px', maxHeight: '360px', position: "relative", textAlign: "left" }}>
-							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
-						</div>
 					</Box>
 				</Grid>
 			</Grid>
