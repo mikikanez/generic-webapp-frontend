@@ -4,6 +4,7 @@ import { useOpcions } from "@/context/OpcionsContext";
 import CustomSelect from "./CustomSelect";
 import CustomCheckbox from "./CustomCheckbox";
 import ImageInput from "./InputImage";
+import CustomTiny from "./CustomTiny";
 
 export function RenderElement({ element, defaultValue, register, control, name, setValue, watch, trigger, getValues }) {
 	const opcions = useOpcions();
@@ -55,6 +56,8 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 						</Grid>
 					</Grid>
 				);
+			case 'textarea':
+				return <CustomTiny name={String(name)} type="text" label={"Textarea"} register={register} defaultValue={defaultValue} />
 
 			default:
 		}

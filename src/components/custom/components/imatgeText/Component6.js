@@ -8,11 +8,10 @@ export default function Component6({ component, matches, imatges, theme, router 
 		<Container
 			disableGutters
 			maxWidth={false}
-			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }}
+			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", padding: '5% 0' }}
 		>
 			<Grid container spacing={4}>
 				<Grid
-					py={20}
 					item
 					md={6}
 					xs={12}
@@ -48,11 +47,11 @@ export default function Component6({ component, matches, imatges, theme, router 
 					md={6}
 					xs={12}
                     display={'flex'}
-                    justifyContent={'flex-start'}
+                    justifyContent={'center'}
                     alignItems={'center'}
 				>
-                    <div style={{ width: "100%", height: "70%", position: "relative", textAlign: "left", maxWidth: "420px", paddingRight: '10%' }}>
-						<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="contain"  />
+                    <div style={{ width: "100%", height: "100%", position: "relative", textAlign: "left", maxWidth: "480px", maxHeight: "360px" }}>
+						<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover"  />
 					</div>
 				</Grid>
 			</Grid>

@@ -6,6 +6,9 @@ import Component4 from "./imatgeText/Component4";
 import Component5 from "./imatgeText/Component5";
 import Component6 from "./imatgeText/Component6";
 import Component7 from "./imatgeText/Component7";
+import Component8 from "./imatgeText/Component8";
+import Component9 from "./imatgeText/Component9";
+import Component10 from "./imatgeText/Component10";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -15,6 +18,9 @@ export const components = [
 	{ id: 5, component: Component5, icon: VerticalSplit },
 	{ id: 6, component: Component6, icon: VerticalSplit },
 	{ id: 7, component: Component7, icon: VerticalSplit },
+	{ id: 8, component: Component8, icon: VerticalSplit },
+	{ id: 9, component: Component9, icon: VerticalSplit },
+	{ id: 10, component: Component10, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
