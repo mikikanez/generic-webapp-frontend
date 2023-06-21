@@ -7,8 +7,8 @@ import { styled } from "@mui/material/styles";
 export default function Component2({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", overflow: "hidden" }}>
-			<Container maxWidth="xl">
-				<Box py={20} px={5} style={{ zIndex: 100, position: "relative" }}>
+			<Container maxWidth="lg">
+				<Box py={20} style={{ zIndex: 100, position: "relative" }}>
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>

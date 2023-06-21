@@ -6,6 +6,7 @@ import { RenderElement } from "@/components/elements/RenderElement";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import CustomCheckbox from "@/components/elements/CustomCheckbox";
+import { constructComponent } from "@/core/utils";
 
 export function DialogEditComponent({ open, setOpen, componentSel, setComponentsPreview, componentsPreview }) {
 	const { enqueueSnackbar } = useSnackbar();
@@ -26,33 +27,12 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 	useEffect(() => {
 		setComponentLive(componentSel);
 		reset(componentSel);
+		componentSel?.component_pagina_element?.map((element) => setValue(String(element.id), element.valor));
 	}, [componentSel]);
 
 	useEffect(() => {
 		const subscription = watch((value, { name, type }) => {
-			console.log(type);
-			const com = {
-				id: componentSel?.id,
-				component_id: componentSel?.component_id,
-				component: componentSel.component,
-				dark: value["dark"] ? 1 : 0,
-				component_pagina_element: componentSel?.component_pagina_element?.map((elementSel) => {
-					return {
-						id: elementSel?.id,
-						element: elementSel.element,
-						valor:
-							elementSel.element.nom === "boto"
-								? JSON.stringify({
-										titol: value[elementSel.id + "titol"],
-										link: value[elementSel.id + "link"],
-										extern: value[elementSel.id + "extern"] ? 1 : 0,
-								  })
-								: value[elementSel?.id].length > 0
-								? value[elementSel?.id]
-								: elementSel.valor,
-					};
-				}),
-			};
+			const com = constructComponent(componentSel, value);
 			console.log(com);
 			setComponentLive(com);
 		});
@@ -91,7 +71,7 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 					</Box>
 					<Grid spacing={2} container mt={1}>
 						{componentSel?.component_pagina_element?.map((el) => (
-							<Grid item md={6} key={el.id}>
+							<Grid item md={el.element.nom === "textarea" ? 12 : 6} key={el.id}>
 								<RenderElement
 									defaultValue={el.valor}
 									element={el.element}

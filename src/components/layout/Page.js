@@ -5,12 +5,25 @@ import { useRouter } from "next/router";
 import theme from "@/styles/theme";
 import { useOpcions } from "@/context/OpcionsContext";
 import { menus } from "../custom/menus";
+import { titols } from "../custom/titols";
 
 const Page = ({ children, title = "", ...rest }) => {
 	const [appear, setApperar] = useState(false);
 	const [marginTop, setMarginTop] = useState(100);
+	const [scrollY, setScrollY] = useState();
 	const router = useRouter();
 	const opcions = useOpcions();
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
+	const handleScroll = () => {
+		setScrollY(window.scrollY);
+	};
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -20,15 +33,21 @@ const Page = ({ children, title = "", ...rest }) => {
 	}, []);
 
 	useEffect(() => {
-		console.log(menus.filter((menu) => menu.id === Number(opcions?.menu))[0]);
 		setMarginTop(menus.filter((menu) => menu.id === Number(opcions?.menu))[0]?.marginTop);
 	}, [opcions?.menu]);
+
+	console.log(router.asPath === "/");
+
+	const returnTitol = () => {
+		const Titol = titols.filter((titol) => titol.id === Number(opcions?.header))[0].component;
+		return <Titol title={title} hidden={router.asPath === "/"} scrollY={scrollY} />;
+	};
 
 	return (
 		<div {...rest}>
 			<Head>
 				<title>{title}</title>
-				<link rel="canonical" href={router.pathname} />
+				<link rel="canonical" href={process.env.NEXT_URL + router.asPath} />
 			</Head>
 			<Fade in={appear} timeout={400}>
 				<div
@@ -41,6 +60,7 @@ const Page = ({ children, title = "", ...rest }) => {
 						zIndex: 0,
 					}}
 				>
+					{returnTitol()}
 					{children}
 				</div>
 			</Fade>

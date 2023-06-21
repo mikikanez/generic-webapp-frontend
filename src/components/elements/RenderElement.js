@@ -56,8 +56,20 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 						</Grid>
 					</Grid>
 				);
-			case 'textarea':
-				return <CustomTiny name={String(name)} type="text" label={"Textarea"} register={register} defaultValue={defaultValue} />
+			case "textarea":
+				return (
+					<CustomTiny
+						name={String(name)}
+						type="text"
+						label={"Textarea"}
+						register={register}
+						defaultValue={defaultValue}
+						setValue={setValue}
+						height={300}
+						getValues={getValues}
+						watch={watch}
+					/>
+				);
 
 			default:
 		}

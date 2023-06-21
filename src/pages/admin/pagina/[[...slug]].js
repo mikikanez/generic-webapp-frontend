@@ -58,11 +58,11 @@ export default function PaginesAdmin({ pagina, components }) {
 		const obtenir = async () => {
 			setLoading(true);
 			const data = await getList("idiomes");
-
+			console.log(data);
 			setIdiomes(data);
 			setLoading(false);
 		};
-		open ? obtenir() : reset();
+		obtenir();
 	}, [open]);
 
 	useEffect(() => {

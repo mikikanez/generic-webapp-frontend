@@ -36,7 +36,6 @@ export default function MenuCustom4() {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				borderBottom: "1px solid white",
 				backgroundColor: theme.palette.background.main,
 			}}
 		>

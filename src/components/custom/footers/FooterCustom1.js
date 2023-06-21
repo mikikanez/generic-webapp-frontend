@@ -5,14 +5,22 @@ import { Container } from "@mui/system";
 import theme from "@/styles/theme";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Twitter } from "@mui/icons-material";
+import Link from "next/link";
 
 const FooterCustom1 = () => {
 	const opcions = useOpcions();
 
+	const items = [
+		...opcions?.pagines
+			?.filter((i) => i.menu === 2)
+			?.map((item) => {
+				return { title: item.titol, to: "/" + item.slug };
+			}),
+	];
+
 	return (
 		<Box
 			style={{
-				borderTop: "1px solid " + theme.palette.secondary.main,
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
 				backgroundColor: opcions?.primary,
@@ -25,7 +33,7 @@ const FooterCustom1 = () => {
 					spacing={3}
 					style={{
 						paddingTop: 50,
-						paddingBottom: 50,
+						paddingBottom: 30,
 						display: "flex",
 						alignItems: "center",
 					}}
@@ -39,6 +47,13 @@ const FooterCustom1 = () => {
 						</Typography>
 					</Grid>
 				</Grid>
+				<Box textAlign={"center"} mb={5}>
+					{items.map((item) => (
+						<Link key={item.to} href={item.to} style={{ padding: 10 }}>
+							<Typography variant="footer">{item.title}</Typography>
+						</Link>
+					))}
+				</Box>
 			</Container>
 			<Box py={2} style={{ borderTop: "1px solid white" }}>
 				<Container maxWidth={"xl"}>
