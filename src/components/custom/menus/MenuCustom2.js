@@ -1,6 +1,6 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
-import { Close, Instagram, Twitter } from "@mui/icons-material";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { Close, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
+import { AppBar, Box, Container, Stack, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
@@ -24,11 +24,63 @@ export default function MenuCustom2({ scrollY = 0 }) {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				borderBottom: "1px solid white",
 				justifyContent: "center",
 				backgroundColor: theme.palette.primary.main,
+				flexDirection: "column",
+				padding: 0,
 			}}
 		>
+			<Box bgcolor={theme.palette.secondary.main} width={"100%"} px={2}>
+				<Container>
+					<Box display={"flex"}>
+						<Box>
+							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
+								{opcions?.telefon && (
+									<a href={"tel:+34" + opcions?.telefon} target={"_blank"} rel="noreferrer">
+										<Box display="flex" alignItems={"center"}>
+											<Phone fontSize={"10px"} />
+											<Typography ml={1} variant={isDark(opcions?.secondary) ? "info" : "primary"} fontSize={14}>
+												{opcions?.telefon}
+											</Typography>
+										</Box>
+									</a>
+								)}
+								{opcions?.email && (
+									<a href={"mailto:" + opcions?.email} target={"_blank"} rel="noreferrer">
+										<Box display="flex" alignItems={"center"}>
+											<Email fontSize={"10px"} />
+											<Typography ml={1} variant={isDark(opcions?.secondary) ? "info" : "primary"} fontSize={14}>
+												{opcions?.email}
+											</Typography>
+										</Box>
+									</a>
+								)}
+							</Stack>
+						</Box>
+						<Box
+							style={{
+								flex: 1,
+								display: "flex",
+								justifyContent: "flex-end",
+								alignItems: "center",
+							}}
+						>
+							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
+								{opcions?.instagram && (
+									<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
+										<Instagram color={isDark(opcions?.secondary) ? "info" : "primary"} />
+									</a>
+								)}
+								{opcions?.twitter && (
+									<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
+										<Twitter color={isDark(opcions?.secondary) ? "info" : "primary"} />
+									</a>
+								)}
+							</Stack>
+						</Box>
+					</Box>
+				</Container>
+			</Box>
 			<Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
 				<Box
 					style={{
@@ -43,7 +95,7 @@ export default function MenuCustom2({ scrollY = 0 }) {
 					onClick={() => router.push("/")}
 				>
 					{opcions?.logo ? (
-						<Box height={120} width={150}>
+						<Box height={120} width={200}>
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} fill alt="G" style={{ objectFit: "contain" }} />
 						</Box>
 					) : (

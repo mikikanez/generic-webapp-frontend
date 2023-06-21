@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import PageAdmin from "@/components/layout/PageAdmin";
 import { addElement, getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { BarChart, Language, Menu, Palette, Settings, Twitter } from "@mui/icons-material";
+import { BarChart, Language, Menu, Palette, Settings, Twitter, ViewComfy } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/elements/CustomButton";
 import { Box, Typography } from "@mui/material";
@@ -18,6 +18,7 @@ import Disseny from "@/views/personalitzacio/Disseny";
 import Menus from "@/views/personalitzacio/Menus";
 import PeuDePagina from "@/views/personalitzacio/PeuDePagina";
 import Idiomes from "@/views/personalitzacio/Idiomes";
+import Titols from "@/views/personalitzacio/Titols";
 
 export default function ConfiguracioAdmin({ configuracio }) {
 	const [tab, setTab] = useState(1);
@@ -62,7 +63,8 @@ export default function ConfiguracioAdmin({ configuracio }) {
 		{ id: 2, nom: "Disseny", icon: Palette },
 		{ id: 3, nom: "Menús", icon: Menu },
 		{ id: 4, nom: "Peu de pàgina", icon: BarChart },
-		{ id: 5, nom: "Idiomes", icon: Language },
+		{ id: 5, nom: "Títol de pàgina", icon: ViewComfy },
+		{ id: 6, nom: "Idiomes", icon: Language },
 	];
 
 	return (
@@ -114,6 +116,9 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
 					</TabPanel>
 					<TabPanel value={5} index={0} style={{ padding: 0 }}>
+						<Titols watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
+					</TabPanel>
+					<TabPanel value={6} index={0} style={{ padding: 0 }}>
 						<Idiomes watch={watch} getValues={getValues} />
 					</TabPanel>
 				</TabContext>

@@ -6,8 +6,8 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 export default function Component1({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }}>
-			<Container maxWidth="xl">
-				<Box py={20} px={5}>
+			<Container maxWidth="lg">
+				<Box py={20}>
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>
@@ -20,7 +20,12 @@ export default function Component1({ component, matches, imatges, theme, router 
 										{valor(1, component)}
 									</Typography>
 								</Box>
-								<CustomButtonPublic title={"Veure"} light={component.dark} />
+								<CustomButtonPublic
+									background
+									title={valor(3, component)?.titol}
+									onClick={() => router.push(valor(3, component)?.link)}
+									light={component.dark}
+								/>
 							</Box>
 						</Grid>
 						<Grid item md={7} xs={12}>

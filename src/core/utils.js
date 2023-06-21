@@ -18,13 +18,43 @@ export const existSlug = async (setValue, setError, clearErrors) => {
 	if (slug.length > 3) {
 		pagina = await getData("paginesExist", slug);
 		if (pagina) {
-			console.log("existeix");
 			setError("slug", { message: "Ja existeix una pàgina amb aquesta URL" });
 			return true;
 		} else {
-			console.log("Lliure");
 			clearErrors("slug");
 			return false;
 		}
 	}
 };
+
+export function constructComponent(componentSel, value) {
+	const returnElement = (elementSel) => {
+		switch (elementSel.element.nom) {
+			case "boto":
+				return JSON.stringify({
+					titol: value[elementSel.id + "titol"],
+					link: value[elementSel.id + "link"],
+					extern: value[elementSel.id + "extern"] ? 1 : 0,
+				});
+			case "imatge":
+				return value[elementSel?.id].length > 0 ? value[elementSel?.id] : elementSel.valor;
+
+			default:
+				return value[elementSel?.id];
+		}
+	};
+
+	return {
+		id: componentSel?.id,
+		component_id: componentSel?.component_id,
+		component: componentSel.component,
+		dark: value["dark"] ? 1 : 0,
+		component_pagina_element: componentSel?.component_pagina_element?.map((elementSel) => {
+			return {
+				id: elementSel?.id,
+				element: elementSel.element,
+				valor: returnElement(elementSel),
+			};
+		}),
+	};
+}
