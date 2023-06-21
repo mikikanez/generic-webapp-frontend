@@ -20,6 +20,8 @@ import { DialogAddComponent } from "@/views/pagines/DialogAddComponent";
 import { DialogEditComponent } from "@/views/pagines/DialogEditComponent";
 import { styled, useTheme } from "@mui/material/styles";
 import { DialogEliminar } from "@/components/elements/DialogEliminar";
+import { constructFormPagina } from "@/lib/ConstructForm";
+import OrdreComponents from "@/views/pagines/OrdreComponents";
 
 export default function PaginesAdmin({ pagina, components }) {
 	const [open, setOpen] = useState(false);
@@ -75,10 +77,14 @@ export default function PaginesAdmin({ pagina, components }) {
 
 	const guardar = async (values) => {
 		values.components = componentsPreview;
-		console.log(values);
+		const construct = constructFormPagina(values);
+
+		for (var pair of construct.entries()) {
+			console.log(pair[0] + ", " + pair[1]);
+		}
 		setLoading(true);
 		try {
-			const { message } = await updateElement("pagines", pagina.id, values, user.token.accessToken);
+			const { message } = await updateElement("pagines", pagina.id, constructFormPagina(values), user.token.accessToken);
 			enqueueSnackbar(message, {
 				variant: "success",
 			});
@@ -187,16 +193,22 @@ export default function PaginesAdmin({ pagina, components }) {
 							/>
 
 							<Grid spacing={2} container mt={3}>
-								<Grid item md={6}>
+								<Grid item md={4}>
+									<CustomButton title={"Eliminar pàgina"} fullWidth danger />
+								</Grid>
+								<Grid item md={4}>
 									<CustomButton title={"Veure pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" />
 								</Grid>
-								<Grid item md={6}>
+								<Grid item md={4}>
+									<CustomButton title={"Duplicar pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" loading={loading} />
+								</Grid>
+								<Grid item md={12}>
 									<CustomButton type="submit" title={"Guardar"} success fullWidth loading={loading} />
 								</Grid>
 							</Grid>
 						</CustomCard>
-						<CustomCard>
-							<CustomButton title={"Duplicar pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" loading={loading} />
+						<CustomCard title={"Ordre components"}>
+							<OrdreComponents components={componentsPreview} setComponentsPreview={setComponentsPreview} />
 						</CustomCard>
 					</Grid>
 				</Grid>

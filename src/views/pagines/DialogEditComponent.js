@@ -17,10 +17,8 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 		watch,
 		setValue,
 		getValues,
-		setError,
 		control,
 		formState: { errors },
-		clearErrors,
 		trigger,
 		reset,
 	} = useForm({ shouldUnregister: false, defaultValues: componentLive });
@@ -32,9 +30,11 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 
 	useEffect(() => {
 		const subscription = watch((value, { name, type }) => {
+			console.log(type);
 			const com = {
 				id: componentSel?.id,
 				component_id: componentSel?.component_id,
+				component: componentSel.component,
 				dark: value["dark"] ? 1 : 0,
 				component_pagina_element: componentSel?.component_pagina_element?.map((elementSel) => {
 					return {
@@ -47,10 +47,13 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 										link: value[elementSel.id + "link"],
 										extern: value[elementSel.id + "extern"] ? 1 : 0,
 								  })
-								: value[elementSel?.id],
+								: value[elementSel?.id].length > 0
+								? value[elementSel?.id]
+								: elementSel.valor,
 					};
 				}),
 			};
+			console.log(com);
 			setComponentLive(com);
 		});
 		return () => subscription.unsubscribe();

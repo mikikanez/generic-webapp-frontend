@@ -35,7 +35,7 @@ export default function MenuCustom5() {
 			style={{
 				transition: "0.2s",
 				borderBottom: "1px solid white",
-				backgroundColor: theme.palette.background.main,
+				backgroundColor: theme.palette.primary.main,
 			}}
 		>
 			<Box
