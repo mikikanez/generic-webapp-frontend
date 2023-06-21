@@ -14,6 +14,7 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 		const elements = {
 			id: componentsPreview.length > 0 ? componentsPreview[componentsPreview.length - 1]?.id + 1 : 1000,
 			component_id: componentSel.id,
+			component: componentSel,
 			dark: 0,
 			component_pagina_element: componentSel.elements.map((elementSel) => {
 				return {

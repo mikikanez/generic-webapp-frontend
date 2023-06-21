@@ -10,12 +10,14 @@ export default function Menus({ watch, setValue, opcions }) {
 	const [pagines, setPagines] = useState(opcions.filter((m) => m.menu === 1));
 
 	const handleDrop = (droppedItem) => {
+		console.log(pagines);
 		console.log("ENTRA");
 		if (!droppedItem.destination) return;
 		var updatedList = [...pagines];
 		const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
 		updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
 		setPagines(updatedList);
+		setValue("pagines", updatedList);
 	};
 
 	return (

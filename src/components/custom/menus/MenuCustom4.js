@@ -14,6 +14,7 @@ export default function MenuCustom4() {
 	const router = useRouter();
 	const [menu, setMenu] = useState(null);
 	const opcions = useOpcions();
+	const theme = useTheme();
 
 	const items = [
 		...opcions?.pagines
@@ -36,6 +37,7 @@ export default function MenuCustom4() {
 			style={{
 				transition: "0.2s",
 				borderBottom: "1px solid white",
+				backgroundColor: theme.palette.background.main,
 			}}
 		>
 			<Hidden mdDown>

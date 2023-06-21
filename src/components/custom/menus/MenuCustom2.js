@@ -26,7 +26,7 @@ export default function MenuCustom2({ scrollY = 0 }) {
 				transition: "0.2s",
 				borderBottom: "1px solid white",
 				justifyContent: "center",
-				backgroundColor: theme.palette.background.main,
+				backgroundColor: theme.palette.primary.main,
 			}}
 		>
 			<Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
