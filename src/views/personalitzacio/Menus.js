@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "moment/locale/ca";
 import CustomCard from "@/components/layout/CustomCard";
-import { Box, Grid, Radio, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Grid, Radio, Typography } from "@mui/material";
 import { menus } from "@/components/custom/menus";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { DragHandle } from "@mui/icons-material";
+import CustomCheckbox from "@/components/elements/CustomCheckbox";
+import { Controller } from "react-hook-form";
 
-export default function Menus({ watch, setValue, opcions }) {
+export default function Menus({ watch, setValue, opcions, control }) {
 	const [pagines, setPagines] = useState(opcions.filter((m) => m.menu === 1));
 
 	const handleDrop = (droppedItem) => {
@@ -35,7 +37,7 @@ export default function Menus({ watch, setValue, opcions }) {
 						>
 							<Radio checked={watch("menu") === String(Item.id)} onClick={() => setValue("menu", String(Item.id))} />
 							<Box style={{ width: "100%", transform: "scale(0.9)" }} borderRadius={1} overflow={"hidden"}>
-								<Item.component />
+								<Item.component premenu={watch("premenu")} />
 							</Box>
 						</Box>
 					))}
@@ -77,6 +79,31 @@ export default function Menus({ watch, setValue, opcions }) {
 							)}
 						</Droppable>
 					</DragDropContext>
+				</CustomCard>
+				<CustomCard title={"Pre-menú"}>
+					<FormControlLabel
+						control={
+							<Controller
+								name={"premenu"}
+								control={control}
+								defaultValue={false}
+								render={({ field: { value, ref, ...field } }) => (
+									<Checkbox
+										{...field}
+										inputRef={ref}
+										checked={value === "1"}
+										color="primary"
+										size={"medium"}
+										value={1}
+										disableRipple
+										onChange={(event) => setValue("premenu", event.target.checked ? "1" : "0")}
+									/>
+								)}
+							/>
+						}
+						label={"Mostrar pre-menú"}
+						labelPlacement="end"
+					/>
 				</CustomCard>
 			</Grid>
 		</Grid>

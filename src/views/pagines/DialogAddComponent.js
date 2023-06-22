@@ -2,29 +2,20 @@ import CustomButton from "@/components/elements/CustomButton";
 import { Box, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
 import { components } from "@/components/custom/components";
+import { componentDefault } from "@/core/utils";
+import { CustomTab, CustomTabs } from "@/components/elements/CustomTabs";
+import { List } from "@mui/icons-material";
+import { TabContext, TabPanel } from "@mui/lab";
+import { ComponentMiniPreview } from "./ComponentMiniPreview";
 
 export function DialogAddComponent({ open, setOpen, componentsList, componentsPreview, setComponentsPreview }) {
+	const [tab, setTab] = useState(1);
 	const [componentSel, setComponentSel] = useState("");
 	const { enqueueSnackbar } = useSnackbar();
 
 	const crear = async () => {
-		// console.log(componentsPreviewcomponentsPreview.length - 1);
-		const elements = {
-			id: componentsPreview.length > 0 ? componentsPreview[componentsPreview.length - 1]?.id + 1 : 1000,
-			component_id: componentSel.id,
-			component: componentSel,
-			dark: 0,
-			component_pagina_element: componentSel.elements.map((elementSel) => {
-				return {
-					id: elementSel.id,
-					element: elementSel,
-					valor:
-						elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : "Text",
-				};
-			}),
-		};
+		const elements = componentDefault(componentSel, componentsPreview.length > 0 ? componentsPreview[componentsPreview.length - 1]?.id + 1 : 1000);
 		setComponentsPreview((prev) => [...prev, elements]);
 		enqueueSnackbar("Component afegit", {
 			variant: "success",
@@ -33,6 +24,10 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 		setTimeout(() => {
 			scrollToBottom();
 		}, 100);
+	};
+
+	const handleChange = (event, newValue) => {
+		setTab(newValue);
 	};
 
 	const scrollToBottom = () => {
@@ -54,21 +49,50 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 		>
 			<DialogTitle>Afegir component</DialogTitle>
 			<DialogContent>
-				<Grid spacing={2} container mt={1}>
-					{componentsList?.map((c, i) => {
-						const Icon = components.filter((com) => c.id === com.id)[0].icon;
-						return (
-							<Grid item md={3} key={c.id}>
-								<ComponentItem onClick={() => setComponentSel(c)} className={componentSel.id === c.id ? "active" : ""}>
-									<Icon />
-									<Typography variant="caption" fontSize={12} letterSpacing={0} textAlign={"center"} ml={1}>
-										{c?.nom}
-									</Typography>
-								</ComponentItem>
+				<TabContext value={tab}>
+					<CustomTabs onChange={handleChange} aria-label="alta select">
+						{componentsList.map((tab) => (
+							<CustomTab
+								key={tab.id}
+								value={tab.id}
+								label={
+									<Box
+										display="flex"
+										alignItems={"center"}
+										onDragOver={(event) => {
+											handleChange(event, tab.id);
+										}}
+									>
+										<List color="primary" />
+										<Typography ml={1} variant="caption">
+											{tab.nom}
+										</Typography>
+									</Box>
+								}
+							/>
+						))}
+					</CustomTabs>
+					{componentsList?.map((tipus) => (
+						<TabPanel key={tipus.id} value={tipus.id} index={0} style={{ padding: 0 }}>
+							<Grid spacing={4} container mt={1}>
+								{tipus.components?.map((c, index) => {
+									const Component = components.filter((com) => c.id === com.id)?.[0]?.component;
+									return (
+										<Grid item md={3} key={c.id} xs={12}>
+											<ComponentMiniPreview
+												c={c}
+												Component={Component}
+												setComponentSel={setComponentSel}
+												componentSel={componentSel}
+												index={index}
+											/>
+										</Grid>
+									);
+								})}
 							</Grid>
-						);
-					})}
-				</Grid>
+						</TabPanel>
+					))}
+				</TabContext>
 			</DialogContent>
 			<DialogActions>
 				<CustomButton onClick={() => setOpen(false)} title="Tancar" fullWidth />
@@ -77,26 +101,3 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 		</Dialog>
 	);
 }
-
-const ComponentItem = styled(Box)(({ theme }) => ({
-	borderRadius: 10,
-	background: "#f0f0f0",
-	padding: 10,
-	cursor: "pointer",
-	transition: "0.2s",
-	textAlign: "center",
-	display: "flex",
-	alignItems: "center",
-	"&:hover": {
-		transform: "scale(1.05)",
-	},
-	"&.active": {
-		backgroundColor: "#2f2f2f",
-		"& .MuiTypography-root": {
-			color: "white",
-		},
-		"& .MuiSvgIcon-root": {
-			color: "white",
-		},
-	},
-}));

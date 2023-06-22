@@ -5,6 +5,8 @@ import { TabList } from "@mui/lab";
 
 const CustomTabs = styled((props) => (
 	<TabList
+		allowScrollButtonsMobile
+		visibleScrollbar
 		{...props}
 		TabIndicatorProps={{
 			children: <span className="MuiTabs-indicatorSpan" />,

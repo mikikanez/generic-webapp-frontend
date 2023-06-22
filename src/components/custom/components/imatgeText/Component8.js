@@ -3,9 +3,9 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component8({ component, matches, imatges, theme, router }) {
+export default function Component8({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }}>
+		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false} style={{ position: "relative" }}>
 				<Grid container spacing={4}>
 					<Grid

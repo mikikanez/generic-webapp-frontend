@@ -8,9 +8,10 @@ import { useTheme } from "@mui/material/styles";
 import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
+import NavBarItemLight from "@/layouts/public/NavBarItemLight";
 import { PreMenu } from "./PreMenu";
 
-export default function MenuCustom3({ premenu, scrollY = 0 }) {
+export default function MenuCustom3Alt({ premenu, scrollY = 0 }) {
 	const router = useRouter();
 	const [menu, setMenu] = useState(null);
 	const opcions = useOpcions();
@@ -36,7 +37,7 @@ export default function MenuCustom3({ premenu, scrollY = 0 }) {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				backgroundColor: theme.palette.primary.main,
+				backgroundColor: theme.palette.background.main,
 				flexDirection: "column",
 				padding: 0,
 			}}
@@ -66,12 +67,12 @@ export default function MenuCustom3({ premenu, scrollY = 0 }) {
 							<Box
 								style={{
 									display: "flex",
-									justifyContent: "center",
 									marginLeft: 50,
+									justifyContent: "center",
 								}}
 							>
 								{items?.map((item) => (
-									<NavBarItem to={item.to} key={item.title} title={item.title} />
+									<NavBarItemLight to={item.to} key={item.title} title={item.title} />
 								))}
 							</Box>
 						</Hidden>
@@ -104,12 +105,12 @@ export default function MenuCustom3({ premenu, scrollY = 0 }) {
 						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 							{opcions?.instagram && (
 								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color="info" />
+									<Instagram color="primary" />
 								</a>
 							)}
 							{opcions?.twitter && (
 								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color="info" />
+									<Twitter color="primary" />
 								</a>
 							)}
 						</Stack>

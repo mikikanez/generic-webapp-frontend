@@ -3,9 +3,9 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component11({ component, matches, imatges, theme, router }) {
+export default function Component11({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }}>
+		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth="lg" style={{ position: "relative" }}>
 				<Box display={"flex"} flexDirection={"column"} alignItems={"flex-start"} py={10} px={3}>
 					<Typography variant="h2" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={4} color={component.dark ? "white" : "black"}>

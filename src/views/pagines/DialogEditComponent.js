@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import CustomCheckbox from "@/components/elements/CustomCheckbox";
 import { constructComponent } from "@/core/utils";
+import { FitToViewport } from "react-fit-to-viewport";
 
 export function DialogEditComponent({ open, setOpen, componentSel, setComponentsPreview, componentsPreview }) {
 	const { enqueueSnackbar } = useSnackbar();
@@ -64,11 +65,11 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 			<form onSubmit={handleSubmit(crear)}>
 				<DialogTitle>Editar component</DialogTitle>
 				<DialogContent>
-					<Box style={{ transform: "scale(0.5)", marginTop: "-15%", height: 800, width: "100%" }}>
+					<FitToViewport minZoom={0} maxZoom={0.4} style={{ transformOrigin: "left top" }} width={2000} height={450}>
 						<Box style={{ borderRadius: 20, border: "1px solid", overflow: "hidden" }}>
-							{componentLive && <ComponentChooser com={componentLive} />}
+							{componentLive && <ComponentChooser com={componentLive} height={1000} display="flex" alignItems="center" justifyContent="center" />}
 						</Box>
-					</Box>
+					</FitToViewport>
 					<Grid spacing={2} container mt={1}>
 						{componentSel?.component_pagina_element?.map((el) => (
 							<Grid item md={el.element.nom === "textarea" ? 12 : 6} key={el.id}>

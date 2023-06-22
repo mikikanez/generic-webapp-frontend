@@ -22,13 +22,12 @@ const TitolCustom4 = ({ title = "Títol pàgina", hidden = false, img = "exemple
 	return (
 		<Box
 			style={{
-				borderBottom: "1px solid " + theme.palette.primary.main,
-				backgroundSize: "contain",
+				backgroundImage: `url(${process.env.NEXT_PUBLIC_STORAGE + img})`,
+				backgroundSize: "cover",
 				backgroundAttachment: "fixed",
 				backgroundColor: theme.palette.background.main,
-				background: `url(${process.env.NEXT_PUBLIC_STORAGE + img})`,
 				position: "relative",
-				backgroundPositionY: scrollY / 4,
+				backgroundPositionY: -scrollY / 4,
 			}}
 			display={hidden ? "none" : ""}
 			displayPrint="none"

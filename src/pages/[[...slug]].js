@@ -1,12 +1,12 @@
 import Page from "@/components/layout/Page";
 import { getData, getDataIds } from "@/lib/API";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 
 export default function Pagina({ pagina }) {
 	return (
-		<Page title={pagina?.titol}>
+		<Page title={pagina?.titol} img={pagina?.imatge}>
 			<Box>
 				{pagina.components.map((com) => (
 					<ComponentChooser key={com.id} com={com} />
@@ -38,27 +38,3 @@ export async function getStaticProps({ params }) {
 		props: { pagina },
 	};
 }
-
-// export const getServerSideProps = async (context) => {
-// 	const session = await getServerSession(context.req, context.res, authOptions);
-// 	let maquina = [];
-// 	let caracteristiques = [];
-// 	if (context?.query?.slug[0] === "edit") {
-// 		maquina = await getData("maquines", context?.query.slug[1]);
-// 		caracteristiques = await getList("caracteristiques?cat=" + maquina?.categoria_id);
-// 	}
-// 	const sectors = await getList("sectors");
-// 	const aplicacions = await getList("aplicacions");
-// 	const categories = await getList("categories");
-
-// 	return {
-// 		props: {
-// 			maquina: maquina,
-// 			sectors: sectors,
-// 			aplicacions: aplicacions,
-// 			categories: categories,
-// 			caracteristiques: caracteristiques,
-// 			session: session,
-// 		},
-// 	};
-// };

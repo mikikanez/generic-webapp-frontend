@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit, Layers } from "@mui/icons-material";
+import { CircleOutlined, Delete, Edit } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Fab, Grid, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Fab, Grid, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
-import { existSlug, slugify } from "@/core/utils";
+import { slugify } from "@/core/utils";
 import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
-import { components } from "@/components/custom/components";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
 import { DialogAddComponent } from "@/views/pagines/DialogAddComponent";
 import { DialogEditComponent } from "@/views/pagines/DialogEditComponent";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { DialogEliminar } from "@/components/elements/DialogEliminar";
 import { constructFormPagina } from "@/lib/ConstructForm";
 import OrdreComponents from "@/views/pagines/OrdreComponents";
+import Thumb from "@/components/elements/Thumb";
+import InputImage from "@/components/elements/InputImage";
 
 export default function PaginesAdmin({ pagina, components }) {
 	const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export default function PaginesAdmin({ pagina, components }) {
 		setError,
 		control,
 		formState: { errors },
-		clearErrors,
+		trigger,
 		reset,
 	} = useForm({ shouldUnregister: false, defaultValues: pagina });
 
@@ -79,9 +80,6 @@ export default function PaginesAdmin({ pagina, components }) {
 		values.components = componentsPreview;
 		const construct = constructFormPagina(values);
 
-		for (var pair of construct.entries()) {
-			console.log(pair[0] + ", " + pair[1]);
-		}
 		setLoading(true);
 		try {
 			const { message } = await updateElement("pagines", pagina.id, constructFormPagina(values), user.token.accessToken);
@@ -115,8 +113,8 @@ export default function PaginesAdmin({ pagina, components }) {
 					/>
 				</CustomCard>
 
-				<Grid container spacing={3}>
-					<Grid item md={8}>
+				<Grid container spacing={3} direction={{ xs: "column-reverse", xl: "row" }}>
+					<Grid item lg={12} xl={8} xs={12}>
 						<CustomCard title="Editor" sticky button onClick={() => setOpen(true)} style={{ overflow: "hidden" }}>
 							{componentsPreview?.map((com) => (
 								<Box key={com.id} style={{ position: "relative", overflow: "hidden" }}>
@@ -145,71 +143,84 @@ export default function PaginesAdmin({ pagina, components }) {
 							))}
 						</CustomCard>
 					</Grid>
-					<Grid item md={4}>
-						<CustomCard title={"Informació"}>
-							<CustomTextField
-								register={register}
-								name={"slug"}
-								label={"URL"}
-								InputLabelProps={{
-									shrink: true,
-								}}
-								adornment={"/"}
-								disabled
-							/>
-							<CustomTextField
-								register={register}
-								name={"keywords"}
-								label={"Paraules clau"}
-								InputLabelProps={{
-									shrink: true,
-								}}
-								mt={3}
-							/>
-							<CustomSelect
-								register={register}
-								label={"Idioma"}
-								list={idiomes}
-								name={"idioma_id"}
-								control={control}
-								mt={3}
-								defaultValue={Number(pagina?.idioma_id) ?? "0"}
-							/>
-							<CustomSelect
-								register={register}
-								label={"Ubicació de la pàgina"}
-								list={[
-									{ id: 0, nom: "Altres" },
-									{ id: 1, nom: "Menú principal" },
-									{ id: 2, nom: "Peu de pàgina" },
-								]}
-								InputLabelProps={{
-									shrink: true,
-								}}
-								defaultValue={Number(pagina?.menu) ?? 0}
-								name={"menu"}
-								control={control}
-								mt={3}
-							/>
+					<Grid item lg={6} xl={4} md={6} xs={12}>
+						<Grid container spacing={2}>
+							<Grid item lg={6} xl={12} md={6} xs={12}>
+								<CustomCard title={"Informació"}>
+									<CustomTextField
+										register={register}
+										name={"slug"}
+										label={"URL"}
+										InputLabelProps={{
+											shrink: true,
+										}}
+										adornment={"/"}
+										disabled
+									/>
+									<CustomTextField
+										register={register}
+										name={"keywords"}
+										label={"Paraules clau"}
+										InputLabelProps={{
+											shrink: true,
+										}}
+										mt={3}
+									/>
+									<CustomSelect
+										register={register}
+										label={"Idioma"}
+										list={idiomes}
+										name={"idioma_id"}
+										control={control}
+										mt={3}
+										defaultValue={Number(pagina?.idioma_id) ?? "0"}
+									/>
+									<CustomSelect
+										register={register}
+										label={"Ubicació de la pàgina"}
+										list={[
+											{ id: 0, nom: "Altres" },
+											{ id: 1, nom: "Menú principal" },
+											{ id: 2, nom: "Peu de pàgina" },
+										]}
+										InputLabelProps={{
+											shrink: true,
+										}}
+										defaultValue={Number(pagina?.menu) ?? 0}
+										name={"menu"}
+										control={control}
+										mt={3}
+									/>
+									{pagina.slug !== "" && (
+										<Box style={{ border: "1px solid #cacaca", borderRadius: 5 }} my={2} p={2}>
+											<Typography>Imatge destacada</Typography>
+											<InputImage name={"imatge"} register={register} trigger={trigger} text={"Imatge destacada"} />
+											<Thumb file={watch("imatge")} />
+										</Box>
+									)}
 
-							<Grid spacing={2} container mt={3}>
-								<Grid item md={4}>
-									<CustomButton title={"Eliminar pàgina"} fullWidth danger />
-								</Grid>
-								<Grid item md={4}>
-									<CustomButton title={"Veure pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" />
-								</Grid>
-								<Grid item md={4}>
-									<CustomButton title={"Duplicar pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" loading={loading} />
-								</Grid>
-								<Grid item md={12}>
-									<CustomButton type="submit" title={"Guardar"} success fullWidth loading={loading} />
-								</Grid>
+									<Grid spacing={2} container mt={3}>
+										<Grid item md={4}>
+											<CustomButton title={"Eliminar pàgina"} fullWidth danger />
+										</Grid>
+										<Grid item md={4}>
+											<CustomButton title={"Veure pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" />
+										</Grid>
+										<Grid item md={4}>
+											<CustomButton title={"Duplicar pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" loading={loading} />
+										</Grid>
+										<Grid item md={12}>
+											<CustomButton type="submit" title={"Guardar"} success fullWidth loading={loading} />
+										</Grid>
+									</Grid>
+								</CustomCard>
 							</Grid>
-						</CustomCard>
-						<CustomCard title={"Ordre components"}>
-							<OrdreComponents components={componentsPreview} setComponentsPreview={setComponentsPreview} />
-						</CustomCard>
+							<Grid item lg={6} xl={12} md={6} xs={12}>
+								<CustomCard title={"Ordre components"}>
+									<OrdreComponents components={componentsPreview} setComponentsPreview={setComponentsPreview} />
+								</CustomCard>
+							</Grid>
+						</Grid>
 					</Grid>
 				</Grid>
 				<DialogAddComponent
@@ -255,7 +266,7 @@ export const getServerSideProps = async (context) => {
 	try {
 		session = await getServerSession(context.req, context.res, authOptions);
 		pagina = await getData("pagines", context?.query.slug ?? "-");
-		components = await getList("components", session?.user?.token?.accessToken);
+		components = await getList("tipus", session?.user?.token?.accessToken);
 	} catch (error) {
 		console.log(error);
 	}
