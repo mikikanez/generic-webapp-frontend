@@ -3,7 +3,7 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component13({ component, matches, imatges, theme, router }) {
+export default function Component1({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} py={10} px={20}>
 			<Container disableGutters maxWidth="lg" style={{ position: "relative"}}>
