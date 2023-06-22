@@ -69,7 +69,7 @@ export const componentDefault = (componentSel, id) => {
 			return {
 				id: elementSel.id,
 				element: elementSel,
-				valor: elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : "Text",
+				valor: elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : elementSel.nom === 'titol' ? "Ready to get started?" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 			};
 		}),
 	};

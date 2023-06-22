@@ -3,7 +3,7 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomGoogleMaps from "@/components/elements/CustomGoogleMaps";
 
-export default function Component14({ component, matches, imatges, theme, router }) {
+export default function Component2({ component, matches, imatges, theme, router }) {
 	return (
         	<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }}>
                 <Container disableGutters maxWidth={false} style={{ position: "relative" }}>
