@@ -110,7 +110,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						/>
 					</TabPanel>
 					<TabPanel value={3} index={0} style={{ padding: 0 }}>
-						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
+						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} control={control} />
 					</TabPanel>
 					<TabPanel value={4} index={0} style={{ padding: 0 }}>
 						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />

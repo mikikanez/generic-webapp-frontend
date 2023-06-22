@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
 
-export default function MenuCustom4({ premenu, scrollY = 0 }) {
+export default function MenuCustom4Alt({ premenu, scrollY = 0 }) {
 	const router = useRouter();
 	const [menu, setMenu] = useState(null);
 	const opcions = useOpcions();
@@ -35,7 +35,7 @@ export default function MenuCustom4({ premenu, scrollY = 0 }) {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				backgroundColor: theme.palette.primary.main,
+				backgroundColor: theme.palette.background.main,
 				flexDirection: "column",
 				padding: 0,
 			}}
@@ -55,7 +55,7 @@ export default function MenuCustom4({ premenu, scrollY = 0 }) {
 					{opcions?.logo ? (
 						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={100} alt="G" style={{ objectFit: "contain" }} />
 					) : (
-						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"}>
+						<Typography variant="h3" color={isDark(opcions?.background) ? "white" : "black"}>
 							{opcions?.titol}
 						</Typography>
 					)}
@@ -82,18 +82,18 @@ export default function MenuCustom4({ premenu, scrollY = 0 }) {
 					}}
 				>
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
-						<Menu color="info" />
+						<Menu color={isDark(opcions?.background) ? "info" : "primary"} />
 					</IconButton>
 					{premenu !== "1" && (
 						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 							{opcions?.instagram && (
 								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color="info" />
+									<Instagram color={isDark(opcions?.background) ? "info" : "primary"} />
 								</a>
 							)}
 							{opcions?.twitter && (
 								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color="info" />
+									<Twitter color={isDark(opcions?.background) ? "info" : "primary"} />
 								</a>
 							)}
 						</Stack>

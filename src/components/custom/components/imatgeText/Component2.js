@@ -4,9 +4,12 @@ import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 import { styled } from "@mui/material/styles";
 
-export default function Component2({ component, matches, imatges, theme, router }) {
+export default function Component2({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", overflow: "hidden" }}>
+		<Box
+			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", overflow: "hidden" }}
+			{...props}
+		>
 			<Container maxWidth="lg">
 				<Box py={20} style={{ zIndex: 100, position: "relative" }}>
 					<Grid container spacing={8}>

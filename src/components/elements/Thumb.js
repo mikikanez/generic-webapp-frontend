@@ -25,8 +25,8 @@ const Thumb = (props) => {
 	}, [props?.file]);
 
 	return (
-		<Box borderRadius={2} p={3} display={"flex"} justifyContent={"center"} backgroundColor="#cacaca">
-			<Image variant="rounded" src={thumb} alt={props?.file?.name} width={150} height={150} style={{ objectFit: "contain" }} />
+		<Box borderRadius={2} p={1} display={"flex"} justifyContent={"center"} backgroundColor="#cacaca">
+			<Image variant="rounded" src={thumb} alt={props?.file?.name} width={250} height={250} style={{ objectFit: "contain" }} />
 		</Box>
 	);
 };

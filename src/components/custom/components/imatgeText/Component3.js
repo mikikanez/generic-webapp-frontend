@@ -3,9 +3,9 @@ import { valor } from "..";
 import { styled } from "@mui/material/styles";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component3({ component, theme, router }) {
+export default function Component3({ component, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }}>
+		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }} {...props}>
 			<Container maxWidth="md">
 				<Box py={30} px={5} style={{ zIndex: 100, position: "relative" }}>
 					<Box display={"flex"} flexDirection={"column"} alignItems={"center"}>

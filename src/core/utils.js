@@ -58,3 +58,19 @@ export function constructComponent(componentSel, value) {
 		}),
 	};
 }
+
+export const componentDefault = (componentSel, id) => {
+	return {
+		id: id,
+		component_id: componentSel.id,
+		component: componentSel,
+		dark: 0,
+		component_pagina_element: componentSel.elements.map((elementSel) => {
+			return {
+				id: elementSel.id,
+				element: elementSel,
+				valor: elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : "Text",
+			};
+		}),
+	};
+};

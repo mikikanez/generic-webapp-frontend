@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function ComponentWrap({ Component, component }) {
+export default function ComponentWrap({ Component, component, ...props }) {
 	const matches = useMediaQuery("(min-width:960px)");
 	const [imatges, setImatges] = useState([]);
 	const router = useRouter();
@@ -26,5 +26,5 @@ export default function ComponentWrap({ Component, component }) {
 		});
 	}, [component]);
 
-	return <Component component={component} imatges={imatges} router={router} theme={theme} matches={matches} />;
+	return <Component component={component} imatges={imatges} router={router} theme={theme} matches={matches} {...props} />;
 }

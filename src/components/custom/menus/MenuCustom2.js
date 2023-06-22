@@ -1,16 +1,20 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
-import { Close, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
-import { AppBar, Box, Container, Stack, Toolbar, Typography } from "@mui/material";
+import { Close, Email, Instagram, Menu, Phone, Twitter } from "@mui/icons-material";
+import { AppBar, Box, Container, Drawer, Hidden, IconButton, Stack, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
 import { isDark } from "@/core/createTheme";
 import { useOpcions } from "@/context/OpcionsContext";
+import { PreMenu } from "./PreMenu";
+import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
+import { useState } from "react";
 
-export default function MenuCustom2({ scrollY = 0 }) {
+export default function MenuCustom2({ scrollY = 0, premenu }) {
 	const theme = useTheme();
 	const router = useRouter();
 	const opcions = useOpcions();
+	const [menu, setMenu] = useState(null);
 
 	const items = [
 		...opcions?.pagines
@@ -19,6 +23,14 @@ export default function MenuCustom2({ scrollY = 0 }) {
 				return { title: item.titol, to: "/" + item.slug };
 			}),
 	];
+
+	const openMenu = (event) => {
+		setMenu(event.currentTarget);
+	};
+
+	const closeMenu = () => {
+		setMenu(null);
+	};
 
 	return (
 		<Toolbar
@@ -30,57 +42,7 @@ export default function MenuCustom2({ scrollY = 0 }) {
 				padding: 0,
 			}}
 		>
-			<Box bgcolor={theme.palette.secondary.main} width={"100%"} px={2}>
-				<Container>
-					<Box display={"flex"}>
-						<Box>
-							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-								{opcions?.telefon && (
-									<a href={"tel:+34" + opcions?.telefon} target={"_blank"} rel="noreferrer">
-										<Box display="flex" alignItems={"center"}>
-											<Phone fontSize={"10px"} />
-											<Typography ml={1} variant={isDark(opcions?.secondary) ? "info" : "primary"} fontSize={14}>
-												{opcions?.telefon}
-											</Typography>
-										</Box>
-									</a>
-								)}
-								{opcions?.email && (
-									<a href={"mailto:" + opcions?.email} target={"_blank"} rel="noreferrer">
-										<Box display="flex" alignItems={"center"}>
-											<Email fontSize={"10px"} />
-											<Typography ml={1} variant={isDark(opcions?.secondary) ? "info" : "primary"} fontSize={14}>
-												{opcions?.email}
-											</Typography>
-										</Box>
-									</a>
-								)}
-							</Stack>
-						</Box>
-						<Box
-							style={{
-								flex: 1,
-								display: "flex",
-								justifyContent: "flex-end",
-								alignItems: "center",
-							}}
-						>
-							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-								{opcions?.instagram && (
-									<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-										<Instagram color={isDark(opcions?.secondary) ? "info" : "primary"} />
-									</a>
-								)}
-								{opcions?.twitter && (
-									<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-										<Twitter color={isDark(opcions?.secondary) ? "info" : "primary"} />
-									</a>
-								)}
-							</Stack>
-						</Box>
-					</Box>
-				</Container>
-			</Box>
+			{premenu === "1" && <PreMenu scrollY={scrollY} />}
 			<Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
 				<Box
 					style={{
@@ -104,17 +66,34 @@ export default function MenuCustom2({ scrollY = 0 }) {
 						</Typography>
 					)}
 				</Box>
-				<Box
-					style={{
-						display: "flex",
-						justifyContent: "center",
-					}}
-					mb={2}
-				>
-					{items?.map((item) => (
-						<NavBarItem to={item.to} key={item.title} title={item.title} />
-					))}
-				</Box>
+				<Hidden mdDown>
+					<Box
+						style={{
+							display: "flex",
+							justifyContent: "center",
+						}}
+						mb={2}
+					>
+						{items?.map((item) => (
+							<NavBarItem to={item.to} key={item.title} title={item.title} />
+						))}
+					</Box>
+				</Hidden>
+
+				<Hidden mdUp>
+					<Box onClick={() => router.push("/")}>{/* <Logo width={150} fill="white" /> */}</Box>
+					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
+						<Menu style={{ color: isDark(opcions?.primary) ? "white" : "black" }} />
+					</IconButton>
+					<Drawer open={menu} onClose={closeMenu} style={{ zIndex: 1000 }}>
+						<IconButton onClick={closeMenu}>
+							<Close />
+						</IconButton>
+						{items?.map((item) => (
+							<NavBarItemMobile to={item.to} key={item.title} title={item.title} closeMenu={closeMenu} />
+						))}
+					</Drawer>
+				</Hidden>
 			</Box>
 		</Toolbar>
 	);

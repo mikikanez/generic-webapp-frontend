@@ -11,7 +11,6 @@ const TitolCustom2 = ({ title = "Títol pàgina", hidden = false, scrollY = 0 })
 	return (
 		<Box
 			style={{
-				borderBottom: "1px solid " + theme.palette.primary.main,
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
 				backgroundColor: theme.palette.background.main,

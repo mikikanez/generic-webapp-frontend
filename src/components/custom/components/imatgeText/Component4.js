@@ -3,9 +3,9 @@ import Image from "next/image";
 import { valor } from "..";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
-export default function Component4({ component, matches, imatges, theme, router }) {
+export default function Component4({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.primary.main }}>
+		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.primary.main }} {...props}>
 			<Container maxWidth="lg">
 				<Box py={20} px={5} paddingBottom={0}>
 					<Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
@@ -35,7 +35,7 @@ export default function Component4({ component, matches, imatges, theme, router 
 							src={imatges.filter((i) => i.id === 2)[0]?.imatge}
 							width={0}
 							height={0}
-							sizes="100vw"
+							sizes="90vw"
 							style={{ width: "100%", height: "auto" }}
 						/>
 					</div>

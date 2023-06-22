@@ -1,6 +1,9 @@
 export function constructFormPagina(values) {
 	const data = new FormData();
 
+	if (values.imatge?.[0]?.name) {
+		data.append("imatge", values.imatge[0], values.imatge[0].name);
+	}
 	data.append("titol", values.titol);
 	data.append("slug", values.slug ?? "");
 	data.append("idioma_id", values.idioma_id);
