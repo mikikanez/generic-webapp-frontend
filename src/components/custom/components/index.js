@@ -22,6 +22,12 @@ import Component20 from "./imatge/Component1";
 import Component21 from "./imatge/Component2";
 import Component22 from "./imatgeTitol/Component1";
 import Component23 from "./imatge/Component23";
+import Component24 from "./titolText/Component4";
+import Component25 from "./titolText/Component5";
+import Component26 from "./titolText/Component6";
+import Component27 from "./imatgeText/Component12";
+import Component28 from "./imatgeText/Component13";
+import Component29 from "./imatgeTitol/Component2";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -47,6 +53,12 @@ export const components = [
 	{ id: 21, component: Component21, icon: VerticalSplit },
 	{ id: 22, component: Component22, icon: VerticalSplit },
 	{ id: 23, component: Component23, icon: VerticalSplit },
+	{ id: 24, component: Component24, icon: VerticalSplit },
+	{ id: 25, component: Component25, icon: VerticalSplit },
+	{ id: 26, component: Component26, icon: VerticalSplit },
+	{ id: 27, component: Component27, icon: VerticalSplit },
+	{ id: 28, component: Component28, icon: VerticalSplit },
+	{ id: 29, component: Component29, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
