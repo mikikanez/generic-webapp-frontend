@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Fab, Grid, Typography } from "@mui/material";
+import { Box, Chip, Fab, Grid, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
@@ -59,7 +59,6 @@ export default function PaginesAdmin({ pagina, components }) {
 		const obtenir = async () => {
 			setLoading(true);
 			const data = await getList("idiomes");
-			console.log(data);
 			setIdiomes(data);
 			setLoading(false);
 		};
@@ -78,7 +77,6 @@ export default function PaginesAdmin({ pagina, components }) {
 
 	const guardar = async (values) => {
 		values.components = componentsPreview;
-		const construct = constructFormPagina(values);
 
 		setLoading(true);
 		try {
@@ -98,6 +96,7 @@ export default function PaginesAdmin({ pagina, components }) {
 		}
 		setLoading(false);
 	};
+	console.log(componentsPreview);
 
 	return (
 		<PageAdmin title={"Pàgina - " + pagina.titol} Icon={CircleOutlined}>
@@ -119,26 +118,29 @@ export default function PaginesAdmin({ pagina, components }) {
 							{componentsPreview?.map((com) => (
 								<Box key={com.id} style={{ position: "relative", overflow: "hidden" }}>
 									<Overlay>
-										<Fab
-											onClick={() => {
-												setComponentSel(com);
-												setOpenEdit(true);
-											}}
-											style={{ marginRight: 10 }}
-										>
-											<Edit />
-										</Fab>
-										<Fab
-											onClick={() => {
-												setComponentSel(com);
-												setOpenEliminar(true);
-											}}
-											color="danger"
-										>
-											<Delete />
-										</Fab>
+										<Chip label={com?.component?.id + " - " + com?.component?.nom} />
+										<Box mt={2}>
+											<Fab
+												onClick={() => {
+													setComponentSel(com);
+													setOpenEdit(true);
+												}}
+												style={{ marginRight: 10 }}
+											>
+												<Edit />
+											</Fab>
+											<Fab
+												onClick={() => {
+													setComponentSel(com);
+													setOpenEliminar(true);
+												}}
+												color="danger"
+											>
+												<Delete />
+											</Fab>
+										</Box>
 									</Overlay>
-									{com && <ComponentChooser com={com} />}
+									{com && <ComponentChooser com={com} preview />}
 								</Box>
 							))}
 						</CustomCard>
@@ -253,6 +255,7 @@ const Overlay = styled(Box)(({ theme }) => ({
 	alignItems: "center",
 	backgroundColor: "#FFFFFF40",
 	display: "flex",
+	flexDirection: "column",
 	opacity: 0,
 	"&:hover": {
 		opacity: 1,

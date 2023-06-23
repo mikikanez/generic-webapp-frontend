@@ -21,7 +21,7 @@ import Component19 from "./text/Component4";
 import Component20 from "./imatge/Component1";
 import Component21 from "./imatge/Component2";
 import Component22 from "./imatgeTitol/Component1";
-import Component23 from "./titolText/Component3";
+import Component23 from "./imatge/Component23";
 import Component24 from "./titolText/Component4";
 import Component25 from "./titolText/Component5";
 import Component26 from "./titolText/Component6";

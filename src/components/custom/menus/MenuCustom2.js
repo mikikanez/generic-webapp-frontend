@@ -51,7 +51,7 @@ export default function MenuCustom2({ scrollY = 0, premenu }) {
 						cursor: "pointer",
 						transition: "0.2s",
 						transform: scrollY > 200 ? "scale(0.6)" : "scale(1)",
-						marginBottom: scrollY > 200 ? -20 : 0,
+						marginBottom: scrollY > 200 ? -10 : 10,
 						marginTop: scrollY > 200 ? -10 : 10,
 					}}
 					onClick={() => router.push("/")}
@@ -85,7 +85,7 @@ export default function MenuCustom2({ scrollY = 0, premenu }) {
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
 						<Menu style={{ color: isDark(opcions?.primary) ? "white" : "black" }} />
 					</IconButton>
-					<Drawer open={menu} onClose={closeMenu} style={{ zIndex: 1000 }}>
+					<Drawer open={menu} onClose={closeMenu} style={{ zIndex: 10000 }} anchor={"top"}>
 						<IconButton onClick={closeMenu}>
 							<Close />
 						</IconButton>
