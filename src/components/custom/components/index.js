@@ -21,6 +21,7 @@ import Component19 from "./text/Component4";
 import Component20 from "./imatge/Component1";
 import Component21 from "./imatge/Component2";
 import Component22 from "./imatgeTitol/Component1";
+import Component23 from "./imatge/Component23";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -45,6 +46,7 @@ export const components = [
 	{ id: 20, component: Component20, icon: VerticalSplit },
 	{ id: 21, component: Component21, icon: VerticalSplit },
 	{ id: 22, component: Component22, icon: VerticalSplit },
+	{ id: 23, component: Component23, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {

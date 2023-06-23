@@ -1,6 +1,6 @@
 import React from "react";
 import "moment/locale/ca";
-import { Email, Instagram, Phone, Twitter } from "@mui/icons-material";
+import { Api, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { Grid, InputAdornment } from "@mui/material";
@@ -84,6 +84,25 @@ export default function General({ opcio, register }) {
 									startAdornment: (
 										<InputAdornment position="start">
 											<Email />
+										</InputAdornment>
+									),
+								}}
+							/>
+						</Grid>
+					</Grid>
+				</CustomCard>
+				<CustomCard title={"API Keys"}>
+					<Grid spacing={3} container>
+						<Grid item md={12}>
+							<CustomTextField
+								register={register}
+								key={opcio("apiKey").id}
+								name={opcio("apiKey").nom}
+								label={opcio("apiKey").descripcio}
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position="start">
+											<Api />
 										</InputAdornment>
 									),
 								}}

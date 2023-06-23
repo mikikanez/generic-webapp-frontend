@@ -1,4 +1,5 @@
 import { getData } from "@/lib/API";
+import { useEffect, useState } from "react";
 
 export function slugify(text, separator = "-") {
 	return text
@@ -38,7 +39,23 @@ export function constructComponent(componentSel, value) {
 				});
 			case "imatge":
 				return value[elementSel?.id].length > 0 ? value[elementSel?.id] : elementSel.valor;
+			case "maps":
+				return JSON.stringify({
+					lat: value[elementSel.id + "lat"],
+					lng: value[elementSel.id + "lng"],
+				});
 
+			case "galeria":
+				return JSON.stringify(
+					JSON.parse(value[elementSel.id]).map((item, index) => {
+						console.log(value[elementSel.id + "imatge" + index]);
+						return {
+							imatge: value[elementSel.id + "imatge" + index].length > 0 ? value[elementSel.id + "imatge" + index] : item.valor,
+							titol: value[elementSel.id + "titol" + index],
+							subtitol: value[elementSel.id + "subtitol" + index],
+						};
+					})
+				);
 			default:
 				return value[elementSel?.id];
 		}
@@ -60,17 +77,59 @@ export function constructComponent(componentSel, value) {
 }
 
 export const componentDefault = (componentSel, id) => {
+	const returnElement = (elementSel) => {
+		switch (elementSel.nom) {
+			case "boto":
+				return '{"titol": "Text botó", "extern": 0, "link": "/"}';
+			case "imatge":
+				return "exemple.jpg";
+			case "titol":
+				return "Ready to get started?";
+			case "maps":
+				return '{ "lat": 42.115329987765946, "lng": 1.8005044550816627}';
+			case "galeria":
+				return '[{"imatge": "exemple.jpg", "titol": "Títol", "subtitol": "Subtítol"}, {"imatge": "exemple.jpg", "titol": "Títol 2", "subtitol": "Subtítol 2"}]';
+
+			default:
+				return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+		}
+	};
+
 	return {
 		id: id,
 		component_id: componentSel.id,
 		component: componentSel,
 		dark: 0,
-		component_pagina_element: componentSel.elements.map((elementSel) => {
+		component_pagina_element: componentSel.elements.map((elementSel, index) => {
 			return {
-				id: elementSel.id,
+				id: index,
 				element: elementSel,
-				valor: elementSel.nom === "imatge" ? "exemple.jpg" : elementSel.nom === "boto" ? '{"titol": "Text botó", "extern": 0, "link": "/"}' : elementSel.nom === 'titol' ? "Ready to get started?" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+				valor: returnElement(elementSel),
 			};
 		}),
 	};
 };
+
+// Hook
+export function useWindowSize() {
+	const [windowSize, setWindowSize] = useState({
+		width: undefined,
+		height: undefined,
+	});
+
+	useEffect(() => {
+		function handleResize() {
+			setWindowSize({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		}
+
+		window.addEventListener("resize", handleResize);
+
+		handleResize();
+
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+	return windowSize;
+}

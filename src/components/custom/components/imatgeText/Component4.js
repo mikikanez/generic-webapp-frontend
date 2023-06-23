@@ -34,7 +34,7 @@ export default function Component4({ component, matches, imatges, theme, router,
 							alt="Imatge"
 							src={imatges.filter((i) => i.id === 2)[0]?.imatge}
 							width={0}
-							height={0}
+							height={200}
 							sizes="90vw"
 							style={{ width: "100%", height: "auto" }}
 						/>

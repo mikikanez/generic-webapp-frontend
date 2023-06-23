@@ -1,7 +1,6 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Container, Typography } from "@mui/material";
 import { valor } from "..";
-import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
+import { useOpcions } from "@/context/OpcionsContext";
 
 export default function Component2({ component, matches, imatges, theme, router, ...props }) {
 	return (

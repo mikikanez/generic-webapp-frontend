@@ -27,7 +27,7 @@ const TitolCustom4 = ({ title = "Títol pàgina", hidden = false, img = "exemple
 				backgroundAttachment: "fixed",
 				backgroundColor: theme.palette.background.main,
 				position: "relative",
-				backgroundPositionY: -scrollY / 4,
+				backgroundPositionY: -scrollY / 2,
 			}}
 			display={hidden ? "none" : ""}
 			displayPrint="none"

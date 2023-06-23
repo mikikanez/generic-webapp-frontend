@@ -57,7 +57,7 @@ export default function MenuCustom3Alt({ premenu, scrollY = 0 }) {
 						onClick={() => router.push("/")}
 					>
 						{opcions?.logo ? (
-							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={100} alt="G" style={{ objectFit: "contain" }} />
+							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={60} width={100} alt="G" style={{ objectFit: "contain" }} />
 						) : (
 							<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"}>
 								{opcions?.titol}
@@ -84,7 +84,7 @@ export default function MenuCustom3Alt({ premenu, scrollY = 0 }) {
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
 						<Menu color="secondary" />
 					</IconButton>
-					<Drawer open={menu} onClose={closeMenu}>
+					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu}>
 						<IconButton onClick={closeMenu}>
 							<Close />
 						</IconButton>

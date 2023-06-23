@@ -54,7 +54,7 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 					onClick={() => router.push("/")}
 				>
 					{opcions?.logo ? (
-						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={100} alt="G" style={{ objectFit: "contain" }} />
+						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={60} width={100} alt="G" style={{ objectFit: "contain" }} />
 					) : (
 						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"}>
 							{opcions?.titol}
@@ -102,7 +102,7 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
 						<Menu style={{ color: isDark(opcions?.primary) ? "white" : "black" }} />
 					</IconButton>
-					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu}>
+					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
 						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"}>
 							<Box textAlign={"center"} my={2}>
 								<IconButton onClick={closeMenu}>
