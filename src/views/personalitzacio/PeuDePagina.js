@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "moment/locale/ca";
 import CustomCard from "@/components/layout/CustomCard";
-import { Box, Grid, Radio, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Grid, Radio, Typography } from "@mui/material";
 import { footers } from "@/components/custom/footers";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { DragHandle } from "@mui/icons-material";
+import { Controller } from "react-hook-form";
 
-export default function PeuDePagina({ watch, setValue, opcions = [] }) {
+export default function PeuDePagina({ watch, setValue, opcions = [], control }) {
 	const [pagines, setPagines] = useState(opcions.filter((m) => m.menu === 2));
 
 	const handleDrop = (droppedItem) => {
@@ -26,7 +27,7 @@ export default function PeuDePagina({ watch, setValue, opcions = [] }) {
 						<Box key={Item.id} display={"flex"} alignItems={"center"} mb={3}>
 							<Radio checked={watch("footer") === String(Item.id)} onClick={() => setValue("footer", String(Item.id))} />
 							<Box style={{ width: "100%" }} borderRadius={1} overflow={"hidden"}>
-								<Item.component />
+								<Item.component footerAlt={watch("footerAlt")} />
 							</Box>
 						</Box>
 					))}
@@ -68,6 +69,31 @@ export default function PeuDePagina({ watch, setValue, opcions = [] }) {
 							)}
 						</Droppable>
 					</DragDropContext>
+				</CustomCard>
+				<CustomCard title={"Ordre menú"}>
+					<FormControlLabel
+						control={
+							<Controller
+								name={"footerAlt"}
+								control={control}
+								defaultValue={false}
+								render={({ field: { value, ref, ...field } }) => (
+									<Checkbox
+										{...field}
+										inputRef={ref}
+										checked={value === "1"}
+										color="primary"
+										size={"medium"}
+										value={1}
+										disableRipple
+										onChange={(event) => setValue("footerAlt", event.target.checked ? "1" : "0")}
+									/>
+								)}
+							/>
+						}
+						label={"Peu de pàgina alternatiu"}
+						labelPlacement="end"
+					/>
 				</CustomCard>
 			</Grid>
 		</Grid>

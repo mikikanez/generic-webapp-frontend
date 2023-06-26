@@ -2,13 +2,15 @@ import React from "react";
 import { Box, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
 import { Container } from "@mui/system";
-import theme from "@/styles/theme";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Twitter } from "@mui/icons-material";
 import Link from "next/link";
+import { useTheme } from "@mui/material/styles";
+import { isDark } from "@/core/createTheme";
 
-const FooterCustom1 = () => {
+const FooterCustom1 = ({ footerAlt }) => {
 	const opcions = useOpcions();
+	const theme = useTheme();
 
 	const items = [
 		...opcions?.pagines
@@ -23,7 +25,7 @@ const FooterCustom1 = () => {
 			style={{
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
-				backgroundColor: opcions?.primary,
+				backgroundColor: footerAlt === "1" ? theme.palette.background.main : theme.palette.primary.main,
 			}}
 			displayPrint="none"
 		>
@@ -39,10 +41,21 @@ const FooterCustom1 = () => {
 					}}
 				>
 					<Grid item md={12} xs={12} textAlign={"center"}>
-						<Typography variant="footer" component={"p"} fontWeight={800} mb={1}>
+						<Typography
+							color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"}
+							variant="footer"
+							component={"p"}
+							fontWeight={800}
+							mb={1}
+						>
 							{opcions?.titol}
 						</Typography>
-						<Typography variant="footer" component={"p"} mb={1}>
+						<Typography
+							color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"}
+							variant="footer"
+							component={"p"}
+							mb={1}
+						>
 							{opcions?.descripcio}
 						</Typography>
 					</Grid>
@@ -55,19 +68,19 @@ const FooterCustom1 = () => {
 					))}
 				</Box>
 			</Container>
-			<Box py={2} style={{ borderTop: "1px solid white" }}>
+			<Box py={2} style={{ borderTop: "1px solid " + (footerAlt === "1" ? "black" : "white") }}>
 				<Container maxWidth={"xl"}>
 					<Grid container>
 						<Grid item md={12} xs={12} textAlign={"center"}>
 							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 								{opcions?.instagram && (
 									<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-										<Instagram color="info" />
+										<Instagram color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
 									</a>
 								)}
 								{opcions?.twitter && (
 									<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-										<Twitter color="info" />
+										<Twitter color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
 									</a>
 								)}
 							</Stack>

@@ -9,8 +9,9 @@ import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
+import NavBarItemLight from "@/layouts/public/NavBarItemLight";
 
-export default function MenuCustom1({ premenu, scrollY = 0 }) {
+export default function MenuCustom1({ premenu, scrollY = 0, menuAlt }) {
 	const router = useRouter();
 	const [menu, setMenu] = useState(false);
 	const opcions = useOpcions();
@@ -36,7 +37,7 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				backgroundColor: theme.palette.primary.main,
+				backgroundColor: (menuAlt === "1" ? theme.palette.background.main : theme.palette.primary.main) + (scrollY > 200 ? "E0" : ""),
 				flexDirection: "column",
 				padding: 0,
 			}}
@@ -56,7 +57,7 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 					{opcions?.logo ? (
 						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={60} width={100} alt="G" style={{ objectFit: "contain" }} />
 					) : (
-						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"}>
+						<Typography variant="h3" color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"}>
 							{opcions?.titol}
 						</Typography>
 					)}
@@ -69,9 +70,13 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 							justifyContent: "center",
 						}}
 					>
-						{items?.map((item) => (
-							<NavBarItem to={item.to} key={item.title} title={item.title} />
-						))}
+						{items?.map((item) =>
+							menuAlt === "1" ? (
+								<NavBarItemLight to={item.to} key={item.title} title={item.title} />
+							) : (
+								<NavBarItem to={item.to} key={item.title} title={item.title} />
+							)
+						)}
 					</Box>
 				</Hidden>
 
@@ -87,12 +92,12 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 							{opcions?.instagram && (
 								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color={isDark(opcions?.primary) ? "info" : "primary"} />
+									<Instagram color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
 								</a>
 							)}
 							{opcions?.twitter && (
 								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color={isDark(opcions?.primary) ? "info" : "primary"} />
+									<Twitter color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
 								</a>
 							)}
 						</Stack>
@@ -100,7 +105,7 @@ export default function MenuCustom1({ premenu, scrollY = 0 }) {
 				</Box>
 				<Hidden mdUp>
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
-						<Menu style={{ color: isDark(opcions?.primary) ? "white" : "black" }} />
+						<Menu style={{ color: isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black" }} />
 					</IconButton>
 					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
 						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"}>

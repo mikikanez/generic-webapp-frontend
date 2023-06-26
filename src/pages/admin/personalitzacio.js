@@ -113,7 +113,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} control={control} />
 					</TabPanel>
 					<TabPanel value={4} index={0} style={{ padding: 0 }}>
-						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
+						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} control={control} />
 					</TabPanel>
 					<TabPanel value={5} index={0} style={{ padding: 0 }}>
 						<Titols watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />
@@ -123,7 +123,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 					</TabPanel>
 				</TabContext>
 
-				<CustomButton type="submit" title={"Guardar"} loading={loading} />
+				<CustomButton type="submit" title={"Guardar"} loading={loading} success />
 			</PageAdmin>
 		</form>
 	);

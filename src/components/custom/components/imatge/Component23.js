@@ -37,7 +37,7 @@ export default function Component23({ component, matches, imatges, theme, router
 					className="mySlider"
 					width={props.preview ? 300 : width}
 				>
-					{JSON.parse(valor(0, component))?.map((slide, index) => (
+					{JSON?.parse(valor(0, component))?.map((slide, index) => (
 						<SwiperSlide key={index}>
 							<Box
 								style={{

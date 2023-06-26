@@ -37,7 +37,7 @@ export default function Menus({ watch, setValue, opcions, control }) {
 						>
 							<Radio checked={watch("menu") === String(Item.id)} onClick={() => setValue("menu", String(Item.id))} />
 							<Box style={{ width: "100%", transform: "scale(0.9)" }} borderRadius={1} overflow={"hidden"}>
-								<Item.component premenu={watch("premenu")} />
+								<Item.component premenu={watch("premenu")} menuAlt={watch("menuAlt")} />
 							</Box>
 						</Box>
 					))}
@@ -80,7 +80,7 @@ export default function Menus({ watch, setValue, opcions, control }) {
 						</Droppable>
 					</DragDropContext>
 				</CustomCard>
-				<CustomCard title={"Pre-menú"}>
+				<CustomCard title={"Opcions"}>
 					<FormControlLabel
 						control={
 							<Controller
@@ -102,6 +102,29 @@ export default function Menus({ watch, setValue, opcions, control }) {
 							/>
 						}
 						label={"Mostrar pre-menú"}
+						labelPlacement="end"
+					/>
+					<FormControlLabel
+						control={
+							<Controller
+								name={"menuAlt"}
+								control={control}
+								defaultValue={false}
+								render={({ field: { value, ref, ...field } }) => (
+									<Checkbox
+										{...field}
+										inputRef={ref}
+										checked={value === "1"}
+										color="primary"
+										size={"medium"}
+										value={1}
+										disableRipple
+										onChange={(event) => setValue("menuAlt", event.target.checked ? "1" : "0")}
+									/>
+								)}
+							/>
+						}
+						label={"Menú alternatiu"}
 						labelPlacement="end"
 					/>
 				</CustomCard>
