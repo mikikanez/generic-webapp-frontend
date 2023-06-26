@@ -34,7 +34,6 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 	useEffect(() => {
 		const subscription = watch((value, { name, type }) => {
 			const com = constructComponent(componentSel, value);
-			console.log(com);
 			setComponentLive(com);
 		});
 		return () => subscription.unsubscribe();
@@ -72,7 +71,7 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 					</FitToViewport>
 					<Grid spacing={2} container mt={1}>
 						{componentSel?.component_pagina_element?.map((el) => (
-							<Grid item md={el.element.nom === "textarea" ? 12 : 6} key={el.id}>
+							<Grid item md={el.element.nom === "textarea" || el.element.nom === "maps" || el.element.nom === "galeria" ? 12 : 6} key={el.id}>
 								<RenderElement
 									defaultValue={el.valor}
 									element={el.element}

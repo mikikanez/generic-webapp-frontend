@@ -22,6 +22,23 @@ export default function ComponentWrap({ Component, component, ...props }) {
 				} else {
 					setImatges((prev) => [...prev.filter((m) => m.id !== index), { id: index, imatge: process.env.NEXT_PUBLIC_STORAGE + element?.valor }]);
 				}
+			} else if (element.element?.nom === "galeria") {
+				const valors = JSON.parse(element.valor);
+				let imgs = [];
+				valors?.map((img, index) => {
+					console.log(img);
+					if (img.imatge?.[0]?.name) {
+						let reader = new FileReader();
+
+						reader.onloadend = () => {
+							setImatges((prev) => [...prev.filter((m) => m.id !== index), { id: index, imatge: reader.result }]);
+						};
+						reader?.readAsDataURL(img?.imatge?.[0]);
+					} else {
+						imgs = [...imgs, { id: index, imatge: process.env.NEXT_PUBLIC_STORAGE + img?.imatge }];
+					}
+				});
+				setImatges(imgs);
 			}
 		});
 	}, [component]);
