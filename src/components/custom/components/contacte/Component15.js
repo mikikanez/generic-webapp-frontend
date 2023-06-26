@@ -3,9 +3,7 @@ import { valor } from "..";
 import CustomGoogleMaps from "@/components/elements/CustomGoogleMaps";
 import { useOpcions } from "@/context/OpcionsContext";
 
-export default function Component2({ component, matches, imatges, theme, router, ...props }) {
-	const opcions = useOpcions();
-
+export default function Component15({ component, matches, imatges, theme, router }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false} style={{ position: "relative" }}>

@@ -2,7 +2,7 @@ import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
 
-export default function Component6({ component, matches, imatges, theme, router, ...props }) {
+export default function Component25({ component, matches, imatges, theme, router, ...props }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth={'xl'} style={{padding: '10%'}}>
@@ -13,7 +13,7 @@ export default function Component6({ component, matches, imatges, theme, router,
                             <Typography
                                 dangerouslySetInnerHTML={{ __html: valor(0, component) }}
                                 variant="body1"
-                                textAlign={"center"}
+                                textAlign={"left"}
                                 color={component.dark ? "white" : "black"}
                                 mt={4}
                             ></Typography>
@@ -25,7 +25,7 @@ export default function Component6({ component, matches, imatges, theme, router,
                             <Typography
                                 dangerouslySetInnerHTML={{ __html: valor(1, component) }}
                                 variant="body1"
-                                textAlign={"center"}
+                                textAlign={"left"}
                                 color={component.dark ? "white" : "black"}
                                 mt={4}
                             ></Typography>
@@ -37,7 +37,7 @@ export default function Component6({ component, matches, imatges, theme, router,
                             <Typography
                                 dangerouslySetInnerHTML={{ __html: valor(2, component) }}
                                 variant="body1"
-                                textAlign={"center"}
+                                textAlign={"left"}
                                 color={component.dark ? "white" : "black"}
                                 mt={4}
                             ></Typography>

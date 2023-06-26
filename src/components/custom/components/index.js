@@ -9,25 +9,31 @@ import Component7 from "./imatgeText/Component7";
 import Component8 from "./imatgeText/Component8";
 import Component9 from "./imatgeText/Component9";
 import Component10 from "./imatgeText/Component10";
-import Component11 from "./imatgeText/Component11";
-import Component12 from "./titolText/Component1";
-import Component13 from "./titolText/Component2";
-import Component14 from "./contacte/Component1";
-import Component15 from "./contacte/Component2";
-import Component16 from "./text/Component1";
-import Component17 from "./text/Component2";
-import Component18 from "./text/Component3";
-import Component19 from "./text/Component4";
-import Component20 from "./imatge/Component1";
-import Component21 from "./imatge/Component2";
-import Component22 from "./imatgeTitol/Component1";
+import Component11 from "./textBoto/Component11";
+import Component12 from "./titolText/Component12";
+import Component13 from "./titolText/Component13";
+import Component14 from "./contacte/Component14";
+import Component15 from "./contacte/Component15";
+import Component16 from "./text/Component16";
+import Component17 from "./text/Component17";
+import Component18 from "./text/Component18";
+import Component19 from "./text/Component19";
+import Component20 from "./imatge/Component20";
+import Component21 from "./imatge/Component21";
+import Component22 from "./imatgeTitol/Component22";
 import Component23 from "./imatge/Component23";
-import Component24 from "./titolText/Component4";
-import Component25 from "./titolText/Component5";
-import Component26 from "./titolText/Component6";
-import Component27 from "./imatgeText/Component12";
-import Component28 from "./imatgeText/Component13";
-import Component29 from "./imatgeTitol/Component2";
+import Component24 from "./titolText/Component24";
+import Component25 from "./titolText/Component25";
+import Component26 from "./titolText/Component26";
+import Component27 from "./imatgeText/Component27";
+import Component28 from "./imatgeText/Component28";
+import Component29 from "./imatgeTitol/Component29";
+import Component30 from "./titolText/Component30";
+import Component31 from "./titolText/Component31";
+import Component32 from "./imatgeTitol/Component32";
+import Component33 from "./imatgeText/Component33";
+import Component34 from "./imatgeText/Component34";
+import Component35 from "./imatgeText/Component35";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -59,6 +65,12 @@ export const components = [
 	{ id: 27, component: Component27, icon: VerticalSplit },
 	{ id: 28, component: Component28, icon: VerticalSplit },
 	{ id: 29, component: Component29, icon: VerticalSplit },
+	{ id: 30, component: Component30, icon: VerticalSplit },
+	{ id: 31, component: Component31, icon: VerticalSplit },
+	{ id: 32, component: Component32, icon: VerticalSplit },
+	{ id: 33, component: Component33, icon: VerticalSplit },
+	{ id: 34, component: Component34, icon: VerticalSplit },
+	{ id: 35, component: Component35, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
