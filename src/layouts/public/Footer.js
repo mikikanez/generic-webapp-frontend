@@ -8,7 +8,7 @@ const Footer = () => {
 
 	const returnFooter = () => {
 		const Footer = footers.filter((footer) => footer.id === Number(opcions?.footer))[0].component;
-		return <Footer />;
+		return <Footer footerAlt={opcions?.footerAlt} />;
 	};
 
 	return <Box>{returnFooter()}</Box>;

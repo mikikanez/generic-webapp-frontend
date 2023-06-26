@@ -9,8 +9,9 @@ import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
 import { useState } from "react";
+import NavBarItemLight from "@/layouts/public/NavBarItemLight";
 
-export default function MenuCustom2({ scrollY = 0, premenu }) {
+export default function MenuCustom2({ scrollY = 0, premenu, menuAlt }) {
 	const theme = useTheme();
 	const router = useRouter();
 	const opcions = useOpcions();
@@ -37,7 +38,7 @@ export default function MenuCustom2({ scrollY = 0, premenu }) {
 			style={{
 				transition: "0.2s",
 				justifyContent: "center",
-				backgroundColor: theme.palette.primary.main,
+				backgroundColor: (menuAlt === "1" ? theme.palette.background.main : theme.palette.primary.main) + (scrollY > 200 ? "E0" : ""),
 				flexDirection: "column",
 				padding: 0,
 			}}
@@ -61,7 +62,7 @@ export default function MenuCustom2({ scrollY = 0, premenu }) {
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} fill alt="G" style={{ objectFit: "contain" }} />
 						</Box>
 					) : (
-						<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"} my={3}>
+						<Typography variant="h3" color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
 							{opcions?.titol}
 						</Typography>
 					)}
@@ -74,16 +75,20 @@ export default function MenuCustom2({ scrollY = 0, premenu }) {
 						}}
 						mb={2}
 					>
-						{items?.map((item) => (
-							<NavBarItem to={item.to} key={item.title} title={item.title} />
-						))}
+						{items?.map((item) =>
+							menuAlt === "1" ? (
+								<NavBarItemLight to={item.to} key={item.title} title={item.title} />
+							) : (
+								<NavBarItem to={item.to} key={item.title} title={item.title} />
+							)
+						)}
 					</Box>
 				</Hidden>
 
 				<Hidden mdUp>
 					<Box onClick={() => router.push("/")}>{/* <Logo width={150} fill="white" /> */}</Box>
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
-						<Menu style={{ color: isDark(opcions?.primary) ? "white" : "black" }} />
+						<Menu style={{ color: isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black" }} />
 					</IconButton>
 					<Drawer open={menu} onClose={closeMenu} style={{ zIndex: 10000 }} anchor={"top"}>
 						<IconButton onClick={closeMenu}>
