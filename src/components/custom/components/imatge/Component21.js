@@ -2,7 +2,7 @@ import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
 
-export default function Component2({ component, matches, imatges, theme, router, ...props }) {
+export default function Component21({ component, matches, imatges, theme, router, ...props }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false}>
