@@ -45,7 +45,7 @@ const FooterCustom2 = ({ footerAlt }) => {
 						{opcions?.logo ? (
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={150} alt="G" style={{ objectFit: "contain" }} />
 						) : (
-							<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"} my={3}>
+							<Typography variant="h3" color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
 								{opcions?.titol}
 							</Typography>
 						)}

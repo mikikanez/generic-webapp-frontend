@@ -8,9 +8,11 @@ import { Twitter } from "@mui/icons-material";
 import Image from "next/image";
 import { isDark } from "@/core/createTheme";
 import Link from "next/link";
+import { useTheme } from "@mui/material/styles";
 
-const FooterCustom3 = () => {
+const FooterCustom3 = ({ footerAlt }) => {
 	const opcions = useOpcions();
+	const theme = useTheme();
 	const matches = useMediaQuery("(min-width:960px)");
 
 	const items = [
@@ -34,7 +36,7 @@ const FooterCustom3 = () => {
 			style={{
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
-				backgroundColor: opcions?.background,
+				backgroundColor: footerAlt === "1" ? theme.palette.background.main : theme.palette.primary.main,
 			}}
 			displayPrint="none"
 		>
@@ -54,7 +56,7 @@ const FooterCustom3 = () => {
                         <Box textAlign={matches ? "right" : "center"}>
                             {itemsMenu.map((item, index) => (
                                 index % 2 == 0 ? <Link key={item.to} href={item.to} style={{ padding: 10 }}>
-                                    <Typography variant="footer" color={(isDark(opcions?.primary) ? "black" : "white")}>{item.title}</Typography>
+                                    <Typography variant="footer" color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black")}>{item.title}</Typography>
                                 </Link> : null
                             ))}
                         </Box>
@@ -63,7 +65,7 @@ const FooterCustom3 = () => {
 						{opcions?.logo ? (
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={150} alt="G" style={{ objectFit: "contain" }} />
 						) : (
-							<Typography variant="h3" color={isDark(opcions?.primary) ? "white" : "black"} my={3}>
+							<Typography variant="h3" color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
 								{opcions?.titol}
 							</Typography>
 						)}
@@ -73,20 +75,20 @@ const FooterCustom3 = () => {
                         <Box textAlign={matches ? "left" : "center"}>
                             {itemsMenu.map((item, index) => (
                                 index % 2 != 0 ? <Link key={item.to} href={item.to} style={{ padding: 10 }}>
-                                    <Typography variant="footer" color={(isDark(opcions?.primary) ? "black" : "white")}>{item.title}</Typography>
+                                    <Typography variant="footer" color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black")}>{item.title}</Typography>
                                 </Link> : null
                             ))}
                         </Box>
 					</Grid>
 
 					<Grid item md={12} xs={12} textAlign={"center"}>
-				        <Box py={2} style={{ borderTop: "1px solid " + (isDark(opcions?.primary) ? "black" : "white"), width: '70%', margin: '0 auto'}}></Box>
+				        <Box py={2} style={{ borderTop: "1px solid " + (isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"), width: '70%', margin: '0 auto'}}></Box>
                     </Grid>
                     <Grid item md={12} xs={12} textAlign={"center"} paddingTop={'0 !important'}>
                         <Box textAlign={"center"}>
                             {items.map((item, index) => (
                                 <Link key={item.to} href={item.to} style={{ padding: 10 }}>
-                                    <Typography variant="footer" color={(isDark(opcions?.primary) ? "black" : "white")}>{item.title}</Typography>
+                                    <Typography variant="footer" color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black")}>{item.title}</Typography>
                                 </Link>
                             ))}
                         </Box>
@@ -95,12 +97,12 @@ const FooterCustom3 = () => {
                         <Stack direction={"row"} spacing={2} justifyContent={"center"}>
                             {opcions?.instagram && (
                                 <a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-                                    <Instagram color={(isDark(opcions?.primary) ? "black" : "white")} />
+                                    <Instagram color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary")} />
                                 </a>
                             )}
                             {opcions?.twitter && (
                                 <a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-                                    <Twitter color={(isDark(opcions?.primary) ? "black" : "white")} />
+                                    <Twitter color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary")} />
                                 </a>
                             )}
                         </Stack>
