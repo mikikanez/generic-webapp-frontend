@@ -1,14 +1,15 @@
 import Page from "@/components/layout/Page";
+import { constructPagina } from "@/core/utils";
 import { getData, getDataIds } from "@/lib/API";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Pagina({ pagina }) {
 	return (
 		<Page title={pagina?.titol} img={pagina?.imatge}>
 			<Box>
-				{pagina.components.map((com) => (
+				{constructPagina(pagina).components.map((com) => (
 					<ComponentChooser key={com.id} com={com} />
 				))}
 			</Box>

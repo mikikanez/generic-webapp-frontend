@@ -20,7 +20,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 			case "imatge":
 				return <ImageInput name={String(name)} register={register} trigger={trigger} getValues={getValues} text={"Afegir imatge"} />;
 			case "boto":
-				const valors = JSON.parse(defaultValue);
+				const valors = defaultValue;
 				return (
 					<Grid container spacing={3}>
 						<Grid item md={6}>
@@ -73,7 +73,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 					/>
 				);
 			case "maps":
-				const maps = JSON.parse(defaultValue);
+				const maps = defaultValue;
 				return (
 					<Grid container spacing={3}>
 						<Grid item md={4}>
@@ -88,7 +88,8 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 					</Grid>
 				);
 			case "galeria":
-				const galeria = JSON.parse(watch(String(name)) ?? []);
+				const galeria = watch(String(name)) ?? [];
+				console.log(watch(String(name)));
 				return (
 					<Box my={2}>
 						{galeria?.map((item, index) => (
@@ -97,7 +98,10 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 								<Grid container spacing={3}>
 									<Grid item md={4}>
 										<Box display={"flex"} px={1} bgcolor={"#f0f0f0"} borderRadius={2} alignItems={"center"}>
-											<Thumb file={watch(String(name + "imatge" + index))} small />
+											<Thumb
+												file={watch(String(name + "imatge" + index))?.length > 0 ? watch(String(name + "imatge" + index)) : item.imatge}
+												small
+											/>
 											<ImageInput
 												name={String(name + "imatge" + index)}
 												register={register}
@@ -132,7 +136,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 							title={"Afegir imatge a la galeria"}
 							fullWidth
 							onClick={() => {
-								setValue(String(name), JSON.stringify([...galeria, { titol: "Titol nou", subtitol: "Subtitol nou", imatge: "exemple.jpg" }]));
+								setValue(String(name), [...galeria, { titol: "Titol nou", subtitol: "Subtitol nou", imatge: "exemple.jpg" }]);
 							}}
 						/>
 					</Box>

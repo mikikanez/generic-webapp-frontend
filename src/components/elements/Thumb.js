@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 const Thumb = (props) => {
 	const [thumb, setThumb] = useState();
 
+	console.log(props);
+
 	useEffect(() => {
 		if (props?.file?.[0]?.name) {
 			let reader = new FileReader();
@@ -29,10 +31,10 @@ const Thumb = (props) => {
 			<Image
 				variant="rounded"
 				src={thumb}
-				alt={props?.file?.name}
 				width={props.small ? 50 : 250}
 				height={props.small ? 50 : 250}
 				style={{ objectFit: "contain" }}
+				alt="Provisional"
 			/>
 		</Box>
 	);

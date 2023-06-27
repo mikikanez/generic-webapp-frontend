@@ -8,6 +8,7 @@ import { CustomTab, CustomTabs } from "@/components/elements/CustomTabs";
 import { List } from "@mui/icons-material";
 import { TabContext, TabPanel } from "@mui/lab";
 import { ComponentMiniPreview } from "./ComponentMiniPreview";
+import { CustomTabVertical, CustomTabsVertical } from "@/components/elements/CustomTabsVertical";
 
 export function DialogAddComponent({ open, setOpen, componentsList, componentsPreview, setComponentsPreview }) {
 	const [tab, setTab] = useState(1);
@@ -45,58 +46,65 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 			aria-describedby="alert-dialog-description"
 			disableScrollLock
 			maxWidth="lg"
-			fullWidth
+			fullScreen
 		>
 			<DialogTitle>Afegir component</DialogTitle>
 			<DialogContent>
 				<TabContext value={tab}>
-					<CustomTabs onChange={handleChange} aria-label="alta select">
-						{componentsList.map((tab) => (
-							<CustomTab
-								key={tab.id}
-								value={tab.id}
-								label={
-									<Box
-										display="flex"
-										alignItems={"center"}
-										onDragOver={(event) => {
-											handleChange(event, tab.id);
-										}}
-									>
-										<List color="primary" />
-										<Typography ml={1} variant="caption">
-											{tab.nom}
-										</Typography>
-									</Box>
-								}
-							/>
-						))}
-					</CustomTabs>
-					{componentsList?.map((tipus) => (
-						<TabPanel key={tipus.id} value={tipus.id} index={0} style={{ padding: 0 }}>
-							<Grid spacing={4} container mt={1}>
-								{tipus.components?.map((c, index) => {
-									const Component = components.filter((com) => c.id === com.id)?.[0]?.component;
-									return (
-										<Grid item md={3} key={c.id} xs={12}>
-											<ComponentMiniPreview
-												c={c}
-												Component={Component}
-												setComponentSel={setComponentSel}
-												componentSel={componentSel}
-												index={index}
-											/>
-										</Grid>
-									);
-								})}
-							</Grid>
-						</TabPanel>
-					))}
+					<Grid spacing={0} container>
+						<Grid item md={2} pr={2}>
+							<CustomTabsVertical onChange={handleChange} aria-label="alta select" orientation="vertical">
+								{componentsList.map((tab) => (
+									<CustomTabVertical
+										key={tab.id}
+										value={tab.id}
+										label={
+											<Box
+												display="flex"
+												alignItems={"center"}
+												justifyContent={"flex-start"}
+												onDragOver={(event) => {
+													handleChange(event, tab.id);
+												}}
+											>
+												<List color="primary" />
+												<Typography ml={1} variant="caption">
+													{tab.nom}
+												</Typography>
+											</Box>
+										}
+									/>
+								))}
+							</CustomTabsVertical>
+						</Grid>
+						<Grid item md={10}>
+							{componentsList?.map((tipus) => (
+								<TabPanel key={tipus.id} value={tipus.id} index={0} style={{ padding: 0 }}>
+									<Grid spacing={2} container mt={1}>
+										{tipus.components?.map((c, index) => {
+											const Component = components.filter((com) => c.id === com.id)?.[0]?.component;
+											return (
+												<Grid item md={3} key={c.id} xs={12}>
+													<ComponentMiniPreview
+														c={c}
+														Component={Component}
+														setComponentSel={setComponentSel}
+														componentSel={componentSel}
+														index={index}
+													/>
+												</Grid>
+											);
+										})}
+									</Grid>
+								</TabPanel>
+							))}
+						</Grid>
+					</Grid>
 				</TabContext>
 			</DialogContent>
 			<DialogActions>
 				<CustomButton onClick={() => setOpen(false)} title="Tancar" fullWidth />
-				<CustomButton onClick={crear} title="Afegir" success fullWidth />
+				<CustomButton onClick={crear} title="Afegir" success fullWidth disabled={!componentSel} />
 			</DialogActions>
 		</Dialog>
 	);
