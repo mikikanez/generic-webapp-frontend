@@ -23,10 +23,9 @@ export default function ComponentWrap({ Component, component, ...props }) {
 					setImatges((prev) => [...prev.filter((m) => m.id !== index), { id: index, imatge: process.env.NEXT_PUBLIC_STORAGE + element?.valor }]);
 				}
 			} else if (element.element?.nom === "galeria") {
-				const valors = JSON.parse(element.valor);
+				const valors = element.valor;
 				let imgs = [];
 				valors?.map((img, index) => {
-					console.log(img);
 					if (img.imatge?.[0]?.name) {
 						let reader = new FileReader();
 

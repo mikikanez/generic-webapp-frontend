@@ -3,7 +3,7 @@ import PageAdmin from "@/components/layout/PageAdmin";
 import { CircleOutlined, Delete, Edit } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
-import { getData, getList, updateElement } from "@/lib/API";
+import { deleteElement, getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { Box, Chip, Fab, Grid, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,7 @@ import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
-import { slugify } from "@/core/utils";
+import { constructPagina, slugify } from "@/core/utils";
 import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
 import ComponentChooser from "@/views/pagines/ComponentChooser";
@@ -19,6 +19,7 @@ import { DialogAddComponent } from "@/views/pagines/DialogAddComponent";
 import { DialogEditComponent } from "@/views/pagines/DialogEditComponent";
 import { styled } from "@mui/material/styles";
 import { DialogEliminar } from "@/components/elements/DialogEliminar";
+import { DialogEliminar as DialogEliminarPagina } from "@/components/elements/DialogEliminar";
 import { constructFormPagina } from "@/lib/ConstructForm";
 import OrdreComponents from "@/views/pagines/OrdreComponents";
 import Thumb from "@/components/elements/Thumb";
@@ -28,6 +29,7 @@ export default function PaginesAdmin({ pagina, components }) {
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
 	const [openEliminar, setOpenEliminar] = useState(false);
+	const [openEliminarPagina, setOpenEliminarPagina] = useState(false);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [idiomes, setIdiomes] = useState([]);
@@ -49,10 +51,11 @@ export default function PaginesAdmin({ pagina, components }) {
 	} = useForm({ shouldUnregister: false, defaultValues: pagina });
 
 	useEffect(() => {
-		reset(pagina);
+		reset(constructPagina(pagina));
 		setValue("idioma_id", Number(pagina.idioma_id ?? ""));
 		setValue("menu", Number(pagina.menu) ?? 0);
-		setComponentsPreview(pagina.components);
+		setValue("imatge", pagina.imatge ?? "exemple.jpg");
+		setComponentsPreview(constructPagina(pagina).components);
 	}, [pagina, reset, setValue]);
 
 	useEffect(() => {
@@ -75,16 +78,36 @@ export default function PaginesAdmin({ pagina, components }) {
 		setOpenEliminar(false);
 	};
 
+	const deletePagina = async () => {
+		setLoading(true);
+		try {
+			const { message } = await deleteElement("pagines", pagina.id, user.token.accessToken);
+			router.push("/admin/pagines");
+			enqueueSnackbar(message, {
+				variant: "success",
+			});
+			setTimeout(() => {
+				router.reload();
+			}, 300);
+		} catch (e) {
+			enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
+				variant: "error",
+			});
+			console.log(e);
+		}
+		setLoading(false);
+	};
+
 	const guardar = async (values) => {
 		values.components = componentsPreview;
-
+		console.log(values);
 		setLoading(true);
 		try {
 			const { message } = await updateElement("pagines", pagina.id, constructFormPagina(values), user.token.accessToken);
 			enqueueSnackbar(message, {
 				variant: "success",
 			});
-			router.push("/admin/pagina/" + values.slug);
+			router.push("/admin/pagina/" + (values.slug === "inici" ? "" : values.slug));
 			setTimeout(() => {
 				router.reload();
 			}, 500);
@@ -96,7 +119,6 @@ export default function PaginesAdmin({ pagina, components }) {
 		}
 		setLoading(false);
 	};
-	console.log(componentsPreview);
 
 	return (
 		<PageAdmin title={"Pàgina - " + pagina.titol} Icon={CircleOutlined}>
@@ -203,7 +225,7 @@ export default function PaginesAdmin({ pagina, components }) {
 
 									<Grid spacing={2} container mt={3}>
 										<Grid item md={4}>
-											<CustomButton title={"Eliminar pàgina"} fullWidth danger />
+											<CustomButton title={"Eliminar pàgina"} fullWidth danger onClick={() => setOpenEliminarPagina(true)} />
 										</Grid>
 										<Grid item md={4}>
 											<CustomButton title={"Veure pàgina"} fullWidth href={"/" + pagina.slug} target="_blank" />
@@ -240,6 +262,7 @@ export default function PaginesAdmin({ pagina, components }) {
 					componentsPreview={componentsPreview}
 				/>
 				<DialogEliminar open={openEliminar} setOpen={setOpenEliminar} element={"component"} onClick={() => deleteComponent(componentSel.id)} />
+				<DialogEliminarPagina open={openEliminarPagina} setOpen={setOpenEliminarPagina} element={"pàgina"} onClick={deletePagina} />
 			</form>
 		</PageAdmin>
 	);

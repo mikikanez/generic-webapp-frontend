@@ -23,7 +23,28 @@ export function constructFormPagina(values) {
 				data.append(`components[${index}][component_pagina_element][${index2}][valor]`, element.valor[0], element.valor[0].name);
 			} else {
 				data.append(`components[${index}][component_pagina_element][${index2}][isFile]`, 0);
-				data.append(`components[${index}][component_pagina_element][${index2}][valor]`, element.valor);
+				if (element.element.nom === "boto" || element.element.nom === "maps") {
+					data.append(`components[${index}][component_pagina_element][${index2}][valor]`, JSON.stringify(element.valor));
+				} else if (element.element.nom === "galeria") {
+					data.append(`components[${index}][component_pagina_element][${index2}][valor]`, JSON.stringify(element.valor));
+					element.valor.map((carousel, index3) => {
+						if (carousel?.imatge?.[0]?.name) {
+							data.append(
+								`components[${index}][component_pagina_element][${index2}][valor][${index3}][imatge]`,
+								carousel.imatge[0],
+								carousel.imatge[0].name
+							);
+							data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][isFile]`, 1);
+						} else {
+							data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][imatge]`, carousel.imatge);
+							data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][isFile]`, 0);
+						}
+						data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][titol]`, carousel.titol);
+						data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][subtitol]`, carousel.subtitol);
+					});
+				} else {
+					data.append(`components[${index}][component_pagina_element][${index2}][valor]`, element.valor);
+				}
 			}
 		});
 	});

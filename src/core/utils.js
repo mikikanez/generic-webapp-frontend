@@ -32,30 +32,31 @@ export function constructComponent(componentSel, value) {
 	const returnElement = (elementSel) => {
 		switch (elementSel.element.nom) {
 			case "boto":
-				return JSON.stringify({
+				return {
 					titol: value[elementSel.id + "titol"],
 					link: value[elementSel.id + "link"],
 					extern: value[elementSel.id + "extern"] ? 1 : 0,
-				});
+				};
 			case "imatge":
 				return value[elementSel?.id].length > 0 ? value[elementSel?.id] : elementSel.valor;
 			case "maps":
-				return JSON.stringify({
+				return {
 					lat: value[elementSel.id + "lat"],
 					lng: value[elementSel.id + "lng"],
-				});
+				};
 
 			case "galeria":
-				return JSON.stringify(
-					JSON.parse(value[elementSel.id]).map((item, index) => {
-						console.log(value[elementSel.id + "imatge" + index]);
-						return {
-							imatge: value[elementSel.id + "imatge" + index].length > 0 ? value[elementSel.id + "imatge" + index] : item.valor,
-							titol: value[elementSel.id + "titol" + index],
-							subtitol: value[elementSel.id + "subtitol" + index],
-						};
-					})
-				);
+				const elements = value[elementSel.id].map((item, index) => {
+					console.log("item");
+					console.log(item);
+					return {
+						imatge: value[elementSel.id + "imatge" + index]?.length > 0 ? value[elementSel.id + "imatge" + index] : item.imatge,
+						titol: value[elementSel.id + "titol" + index],
+						subtitol: value[elementSel.id + "subtitol" + index],
+					};
+				});
+
+				return elements;
 			default:
 				return value[elementSel?.id];
 		}
@@ -80,15 +81,18 @@ export const componentDefault = (componentSel, id) => {
 	const returnElement = (elementSel) => {
 		switch (elementSel.nom) {
 			case "boto":
-				return '{"titol": "Text botó", "extern": 0, "link": "/"}';
+				return { titol: "Text botó", extern: 0, link: "/" };
 			case "imatge":
 				return "exemple.jpg";
 			case "titol":
 				return "Ready to get started?";
 			case "maps":
-				return '{ "lat": 42.115329987765946, "lng": 1.8005044550816627}';
+				return { lat: 42.115329987765946, lng: 1.8005044550816627 };
 			case "galeria":
-				return '[{"imatge": "exemple.jpg", "titol": "Títol", "subtitol": "Subtítol"}, {"imatge": "exemple.jpg", "titol": "Títol 2", "subtitol": "Subtítol 2"}]';
+				return [
+					{ imatge: "exemple.jpg", titol: "Títol", subtitol: "Subtítol" },
+					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2" },
+				];
 
 			default:
 				return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
@@ -105,6 +109,24 @@ export const componentDefault = (componentSel, id) => {
 				id: index,
 				element: elementSel,
 				valor: returnElement(elementSel),
+			};
+		}),
+	};
+};
+
+export const constructPagina = (pagina) => {
+	return {
+		...pagina,
+		components: pagina.components.map((item) => {
+			return {
+				...item,
+				component_pagina_element: item.component_pagina_element.map((i) => {
+					try {
+						return { ...i, valor: JSON.parse(i.valor) };
+					} catch (e) {
+						return { ...i, valor: i.valor };
+					}
+				}),
 			};
 		}),
 	};

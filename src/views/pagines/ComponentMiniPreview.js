@@ -1,4 +1,4 @@
-import ComponentWrap from "@/components/custom/components/imatgeText/ComponentWrap";
+import ComponentWrap from "@/components/custom/components/ComponentWrap";
 import { componentDefault } from "@/core/utils";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -15,7 +15,7 @@ export const ComponentMiniPreview = ({ setComponentSel, c, componentSel, Compone
 				</Typography>
 			</Box>
 			<FitToViewport minZoom={0} maxZoom={0.2} style={{ transformOrigin: "top center" }} width={matches ? 1385 : 1000} height={180}>
-				<Box style={{ borderBottomRightRadius: 40, borderBottomLeftRadius: 40 }} overflow={"hidden"}>
+				<Box overflow={"hidden"}>
 					<ComponentWrap
 						Component={Component}
 						component={componentDefault(c, index)}
@@ -34,6 +34,7 @@ const ComponentItem = styled(Box)(({ theme }) => ({
 	borderRadius: 10,
 	background: "#f0f0f0",
 	paddingTop: 10,
+	paddingBottom: 10,
 	cursor: "pointer",
 	transition: "0.2s",
 	textAlign: "center",

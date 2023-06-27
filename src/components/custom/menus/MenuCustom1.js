@@ -108,7 +108,7 @@ export default function MenuCustom1({ premenu, scrollY = 0, menuAlt }) {
 						<Menu style={{ color: isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black" }} />
 					</IconButton>
 					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
-						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"}>
+						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"} pb={2}>
 							<Box textAlign={"center"} my={2}>
 								<IconButton onClick={closeMenu}>
 									<Close />

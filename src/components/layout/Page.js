@@ -54,7 +54,7 @@ const Page = ({ children, title = "", img = "exemple.jpg", ...rest }) => {
 						backgroundImage: `url(fons.jpg)`,
 						backgroundSize: "cover",
 						backgroundPosition: "center",
-						marginTop: marginTop,
+						marginTop: marginTop + (opcions?.premenu === "1" ? 40 : 0),
 						zIndex: 0,
 					}}
 				>
