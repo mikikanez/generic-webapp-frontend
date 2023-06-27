@@ -34,6 +34,7 @@ import Component32 from "./imatgeTitol/Component32";
 import Component33 from "./imatgeText/Component33";
 import Component34 from "./imatgeText/Component34";
 import Component35 from "./imatgeText/Component35";
+import Component36 from "./imatgeText/Component36";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -71,6 +72,7 @@ export const components = [
 	{ id: 33, component: Component33, icon: VerticalSplit },
 	{ id: 34, component: Component34, icon: VerticalSplit },
 	{ id: 35, component: Component35, icon: VerticalSplit },
+	{ id: 36, component: Component36, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
