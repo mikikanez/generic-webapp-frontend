@@ -21,7 +21,7 @@ import Component19 from "./text/Component19";
 import Component20 from "./imatge/Component20";
 import Component21 from "./imatge/Component21";
 import Component22 from "./imatgeTitol/Component22";
-import Component23 from "./imatge/Component23";
+import Component23 from "./galeria/Component23";
 import Component24 from "./titolText/Component24";
 import Component25 from "./titolText/Component25";
 import Component26 from "./titolText/Component26";
@@ -35,6 +35,8 @@ import Component33 from "./imatgeText/Component33";
 import Component34 from "./imatgeText/Component34";
 import Component35 from "./imatgeText/Component35";
 import Component36 from "./imatgeText/Component36";
+import Component37 from "./video/Component37";
+import Component38 from "./galeria/Component38";
 
 export const components = [
 	{ id: 1, component: Component1, icon: VerticalSplit },
@@ -73,6 +75,8 @@ export const components = [
 	{ id: 34, component: Component34, icon: VerticalSplit },
 	{ id: 35, component: Component35, icon: VerticalSplit },
 	{ id: 36, component: Component36, icon: VerticalSplit },
+	{ id: 37, component: Component37, icon: VerticalSplit },
+	{ id: 38, component: Component38, icon: VerticalSplit },
 ];
 
 export const valor = (index, component) => {
