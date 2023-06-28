@@ -141,6 +141,8 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 						/>
 					</Box>
 				);
+			case "video":
+				return <CustomTextField name={String(name)} type="text" label={"id Video Youtube"} register={register} defaultValue={defaultValue} />;
 			default:
 		}
 	};

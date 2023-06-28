@@ -93,7 +93,8 @@ export const componentDefault = (componentSel, id) => {
 					{ imatge: "exemple.jpg", titol: "Títol", subtitol: "Subtítol" },
 					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2" },
 				];
-
+			case "video":
+				return "D2DwYzxYgT4";
 			default:
 				return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 		}

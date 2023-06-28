@@ -35,6 +35,7 @@
 		"react-dom": "18.2.0",
 		"react-fit-to-viewport": "^0.1.1",
 		"react-hook-form": "^7.43.9",
+		"react-youtube": "^10.1.0",
 		"swiper": "^9.4.1",
 		"swr": "^2.1.5",
 		"yup": "^1.2.0"
