@@ -3,14 +3,14 @@ import CustomSelect from "@/components/elements/CustomSelect";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { useAuth } from "@/core/hooks/useAuth";
 import { slugify } from "@/core/utils";
-import { addElement, getData, getList } from "@/lib/API";
+import { addElement, getData, getList, updateElement } from "@/lib/API";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-export function DialogAddCategoria({ open, setOpen }) {
+export function DialogAddCategoria({ open, setOpen, cat, setCat }) {
 	const {
 		register,
 		handleSubmit,
@@ -29,6 +29,7 @@ export function DialogAddCategoria({ open, setOpen }) {
 	const { enqueueSnackbar } = useSnackbar();
 
 	useEffect(() => {
+		cat && reset(cat);
 		const obtenir = async () => {
 			setLoading(true);
 			const data = await getList("idiomes");
@@ -39,15 +40,15 @@ export function DialogAddCategoria({ open, setOpen }) {
 	}, [open]);
 
 	useEffect(() => {
-		watch("titol") && exist();
-	}, [watch("titol")]);
+		watch("nom") && exist();
+	}, [watch("nom")]);
 
 	const exist = async () => {
-		const slug = slugify(watch("titol") ?? "");
+		const slug = slugify(watch("nom") ?? "");
 		setValue("slug", slug);
 		let pagina;
 		if (slug.length > 3) {
-			pagina = await getData("categoriesExist", slug);
+			pagina = cat ? null : await getData("categoriesExist", slug);
 			if (pagina) {
 				setError("slug", { message: "Ja existeix una pàgina amb aquesta URL" });
 				return true;
@@ -58,19 +59,27 @@ export function DialogAddCategoria({ open, setOpen }) {
 		}
 	};
 
+	const tancar = () => {
+		setOpen(false);
+		setCat();
+	};
+
 	const crear = async (values) => {
 		console.log(values);
-		const slugOcupat = await exist();
+		const slugOcupat = cat ? false : await exist();
 		if (!slugOcupat) {
 			console.log(values);
 			setLoading(true);
 			try {
-				const { message } = await addElement("categories", values, user.token.accessToken);
-				enqueueSnackbar(message, {
+				let result = "";
+				cat
+					? (result = await updateElement("categories", cat?.id, values, user.token.accessToken))
+					: (result = await addElement("categories", values, user.token.accessToken));
+
+				enqueueSnackbar(result?.message, {
 					variant: "success",
 				});
-				router.reload("/admin/categories");
-				router.push("/admin/categories");
+				router.reload();
 			} catch (e) {
 				enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
 					variant: "error",
@@ -93,11 +102,11 @@ export function DialogAddCategoria({ open, setOpen }) {
 			maxWidth="lg"
 		>
 			<form onSubmit={handleSubmit(crear)}>
-				<DialogTitle>Nova categoria</DialogTitle>
+				<DialogTitle>{cat ? "Editar" : "Nova"} categoria</DialogTitle>
 				<DialogContent>
 					<Grid spacing={3} container mt={1}>
 						<Grid item md={6}>
-							<CustomTextField register={register} name={"titol"} label={"Títol"} />
+							<CustomTextField register={register} name={"nom"} label={"Nom"} />
 						</Grid>
 						<Grid item md={6}>
 							<CustomTextField
@@ -121,8 +130,8 @@ export function DialogAddCategoria({ open, setOpen }) {
 					</Grid>
 				</DialogContent>
 				<DialogActions>
-					<CustomButton onClick={() => setOpen(false)} title="Tancar" fullWidth />
-					<CustomButton type="submit" title="Crear" success fullWidth loading={loading} />
+					<CustomButton onClick={tancar} title="Tancar" fullWidth />
+					<CustomButton type="submit" title={cat ? "Guardar" : "Crear"} success fullWidth loading={loading} />
 				</DialogActions>
 			</form>
 		</Dialog>

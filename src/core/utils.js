@@ -53,6 +53,11 @@ export function constructComponent(componentSel, value) {
 						imatge: value[elementSel.id + "imatge" + index]?.length > 0 ? value[elementSel.id + "imatge" + index] : item.imatge,
 						titol: value[elementSel.id + "titol" + index],
 						subtitol: value[elementSel.id + "subtitol" + index],
+						boto: {
+							titolBoto: value[elementSel.id + "titolBoto" + index],
+							link: value[elementSel.id + "link" + index],
+							extern: value[elementSel.id + "extern" + index] ? 1 : 0,
+						},
 					};
 				});
 
@@ -93,8 +98,8 @@ export const componentDefault = (componentSel, id) => {
 				return { lat: 42.115329987765946, lng: 1.8005044550816627 };
 			case "galeria":
 				return [
-					{ imatge: "exemple.jpg", titol: "Títol", subtitol: "Subtítol" },
-					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2" },
+					{ imatge: "exemple.jpg", titol: "Títol", subtitol: "Subtítol", boto: { titolBoto: "Text botó", extern: 0, link: "/" } },
+					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2", boto: { titolBoto: "Text botó", extern: 0, link: "/" } },
 				];
 			case "numero":
 				return 300;
