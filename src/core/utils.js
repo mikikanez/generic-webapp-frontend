@@ -98,7 +98,8 @@ export const componentDefault = (componentSel, id) => {
 				];
 			case "numero":
 				return 300;
-
+			case "video":
+				return "D2DwYzxYgT4";
 			default:
 				return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 		}
