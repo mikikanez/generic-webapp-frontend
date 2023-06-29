@@ -47,8 +47,6 @@ export function constructComponent(componentSel, value) {
 
 			case "galeria":
 				const elements = value[elementSel.id].map((item, index) => {
-					console.log("item");
-					console.log(item);
 					return {
 						imatge: value[elementSel.id + "imatge" + index]?.length > 0 ? value[elementSel.id + "imatge" + index] : item.imatge,
 						titol: value[elementSel.id + "titol" + index],
@@ -133,7 +131,19 @@ export const constructPagina = (pagina) => {
 				...item,
 				component_pagina_element: item.component_pagina_element.map((i) => {
 					try {
-						return { ...i, valor: JSON.parse(i.valor) };
+						if (i.element.nom === "galeria") {
+							return {
+								...i,
+								valor: JSON.parse(i.valor)?.map((b) => {
+									return { ...b, boto: JSON.parse(b.boto) };
+								}),
+							};
+						} else {
+							return {
+								...i,
+								valor: JSON.parse(i.valor),
+							};
+						}
 					} catch (e) {
 						return { ...i, valor: i.valor };
 					}

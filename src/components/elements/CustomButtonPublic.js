@@ -1,42 +1,21 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
 import { CircularProgress, Typography } from "@mui/material";
 import { isDark } from "@/core/createTheme";
+import { botons } from "../custom/botons";
+import { useOpcions } from "@/context/OpcionsContext";
 
-const BootstrapButton = styled(Button)(({ theme }) => ({
-	boxShadow: "none",
-	textTransform: "none",
-	borderRadius: 0,
-	lineHeight: 1,
-
-	"&:hover": {
-		backgroundColor: theme.palette.secondary.main,
-		boxShadow: "0 0 0 0.2rem " + theme.palette.secondary.main,
-		"& .MuiTypography-root": {
-			color: isDark(theme.palette.secondary.main) ? "white" : "black",
-		},
-	},
-	"&:active": {
-		boxShadow: "none",
-		backgroundColor: theme.palette.background.main,
-		borderColor: theme.palette.background.main,
-	},
-	"&:focus": {
-		boxShadow: "0 0 0 0.2rem " + theme.palette.background.main,
-	},
-}));
-
-const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small, light, secondary, ...rest }) => {
+const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small, light, secondary, opcio, ...rest }) => {
 	const theme = useTheme();
+	const opcions = useOpcions();
+	const Boto = botons.filter((boto) => boto.id === (opcio ? opcio : Number(opcions?.boto)))[0]?.component;
+	console.log(Boto);
 
 	return (
-		<BootstrapButton
+		<Boto
 			style={{
 				width: fullWidth ? "100%" : "auto",
 				padding: small ? "2px 10px" : "15px 50px",
-				// background: danger ? theme.palette.error.main : success ? theme.palette.success.main : light ? "white" : theme.palette.primary.main,
-				// borderColor: danger ? theme.palette.error.main : success ? theme.palette.success.main : theme.palette.primary.main,
 			}}
 			color={danger ? "danger" : success ? "success" : light ? "info" : secondary ? "secondary" : "primary"}
 			{...rest}
@@ -55,7 +34,7 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 					{title}
 				</Typography>
 			)}
-		</BootstrapButton>
+		</Boto>
 	);
 };
 

@@ -1,7 +1,5 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
-import Image from "next/image";
 import { valor } from "..";
-import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component14({ component, matches, imatges, theme, router, ...props }) {
 	return (
