@@ -30,7 +30,7 @@ export default function Component1({ component, matches, imatges, theme, router,
 						</Grid>
 						<Grid item md={7} xs={12}>
 							<div style={{ width: "100%", height: matches ? 700 : 500, position: "relative", textAlign: "left" }}>
-								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							</div>
 						</Grid>
 					</Grid>

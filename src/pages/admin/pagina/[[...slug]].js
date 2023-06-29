@@ -143,6 +143,7 @@ export default function PaginesAdmin({ pagina, components }) {
 										<Chip label={com?.component?.id + " - " + com?.component?.nom} />
 										<Box mt={2}>
 											<Fab
+												size="small"
 												onClick={() => {
 													setComponentSel(com);
 													setOpenEdit(true);
@@ -156,6 +157,7 @@ export default function PaginesAdmin({ pagina, components }) {
 													setComponentSel(com);
 													setOpenEliminar(true);
 												}}
+												size="small"
 												color="danger"
 											>
 												<Delete />

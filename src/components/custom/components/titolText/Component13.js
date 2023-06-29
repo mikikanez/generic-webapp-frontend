@@ -10,14 +10,16 @@ export default function Component13({ component, matches, imatges, theme, router
 					<Typography variant="h2" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={4} color={component.dark ? "white" : "black"}>
 						{valor(0, component)}
 					</Typography>
-					<Box my={5}>
-						<Typography
-							dangerouslySetInnerHTML={{ __html: valor(1, component) }}
-							variant="body1"
-							textAlign={"left"}
-							color={component.dark ? "white" : "black"}
-						></Typography>
-					</Box>
+					{valor(1, component) && (
+						<Box my={5}>
+							<Typography
+								dangerouslySetInnerHTML={{ __html: valor(1, component) }}
+								variant="body1"
+								textAlign={"left"}
+								color={component.dark ? "white" : "black"}
+							></Typography>
+						</Box>
+					)}
 				</Box>
 			</Container>
 		</Box>

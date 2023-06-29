@@ -37,7 +37,7 @@ export default function Component6({ component, matches, imatges, theme, router,
 					</Grid>
 					<Grid item md={6} xs={12} display={"flex"} justifyContent={"center"} alignItems={"center"}>
 						<div style={{ width: "100%", height: "100%", position: "relative", textAlign: "left", maxWidth: "480px", maxHeight: "360px" }}>
-							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 						</div>
 					</Grid>
 				</Grid>

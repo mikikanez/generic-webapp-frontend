@@ -1,6 +1,6 @@
 import Dashboard from "@mui/icons-material/Dashboard";
 import Group from "@mui/icons-material/Group";
-import { CircleOutlined, Layers, Settings } from "@mui/icons-material";
+import { CircleOutlined, Layers, Newspaper, Settings } from "@mui/icons-material";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Divider, List, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";
@@ -24,6 +24,11 @@ const PaginesItems = ({ onMobileClose }) => {
 			href: "/admin/personalitzacio",
 			icon: Settings,
 			title: "Personalització",
+		},
+		{
+			href: "/admin/entrades",
+			icon: Newspaper,
+			title: "Entrades",
 		},
 		{
 			title: "Pàgines",

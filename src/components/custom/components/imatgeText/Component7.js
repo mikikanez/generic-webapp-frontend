@@ -49,7 +49,7 @@ export default function Component7({ component, matches, imatges, theme, router,
 						>
 							<div style={{ width: "100%", height: "100%", position: "absolute", backgroundColor: "white" }}></div>
 							<div style={{ width: "100%", height: "100%", position: "absolute", top: "15%", right: "15%" }}>
-								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							</div>
 						</div>
 					</Grid>

@@ -6,13 +6,9 @@ export default function Component21({ component, matches, imatges, theme, router
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false}>
-                <Grid container spacing={8} display={'flex'} justifyContent={'center'}>
-                    <Grid item md={12} xs={12}>
-                        <div style={{ width: "100%", height: matches ? 700 : 500, position: "relative", textAlign: "left" }}>
-                            <Image alt="Imatge" src={imatges.filter((i) => i.id === 0)[0]?.imatge} fill objectFit="cover" />
-                        </div>
-                    </Grid>
-                </Grid>
+				<div style={{ width: "100%", height: matches ? 500 : 300, position: "relative", textAlign: "left" }}>
+					<Image alt="Imatge" src={imatges.filter((i) => i.id === 0)[0]?.imatge} fill style={{ objectFit: "cover" }} />
+				</div>
 			</Container>
 		</Box>
 	);

@@ -87,6 +87,9 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 						</Grid>
 					</Grid>
 				);
+
+			case "numero":
+				return <CustomTextField name={String(name)} type="number" label={"Espai"} register={register} defaultValue={defaultValue} />;
 			case "galeria":
 				const galeria = watch(String(name)) ?? [];
 				console.log(watch(String(name)));

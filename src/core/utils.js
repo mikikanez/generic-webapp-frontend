@@ -57,6 +57,9 @@ export function constructComponent(componentSel, value) {
 				});
 
 				return elements;
+
+			case "numero":
+				return Number(value[elementSel?.id]);
 			default:
 				return value[elementSel?.id];
 		}
@@ -93,6 +96,8 @@ export const componentDefault = (componentSel, id) => {
 					{ imatge: "exemple.jpg", titol: "Títol", subtitol: "Subtítol" },
 					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2" },
 				];
+			case "numero":
+				return 300;
 			case "video":
 				return "D2DwYzxYgT4";
 			default:

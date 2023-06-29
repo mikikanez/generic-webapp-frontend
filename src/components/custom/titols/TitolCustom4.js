@@ -3,17 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useOpcions } from "@/context/OpcionsContext";
 import { useTheme } from "@emotion/react";
-import { styled } from "@mui/material/styles";
-
-const Overlay = styled(Box)(({ theme }) => ({
-	backgroundColor: theme.palette.primary.main,
-	opacity: 0.3,
-	width: "100%",
-	height: "100%",
-	position: "absolute",
-	top: 0,
-	zIndex: 0,
-}));
+import { Overlay } from "@/components/elements/Overlay";
 
 const TitolCustom4 = ({ title = "Títol pàgina", hidden = false, img = "exemple.jpg", scrollY = 0 }) => {
 	const opcions = useOpcions();
