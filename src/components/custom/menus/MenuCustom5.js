@@ -1,6 +1,7 @@
+import NavBarItem from "@/layouts/public/NavBarItem";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
 import { Close, Instagram, Menu, Twitter } from "@mui/icons-material";
-import { Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
@@ -8,10 +9,11 @@ import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
+import NavBarItemLight from "@/layouts/public/NavBarItemLight";
 
-export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
+export default function MenuCustom5({ premenu, scrollY = 0, menuAlt }) {
 	const router = useRouter();
-	const [menu, setMenu] = useState(null);
+	const [menu, setMenu] = useState(false);
 	const opcions = useOpcions();
 	const theme = useTheme();
 
@@ -24,7 +26,7 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
 	];
 
 	const openMenu = (event) => {
-		setMenu(event.currentTarget);
+		setMenu((prev) => !prev);
 	};
 
 	const closeMenu = () => {
@@ -35,13 +37,14 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
 		<Toolbar
 			style={{
 				transition: "0.2s",
-				backgroundColor: (menuAlt === "1" ? theme.palette.background.main : theme.palette.primary.main) + (scrollY > 200 ? "E0" : ""),
+				backgroundColor:
+					menuAlt === "1" ? (scrollY > 200 ? theme.palette.background.main + "E0" : "") : scrollY > 200 ? theme.palette.primary.main + "E0" : "",
 				flexDirection: "column",
 				padding: 0,
 			}}
 		>
 			{premenu === "1" && <PreMenu scrollY={scrollY} />}
-			<Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} width={"100%"} px={4}>
+			<Box display={"flex"} alignItems={"center"} width="100%" px={3} justifyContent={"space-between"}>
 				<Box
 					style={{
 						flex: 1,
@@ -62,19 +65,24 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
 						</Box>
 					)}
 				</Box>
-
-				<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
-					<Box justifyContent={"center"} display={"flex"} flexDirection={"column"}>
-						<Box textAlign={"center"} my={2}>
-							<IconButton onClick={closeMenu}>
-								<Close />
-							</IconButton>
-						</Box>
-						{items?.map((item) => (
-							<NavBarItemMobile to={item.to} key={item.title} title={item.title} closeMenu={closeMenu} />
-						))}
+				<Hidden mdDown>
+					<Box
+						style={{
+							flex: 1,
+							display: "flex",
+							justifyContent: "center",
+						}}
+					>
+						{items?.map((item) =>
+							menuAlt === "1" ? (
+								<NavBarItemLight to={item.to} key={item.title} title={item.title} />
+							) : (
+								<NavBarItem to={item.to} key={item.title} title={item.title} />
+							)
+						)}
 					</Box>
-				</Drawer>
+				</Hidden>
+
 				<Box
 					style={{
 						flex: 1,
@@ -83,9 +91,6 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
 						alignItems: "center",
 					}}
 				>
-					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
-						<Menu color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
-					</IconButton>
 					{premenu !== "1" && (
 						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 							{opcions?.instagram && (
@@ -101,6 +106,23 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuAlt }) {
 						</Stack>
 					)}
 				</Box>
+				<Hidden mdUp>
+					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
+						<Menu style={{ color: isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black" }} />
+					</IconButton>
+					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
+						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"} pb={2}>
+							<Box textAlign={"center"} my={2}>
+								<IconButton onClick={closeMenu}>
+									<Close />
+								</IconButton>
+							</Box>
+							{items?.map((item) => (
+								<NavBarItemMobile to={item.to} key={item.title} title={item.title} closeMenu={closeMenu} />
+							))}
+						</Box>
+					</Drawer>
+				</Hidden>
 			</Box>
 		</Toolbar>
 	);

@@ -67,7 +67,7 @@ export default function Component5({ component, matches, imatges, theme, router,
 							}}
 						>
 							<div style={{ width: "100%", height: "100%", maxWidth: "320px", maxHeight: "360px", position: "relative", textAlign: "left" }}>
-								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+								<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							</div>
 						</Box>
 					</Grid>

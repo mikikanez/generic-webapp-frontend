@@ -62,9 +62,11 @@ export default function MenuCustom2({ scrollY = 0, premenu, menuAlt }) {
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} fill alt="G" style={{ objectFit: "contain" }} />
 						</Box>
 					) : (
-						<Typography variant="h3" color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
-							{opcions?.titol}
-						</Typography>
+						<Box height={140} display={"flex"} alignItems={"center"}>
+							<Typography variant="h3" color={isDark(menuAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
+								{opcions?.titol}
+							</Typography>
+						</Box>
 					)}
 				</Box>
 				<Hidden mdDown>

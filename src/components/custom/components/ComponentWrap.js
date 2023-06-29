@@ -8,6 +8,18 @@ export default function ComponentWrap({ Component, component, ...props }) {
 	const [imatges, setImatges] = useState([]);
 	const router = useRouter();
 	const theme = useTheme();
+	const [scrollY, setScrollY] = useState();
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
+	const handleScroll = () => {
+		setScrollY(window.scrollY);
+	};
 
 	useEffect(() => {
 		component?.component_pagina_element.map((element, index) => {
@@ -42,5 +54,5 @@ export default function ComponentWrap({ Component, component, ...props }) {
 		});
 	}, [component]);
 
-	return <Component component={component} imatges={imatges} router={router} theme={theme} matches={matches} {...props} />;
+	return <Component component={component} imatges={imatges} router={router} theme={theme} matches={matches} scrollY={scrollY} {...props} />;
 }

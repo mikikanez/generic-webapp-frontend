@@ -10,7 +10,7 @@ export default function Component9({ component, matches, imatges, theme, router,
 				<Grid container spacing={4}>
 					<Grid item md={6} xs={12} display={"flex"} justifyContent={"flex-end"} alignItems={"center"}>
 						<div style={{ width: "100%", height: "100%", position: "relative", textAlign: "left", maxWidth: "480px", maxHeight: "360px" }}>
-							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill objectFit="cover" />
+							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 						</div>
 					</Grid>
 					<Grid item md={6} xs={12} display={"flex"} flexDirection={"column"} alignItems={"flex-start"} zIndex={100} justifyContent={"space-between"}>
