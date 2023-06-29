@@ -21,7 +21,6 @@ import { DialogAddCategoria } from "@/views/entrades/DialogAddCategoria";
 
 export default function EntradaAdd({ entrada, idiomes, categories }) {
 	const router = useRouter();
-	const [openCat, setOpenCat] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const { enqueueSnackbar } = useSnackbar();
 	const { user } = useAuth();
@@ -88,11 +87,7 @@ export default function EntradaAdd({ entrada, idiomes, categories }) {
 	};
 
 	return (
-		<PageAdmin
-			title={entrada?.titol === undefined ? "Nova entrada" : entrada.titol}
-			Icon={CircleOutlined}
-			button={<CustomButton title={"Afegir categoria"} onClick={() => setOpenCat(true)} />}
-		>
+		<PageAdmin title={entrada?.titol === undefined ? "Nova entrada" : entrada.titol} Icon={CircleOutlined}>
 			<form onSubmit={handleSubmit(guardar)}>
 				<CustomCard>
 					<CustomTextField
@@ -151,7 +146,6 @@ export default function EntradaAdd({ entrada, idiomes, categories }) {
 					</Grid>
 				</Grid>
 			</form>
-			<DialogAddCategoria open={openCat} setOpen={setOpenCat} />
 		</PageAdmin>
 	);
 }

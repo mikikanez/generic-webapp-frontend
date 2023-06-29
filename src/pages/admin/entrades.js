@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { Layers, Newspaper } from "@mui/icons-material";
+import { Newspaper } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import { getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
 import CustomCard from "@/components/layout/CustomCard";
 import { useRouter } from "next/router";
 import CustomButton from "@/components/elements/CustomButton";
-import { DialogAddPagina } from "@/views/pagines/DialogAddPagina";
 import { ThemeProvider } from "@emotion/react";
 import MUIDataTable from "mui-datatables";
-import TableOptions from "@/components/tables/TableOptions";
 import getMuiTheme from "@/components/tables/getMuiTheme";
 import PaginesColumns from "@/components/tables/PaginesColumns";
 import { Box, Grid } from "@mui/material";
 import { DialogAddCategoria } from "@/views/entrades/DialogAddCategoria";
+import CategoriesColumns from "@/components/tables/CategoriesColumns";
+import TableOptionsCategories from "@/components/tables/TableOptionsCategories";
 
-export default function EntradesAdmin({ entrades }) {
+export default function EntradesAdmin({ entrades, categories }) {
 	const router = useRouter();
 	const columns = PaginesColumns(entrades);
-	const options = TableOptions();
+	const columnsCategories = CategoriesColumns(categories);
 	const [open, setOpen] = useState(false);
+	const [cat, setCat] = useState("");
+
+	const editCat = (value) => {
+		setCat(categories.filter((i) => i.slug === value)[0]);
+		setOpen(true);
+	};
+	const options = TableOptionsCategories(editCat);
 
 	return (
 		<PageAdmin
@@ -36,22 +43,22 @@ export default function EntradesAdmin({ entrades }) {
 		>
 			<Grid container spacing={3}>
 				<Grid item md={8}>
-					<CustomCard>
+					<CustomCard title={"Entrades"}>
 						<ThemeProvider theme={getMuiTheme()}>
 							<MUIDataTable data={entrades} columns={columns} options={options} />
 						</ThemeProvider>
 					</CustomCard>
 				</Grid>
 				<Grid item md={4}>
-					<CustomCard>
+					<CustomCard title={"Categories"}>
 						<ThemeProvider theme={getMuiTheme()}>
-							<MUIDataTable data={entrades} columns={columns} options={options} />
+							<MUIDataTable data={categories} columns={columnsCategories} options={options} />
 						</ThemeProvider>
 					</CustomCard>
 				</Grid>
 			</Grid>
 
-			<DialogAddCategoria open={open} setOpen={setOpen} />
+			<DialogAddCategoria open={open} setOpen={setOpen} cat={cat} setCat={setCat} />
 		</PageAdmin>
 	);
 }
@@ -59,9 +66,11 @@ export default function EntradesAdmin({ entrades }) {
 export const getServerSideProps = async (context) => {
 	let session = [];
 	let entrades = [];
+	let categories = [];
 	try {
 		session = await getServerSession(context.req, context.res, authOptions);
 		entrades = await getList("entrades");
+		categories = await getList("categories");
 	} catch (error) {
 		console.log(error);
 	}
@@ -70,6 +79,7 @@ export const getServerSideProps = async (context) => {
 		props: {
 			session: session,
 			entrades: entrades,
+			categories: categories,
 		},
 	};
 };
