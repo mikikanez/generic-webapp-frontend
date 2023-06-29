@@ -82,13 +82,13 @@ export default function PaginesAdmin({ pagina, components }) {
 		setLoading(true);
 		try {
 			const { message } = await deleteElement("pagines", pagina.id, user.token.accessToken);
-			router.push("/admin/pagines");
 			enqueueSnackbar(message, {
 				variant: "success",
 			});
+			router.push("/admin/pagines");
 			setTimeout(() => {
-				router.reload();
-			}, 300);
+				router.reload("/admin/pagines");
+			}, 600);
 		} catch (e) {
 			enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
 				variant: "error",

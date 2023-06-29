@@ -1,4 +1,4 @@
-import { Inter, Montserrat, Roboto, Lobster, Josefin_Sans, Oswald, Raleway } from "next/font/google";
+import { Inter, Montserrat, Roboto, Lobster, Josefin_Sans, Oswald, Raleway, Mulish } from "next/font/google";
 
 export const montserrat = Montserrat({
 	weight: ["300", "400", "500", "700"],
@@ -49,6 +49,13 @@ export const raleway = Raleway({
 	fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
+export const mulish = Mulish({
+	weight: ["300", "400", "500", "700"],
+	subsets: ["latin"],
+	display: "swap",
+	fallback: ["Helvetica", "Arial", "sans-serif"],
+});
+
 export const font = (data) => {
 	switch (data?.font) {
 		case "Montserrat":
@@ -57,7 +64,6 @@ export const font = (data) => {
 			return inter;
 		case "Roboto":
 			return roboto;
-
 		case "Raleway":
 			return raleway;
 		case "Josefin Sans":
@@ -66,9 +72,11 @@ export const font = (data) => {
 			return lobster;
 		case "Oswald":
 			return oswald;
+		case "Mulish":
+			return mulish;
 		default:
 			return montserrat;
 	}
 };
 
-export const tipografies = ["Inter", "Josefin Sans", "Lobster", "Montserrat", "Oswald", "Raleway", "Roboto"];
+export const tipografies = ["Inter", "Josefin Sans", "Lobster", "Montserrat", "Mulish", "Oswald", "Raleway", "Roboto"];

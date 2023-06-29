@@ -41,6 +41,7 @@ export function constructFormPagina(values) {
 						}
 						data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][titol]`, carousel.titol);
 						data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][subtitol]`, carousel.subtitol);
+						data.append(`components[${index}][component_pagina_element][${index2}][valor][${index3}][boto]`, JSON.stringify(carousel.boto));
 					});
 				} else {
 					data.append(`components[${index}][component_pagina_element][${index2}][valor]`, element.valor);

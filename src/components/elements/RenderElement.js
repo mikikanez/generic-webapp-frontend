@@ -11,15 +11,42 @@ import { Delete } from "@mui/icons-material";
 
 export function RenderElement({ element, defaultValue, register, control, name, setValue, watch, trigger, getValues }) {
 	const opcions = useOpcions();
+	console.log(element);
 
 	const render = () => {
 		switch (element?.nom) {
 			case "titol":
-				return <CustomTextField name={String(name)} type="text" label={"Títol"} register={register} defaultValue={defaultValue} />;
+				return (
+					<CustomTextField
+						name={String(name)}
+						type="text"
+						label={element?.pivot?.descripcio ?? "Títol"}
+						register={register}
+						defaultValue={defaultValue}
+					/>
+				);
 			case "text":
-				return <CustomTextField name={String(name)} type="text" label={"Text"} register={register} defaultValue={defaultValue} />;
+				return (
+					<CustomTextField
+						name={String(name)}
+						type="text"
+						label={element?.pivot?.descripcio ?? "Text"}
+						register={register}
+						defaultValue={defaultValue}
+					/>
+				);
 			case "imatge":
-				return <ImageInput name={String(name)} register={register} trigger={trigger} getValues={getValues} text={"Afegir imatge"} />;
+				return (
+					<ImageInputText
+						register={register}
+						watch={watch}
+						name={name}
+						defaultValue={defaultValue}
+						getValues={getValues}
+						trigger={trigger}
+						descripcio={element?.pivot?.descripcio ?? "Imatge"}
+					/>
+				);
 			case "boto":
 				const valors = defaultValue;
 				return (
@@ -65,7 +92,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 					<CustomTiny
 						name={String(name)}
 						type="text"
-						label={"Textarea"}
+						label={element?.pivot?.descripcio ?? "Textarea"}
 						register={register}
 						defaultValue={defaultValue}
 						setValue={setValue}
@@ -91,7 +118,15 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 				);
 
 			case "numero":
-				return <CustomTextField name={String(name)} type="number" label={"Espai"} register={register} defaultValue={defaultValue} />;
+				return (
+					<CustomTextField
+						name={String(name)}
+						type="number"
+						label={element?.pivot?.descripcio ?? "Espai"}
+						register={register}
+						defaultValue={defaultValue}
+					/>
+				);
 			case "galeria":
 				const galeria = watch(String(name)) ?? [];
 				console.log(watch(String(name)));
@@ -120,19 +155,15 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 								</Box>
 								<Grid container spacing={3}>
 									<Grid item md={4}>
-										<Box display={"flex"} px={1} bgcolor={"#f0f0f0"} borderRadius={2} alignItems={"center"}>
-											<Thumb
-												file={watch(String(name + "imatge" + index))?.length > 0 ? watch(String(name + "imatge" + index)) : item.imatge}
-												small
-											/>
-											<ImageInput
-												name={String(name + "imatge" + index)}
-												register={register}
-												trigger={trigger}
-												getValues={getValues}
-												text={"Afegir imatge"}
-											/>
-										</Box>
+										<ImageInputText
+											register={register}
+											watch={watch}
+											name={name + "imatge" + index}
+											defaultValue={item.imatge}
+											getValues={getValues}
+											trigger={trigger}
+											descripcio={"Imatge de fons " + (index + 1)}
+										/>
 									</Grid>
 									<Grid item md={4}>
 										<CustomTextField
@@ -222,3 +253,17 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 
 	return render();
 }
+
+const ImageInputText = ({ descripcio, register, watch, name, defaultValue, getValues, trigger }) => {
+	return (
+		<Box px={1} bgcolor={"#f0f0f0"} borderRadius={2}>
+			<Typography>
+				<small>{descripcio}</small>
+			</Typography>
+			<Box display={"flex"} alignItems={"center"}>
+				<Thumb file={watch(String(name))?.length > 0 ? watch(String(name)) : defaultValue} small />
+				<ImageInput name={String(name)} register={register} trigger={trigger} getValues={getValues} text={"Afegir imatge"} />
+			</Box>
+		</Box>
+	);
+};

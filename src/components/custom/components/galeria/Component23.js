@@ -1,10 +1,8 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
-import Image from "next/image";
 import { valor } from "..";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
 import { Autoplay, FreeMode, Navigation, Thumbs, Pagination, EffectFade } from "swiper";
-import styles from "@/styles/layout.module.css";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
@@ -26,8 +24,8 @@ export default function Component23({ component, matches, imatges, theme, router
 	}, []);
 
 	useEffect(() => {
-		console.log(width);
-	}, [width]);
+		console.log(component);
+	}, [component]);
 
 	return (
 		<Box
@@ -74,7 +72,7 @@ export default function Component23({ component, matches, imatges, theme, router
 									</Typography>
 									<Divider
 										sx={{
-											borderWidth: 5,
+											borderWidth: 3,
 											width: "40%",
 											borderColor: component.dark ? "white" : "black",
 											justifyContent: "center",

@@ -4,13 +4,13 @@ import CustomCard from "@/components/layout/CustomCard";
 import { Controller } from "react-hook-form";
 import { Box, FormControl, Grid, InputLabel, MenuItem, Radio, Select } from "@mui/material";
 import ColorPicker from "mui-color-picker";
-
 import Thumb from "@/components/elements/Thumb";
 import ImageInput from "@/components/elements/InputImage";
 import { tipografies } from "@/core/fonts";
-import { menus } from "@/components/custom/menus";
-import { footers } from "@/components/custom/footers";
 import { Circle } from "@mui/icons-material";
+import { botons } from "@/components/custom/botons";
+import CustomButton from "@/components/elements/CustomButton";
+import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Disseny({ register, opcio, watch, setValue, control, trigger, getValues }) {
 	return (
@@ -102,6 +102,24 @@ export default function Disseny({ register, opcio, watch, setValue, control, tri
 							))}
 						</Select>
 					</FormControl>
+				</CustomCard>
+				<CustomCard title={"Tipus de botó"}>
+					{botons?.map((Item) => (
+						<Box
+							key={Item.id}
+							display={"flex"}
+							justifyContent={"space-between"}
+							alignItems={"center"}
+							mb={3}
+							p={2}
+							style={{ border: "1px solid lightgrey", borderRadius: 10 }}
+						>
+							<Radio checked={watch("boto") === String(Item.id)} onClick={() => setValue("boto", String(Item.id))} />
+							<Box style={{ width: "100%" }} overflow={"hidden"}>
+								<CustomButtonPublic title={"Prova de botó"} opcio={Item.id} />
+							</Box>
+						</Box>
+					))}
 				</CustomCard>
 			</Grid>
 			<Grid item md={4}>
