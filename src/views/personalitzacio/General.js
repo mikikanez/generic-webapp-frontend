@@ -1,6 +1,7 @@
 import React from "react";
 import "moment/locale/ca";
 import { Api, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { Grid, InputAdornment } from "@mui/material";
@@ -50,6 +51,21 @@ export default function General({ opcio, register }) {
 									startAdornment: (
 										<InputAdornment position="start">
 											<Twitter />
+										</InputAdornment>
+									),
+								}}
+							/>
+						</Grid>
+						<Grid item md={12}>
+							<CustomTextField
+								register={register}
+								key={opcio("youtube").id}
+								name={opcio("youtube").nom}
+								label={opcio("youtube").descripcio}
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position="start">
+											<YouTubeIcon />
 										</InputAdornment>
 									),
 								}}
