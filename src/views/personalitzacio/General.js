@@ -3,9 +3,10 @@ import "moment/locale/ca";
 import { Api, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
-import { Grid, InputAdornment } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid, InputAdornment } from "@mui/material";
+import { Controller } from "react-hook-form";
 
-export default function General({ opcio, register }) {
+export default function General({ opcio, register, control, setValue }) {
 	return (
 		<Grid spacing={3} container>
 			<Grid item md={8}>
@@ -87,6 +88,60 @@ export default function General({ opcio, register }) {
 										</InputAdornment>
 									),
 								}}
+							/>
+						</Grid>
+					</Grid>
+				</CustomCard>
+				<CustomCard title={"Extres"}>
+					<Grid spacing={3} container>
+						<Grid item md={12}>
+							<FormControlLabel
+								control={
+									<Controller
+										name={"entrades"}
+										control={control}
+										defaultValue={false}
+										render={({ field: { value, ref, ...field } }) => (
+											<Checkbox
+												{...field}
+												inputRef={ref}
+												checked={value === "1"}
+												color="primary"
+												size={"medium"}
+												value={1}
+												disableRipple
+												onChange={(event) => setValue("entrades", event.target.checked ? "1" : "0")}
+											/>
+										)}
+									/>
+								}
+								label={opcio("entrades").descripcio}
+								labelPlacement="end"
+							/>
+						</Grid>
+						<Grid item md={12}>
+							<FormControlLabel
+								control={
+									<Controller
+										name={"botiga"}
+										control={control}
+										defaultValue={false}
+										render={({ field: { value, ref, ...field } }) => (
+											<Checkbox
+												{...field}
+												inputRef={ref}
+												checked={value === "1"}
+												color="primary"
+												size={"medium"}
+												value={1}
+												disableRipple
+												onChange={(event) => setValue("botiga", event.target.checked ? "1" : "0")}
+											/>
+										)}
+									/>
+								}
+								label={opcio("botiga").descripcio}
+								labelPlacement="end"
 							/>
 						</Grid>
 					</Grid>

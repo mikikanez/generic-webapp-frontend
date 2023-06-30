@@ -29,7 +29,7 @@ export default function Disseny({ register, opcio, watch, setValue, control, tri
 											onChange={(color) => onChange(color)}
 											onBlur={onBlur}
 											value={watch("primary")}
-											defaultValue={"Color primary"}
+											defaultValue={opcio("primary").descripcio}
 											name={name}
 											label={opcio("primary").descripcio}
 											ref={ref}
@@ -50,9 +50,30 @@ export default function Disseny({ register, opcio, watch, setValue, control, tri
 											onChange={(color) => onChange(color)}
 											onBlur={onBlur}
 											value={watch("secondary")}
-											defaultValue={"Color secondari"}
+											defaultValue={opcio("secondary").descripcio}
 											name={name}
 											label={opcio("secondary").descripcio}
+											ref={ref}
+											fullWidth
+										/>
+									)}
+								/>
+							</Box>
+						</Grid>
+						<Grid item md={12}>
+							<Box display={"flex"} alignItems={"center"}>
+								<Circle style={{ color: watch("details"), height: 50, width: 50, marginRight: 10 }} />
+								<Controller
+									control={control}
+									name={opcio("details").nom}
+									render={({ field: { onChange, onBlur, value, name, ref } }) => (
+										<ColorPicker
+											onChange={(color) => onChange(color)}
+											onBlur={onBlur}
+											value={watch("details")}
+											defaultValue={opcio("details").descripcio}
+											name={name}
+											label={opcio("details").descripcio}
 											ref={ref}
 											fullWidth
 										/>
@@ -71,9 +92,30 @@ export default function Disseny({ register, opcio, watch, setValue, control, tri
 											onChange={(color) => onChange(color)}
 											onBlur={onBlur}
 											value={watch("background")}
-											defaultValue={"Color de fons"}
+											defaultValue={opcio("background").descripcio}
 											name={name}
 											label={opcio("background").descripcio}
+											ref={ref}
+											fullWidth
+										/>
+									)}
+								/>
+							</Box>
+						</Grid>
+						<Grid item md={12}>
+							<Box display={"flex"} alignItems={"center"}>
+								<Circle style={{ color: watch("background_dark"), height: 50, width: 50, marginRight: 10 }} />
+								<Controller
+									control={control}
+									name={opcio("background_dark").nom}
+									render={({ field: { onChange, onBlur, value, name, ref } }) => (
+										<ColorPicker
+											onChange={(color) => onChange(color)}
+											onBlur={onBlur}
+											value={watch("background_dark")}
+											defaultValue={opcio("background_dark").descripcio}
+											name={name}
+											label={opcio("background_dark").descripcio}
 											ref={ref}
 											fullWidth
 										/>
