@@ -16,17 +16,18 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 		padding: 5,
 		fontWeight: 600,
 		fontSize: 14,
+		transition: "0.2s",
 	},
 	"&.active": {
-		background: theme.palette.secondary.main,
+		// background: theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+			color: isDark(theme.palette.primary.main) ? "white" : "black",
 		},
 	},
 	"&:hover": {
-		background: theme.palette.secondary.main,
+		// background: theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+			color: isDark(theme.palette.primary.main) ? theme.palette.details.main : "black",
 		},
 	},
 }));

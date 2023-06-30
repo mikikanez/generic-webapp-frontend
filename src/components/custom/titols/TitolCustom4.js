@@ -24,7 +24,7 @@ const TitolCustom4 = ({ title = "Títol pàgina", hidden = false, img = "exemple
 			py={18}
 		>
 			<Box zIndex={100} position={"relative"}>
-				<Container maxWidth={"xl"}>
+				<Container maxWidth={"lg"}>
 					<Box style={{ opacity: 1 - scrollY / 300 }}>
 						<Typography variant="h1" color="white" zIndex={100} textAlign={"center"}>
 							{title}

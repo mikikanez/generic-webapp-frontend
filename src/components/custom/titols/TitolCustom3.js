@@ -20,10 +20,10 @@ const TitolCustom3 = ({ title = "Títol pàgina", hidden = false, img = "exemple
 			}}
 			display={hidden ? "none" : ""}
 			displayPrint="none"
-			py={30}
+			py={20}
 		>
 			<Box zIndex={100} position={"relative"}>
-				<Container maxWidth={"xl"}>
+				<Container maxWidth={"lg"}>
 					<Box style={{ opacity: 1 - scrollY / 300 }}>
 						<Typography variant="h1" color="white" zIndex={100}>
 							{title}

@@ -96,7 +96,7 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						</CustomTabs>
 					</Box>
 					<TabPanel value={1} index={0} style={{ padding: 0 }}>
-						<General register={register} opcio={opcio} />
+						<General register={register} opcio={opcio} control={control} setValue={setValue} />
 					</TabPanel>
 					<TabPanel value={2} index={0} style={{ padding: 0 }}>
 						<Disseny
@@ -110,10 +110,26 @@ export default function ConfiguracioAdmin({ configuracio }) {
 						/>
 					</TabPanel>
 					<TabPanel value={3} index={0} style={{ padding: 0 }}>
-						<Menus watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} control={control} />
+						<Menus
+							watch={watch}
+							getValues={getValues}
+							opcions={opcio("pagines").valor}
+							setValue={setValue}
+							control={control}
+							opcio={opcio}
+							register={register}
+						/>
 					</TabPanel>
 					<TabPanel value={4} index={0} style={{ padding: 0 }}>
-						<PeuDePagina watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} control={control} />
+						<PeuDePagina
+							watch={watch}
+							getValues={getValues}
+							opcions={opcio("pagines").valor}
+							setValue={setValue}
+							control={control}
+							opcio={opcio}
+							register={register}
+						/>
 					</TabPanel>
 					<TabPanel value={5} index={0} style={{ padding: 0 }}>
 						<Titols watch={watch} getValues={getValues} opcions={opcio("pagines").valor} setValue={setValue} />

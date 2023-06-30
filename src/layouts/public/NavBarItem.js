@@ -12,21 +12,22 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 	marginLeft: 10,
 	marginRight: 10,
 	"& .MuiTypography-root": {
-		color: isDark(theme.palette.primary.main) ? "white" : "black",
+		color: "white",
 		padding: 5,
 		fontWeight: 600,
 		fontSize: 14,
+		transition: "0.2s",
 	},
 	"&.active": {
-		background: theme.palette.secondary.main,
+		// background: theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+			color: theme.palette.details.main,
 		},
 	},
 	"&:hover": {
-		background: theme.palette.secondary.main,
+		// background: theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.secondary.main) ? "white" : "black",
+			color: theme.palette.details.main,
 		},
 	},
 }));

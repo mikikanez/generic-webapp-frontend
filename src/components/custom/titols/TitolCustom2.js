@@ -19,7 +19,7 @@ const TitolCustom2 = ({ title = "Títol pàgina", hidden = false, scrollY = 0 })
 			displayPrint="none"
 			py={10}
 		>
-			<Container maxWidth={"xl"}>
+			<Container maxWidth={"lg"}>
 				<Box style={{ opacity: 1 - scrollY / 300 }}>
 					<Typography variant="h1" textAlign={"center"}>
 						{title}

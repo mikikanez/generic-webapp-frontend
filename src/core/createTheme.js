@@ -18,7 +18,8 @@ const CrearTema = (data) => {
 		palette: {
 			background: {
 				main: data?.background ?? "#000",
-				secondary: data?.background ?? "#000",
+				dark: data?.background_dark ?? "#000",
+				footer: data?.footerColor ?? "#000",
 			},
 			primary: {
 				main: data?.primary ?? "#000",
@@ -28,6 +29,12 @@ const CrearTema = (data) => {
 			secondary: {
 				main: data?.secondary ?? "#FFF",
 				hover: data?.secondary + "40" ?? "#FFF",
+				light: data?.details ?? "#FFF",
+			},
+
+			details: {
+				main: data?.details ?? "#FFF",
+				hover: data?.details + "40" ?? "#FFF",
 			},
 			danger: {
 				main: "#be1622",
@@ -55,7 +62,7 @@ const CrearTema = (data) => {
 		typography: {
 			h1: {
 				fontSize: "3rem",
-				color: data?.primary ?? "#000",
+				color: data?.details ?? "#000",
 				fontWeight: 800,
 				lineHeight: 0.9,
 				[breakpoints.down("sm")]: {
@@ -199,5 +206,5 @@ export const isDark = (c) => {
 
 	let luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
 
-	return luma < 150;
+	return luma < 200;
 };
