@@ -18,7 +18,7 @@ export default function PaginesAdmin({ pagines }) {
 	const [open, setOpen] = useState(false);
 	const router = useRouter();
 	const columns = PaginesColumns(pagines);
-	const options = TableOptions();
+	const options = TableOptions("pagina");
 
 	return (
 		<PageAdmin title="Pàgines" Icon={Layers} button={<CustomButton title={"Crear Pàgina"} onClick={() => setOpen(true)} />}>
