@@ -18,7 +18,7 @@ export default function EntradesAdmin({ productes }) {
 	const router = useRouter();
 	const columns = ProductesColumns(productes);
 
-	const options = TableOptions();
+	const options = TableOptions("producte");
 
 	return (
 		<PageAdmin title="Productes" Icon={Inventory} button={<CustomButton title={"Crear producte"} onClick={() => router.push("producte")} />}>

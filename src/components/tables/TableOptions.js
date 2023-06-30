@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const TableOptions = () => {
+const TableOptions = (element) => {
 	// const { enqueueSnackbar } = useSnackbar();
 	const router = useRouter();
 
@@ -12,7 +12,7 @@ const TableOptions = () => {
 		draggableColumns: { enabled: true },
 		print: "false",
 		onRowClick: (row) => {
-			router.push("/admin/pagina/" + row[0]);
+			router.push("/admin/" + element + "/" + row[0]);
 		},
 		// customToolbar: () => <CustomToolbar />,
 		// onFilterChange: filterFunc ? filterFunc : () => null,

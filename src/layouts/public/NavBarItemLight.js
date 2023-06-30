@@ -21,7 +21,7 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 	"&.active": {
 		// background: theme.palette.secondary.main,
 		"& .MuiTypography-root": {
-			color: isDark(theme.palette.primary.main) ? "white" : "black",
+			color: isDark(theme.palette.primary.main) ? theme.palette.details.main : "black",
 		},
 	},
 	"&:hover": {
