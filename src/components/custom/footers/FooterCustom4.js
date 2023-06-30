@@ -55,7 +55,7 @@ const FooterCustom4 = ({ footerColor }) => {
 				>
                     <Grid item md={5} xs={12} textAlign={"left"} marginTop={5}>
                         <Box textAlign={matches ? "left" : "center"}>
-                            <Typography variant="h3" fontWeight={'bold'} textTransform={'capitalize'} color={(isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "black" : "white")}>{opcions?.titol}</Typography>
+                            <Typography variant="h3" fontWeight={'bold'} textTransform={'capitalize'} color={(isDark(footerColor ) ? "black" : "white")}>{opcions?.titol}</Typography>
                             <Typography variant="footer" color={(isDark(footerColor ) ? "black" : "white")}>{opcions?.descripcio}</Typography>
                         </Box>
                         <Stack direction={"row"} spacing={2} justifyContent={matches ? "left" : "center"} marginTop={2}>
