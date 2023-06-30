@@ -69,10 +69,17 @@ export default function Component38({ component, matches, imatges, theme, router
 								justifyContent={"center"}
 								flexDirection={"column"}
 							>
-								<Typography variant="h1" mb={4} color={component.dark ? "white" : "black"} zIndex={100}>
+								<Typography variant="h1" mb={4} color={component.dark ? "white" : "black"} textAlign={"center"} zIndex={100}>
 									{slide?.titol}
 								</Typography>
-								<Typography variant="h2" textTransform={"none"} mt={4} color={component.dark ? "white" : "black"} zIndex={100}>
+								<Typography
+									variant="h2"
+									textTransform={"none"}
+									mt={4}
+									color={component.dark ? "white" : "black"}
+									textAlign={"center"}
+									zIndex={100}
+								>
 									{slide?.subtitol}
 								</Typography>
 								{slide?.boto?.titolBoto && (

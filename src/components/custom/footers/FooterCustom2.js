@@ -9,7 +9,7 @@ import { isDark } from "@/core/createTheme";
 import Link from "next/link";
 import { useTheme } from "@mui/material/styles";
 
-const FooterCustom2 = ({ footerAlt }) => {
+const FooterCustom2 = ({ footerColor }) => {
 	const opcions = useOpcions();
 	const theme = useTheme();
 
@@ -26,7 +26,7 @@ const FooterCustom2 = ({ footerAlt }) => {
 			style={{
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
-				backgroundColor: footerAlt === "1" ? theme.palette.background.main : theme.palette.primary.main,
+				backgroundColor: footerColor,
 			}}
 			displayPrint="none"
 		>
@@ -45,19 +45,14 @@ const FooterCustom2 = ({ footerAlt }) => {
 						{opcions?.logo ? (
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={50} width={150} alt="G" style={{ objectFit: "contain" }} />
 						) : (
-							<Typography variant="h3" color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"} my={3}>
+							<Typography variant="h3" color={isDark(footerColor) ? "white" : "black"} my={3}>
 								{opcions?.titol}
 							</Typography>
 						)}
 					</Grid>
 
 					<Grid item md={12} xs={12} textAlign={"center"}>
-						<Typography
-							variant="footer"
-							color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "white" : "black"}
-							component={"p"}
-							mb={1}
-						>
+						<Typography variant="footer" color={isDark(footerColor) ? "white" : "black"} component={"p"} mb={1}>
 							{opcions?.descripcio}
 						</Typography>
 					</Grid>
@@ -70,19 +65,19 @@ const FooterCustom2 = ({ footerAlt }) => {
 					))}
 				</Box>
 			</Container>
-			<Box py={2} style={{ borderTop: "1px solid " + (footerAlt === "1" ? "black" : "white") }}>
+			<Box py={2} style={{ borderTop: "1px solid " + (isDark(footerColor) ? "white" : "black") }}>
 				<Container maxWidth={"xl"}>
 					<Grid container>
 						<Grid item md={12} xs={12} textAlign={"center"}>
 							<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
 								{opcions?.instagram && (
 									<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-										<Instagram color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
+										<Instagram color={isDark(footerColor) ? "info" : "primary"} />
 									</a>
 								)}
 								{opcions?.twitter && (
 									<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-										<Twitter color={isDark(footerAlt === "1" ? opcions?.background : opcions?.primary) ? "info" : "primary"} />
+										<Twitter color={isDark(footerColor) ? "info" : "primary"} />
 									</a>
 								)}
 							</Stack>

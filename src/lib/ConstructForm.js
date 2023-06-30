@@ -52,3 +52,18 @@ export function constructFormPagina(values) {
 
 	return data;
 }
+
+export function constructFormProducte(values) {
+	const data = new FormData();
+
+	if (values.imatge?.[0]?.name) {
+		data.append("imatge", values.imatge[0], values.imatge[0].name);
+	}
+	data.append("nom", values.nom);
+	data.append("preu", values.preu);
+	data.append("slug", values.slug ?? "");
+	data.append("keywords", values.keywords ?? "");
+	data.append("descripcio", values.descripcio);
+
+	return data;
+}

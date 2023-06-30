@@ -40,10 +40,9 @@ const TopBarAdmin = ({ className, onMobileNavOpen, ...rest }) => {
 	return (
 		<AppBarCustom elevation={0} {...rest}>
 			<Toolbar>
-				<Link href="/">
-					{/* <Image src={"/logo.svg"} width={140} height={40} alt="Portal Attack" /> */}
-					{opcions?.titol} - ADMIN
-				</Link>
+				<Hidden mdUp>
+					<Link href="/">{opcions?.titol} - ADMIN</Link>
+				</Hidden>
 				<Box flexGrow={1} />
 				<Box display="flex" alignItems={"center"} justifyContent="space-between">
 					<Hidden mdDown>

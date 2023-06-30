@@ -9,7 +9,6 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 	const theme = useTheme();
 	const opcions = useOpcions();
 	const Boto = botons.filter((boto) => boto.id === (opcio ? opcio : Number(opcions?.boto)))[0]?.component;
-	console.log(Boto);
 
 	return (
 		<Boto
