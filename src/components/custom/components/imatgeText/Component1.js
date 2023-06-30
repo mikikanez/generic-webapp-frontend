@@ -7,14 +7,14 @@ export default function Component1({ component, matches, imatges, theme, router,
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth="lg">
-				<Box py={20}>
+				<Box py={2}>
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>
-								<Typography variant="h1" mb={4} color={component.dark ? "white" : "dark"}>
+								<Typography variant="h1" mb={4} color={component.dark ? "white" : "dark"} textTransform={'unset'}>
 									{valor(0, component)}
 								</Typography>
-								<Divider sx={{ borderWidth: 5, width: "40%", borderColor: theme.palette.secondary.main }} />
+								{/* <Divider sx={{ borderWidth: 5, width: "40%", borderColor: theme.palette.secondary.main }} /> */}
 								<Box my={5}>
 									<Typography variant="body2" color={component.dark ? "white" : "dark"}>
 										{valor(1, component)}
