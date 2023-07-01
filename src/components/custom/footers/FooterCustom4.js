@@ -55,23 +55,23 @@ const FooterCustom4 = ({ footerColor }) => {
 				>
                     <Grid item md={5} xs={12} textAlign={"left"} marginTop={5}>
                         <Box textAlign={matches ? "left" : "center"}>
-                            <Typography variant="h3" fontWeight={'bold'} textTransform={'capitalize'} color={(isDark(footerColor ) ? "black" : "white")}>{opcions?.titol}</Typography>
-                            <Typography variant="footer" color={(isDark(footerColor ) ? "black" : "white")}>{opcions?.descripcio}</Typography>
+                            <Typography variant="h3" fontWeight={'bold'} textTransform={'capitalize'} color={(isDark(footerColor ) ? "white" : "black")}>{opcions?.titol}</Typography>
+                            <Typography variant="footer" color={(isDark(footerColor ) ? "white" : "black")}>{opcions?.descripcio}</Typography>
                         </Box>
                         <Stack direction={"row"} spacing={2} justifyContent={matches ? "left" : "center"} marginTop={2}>
                             {opcions?.instagram && (
                                 <a href={opcions?.instagram} target={"_blank"} rel="noreferrer" style={{ background: opcions?.primary, height: '30px', width: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '100%', overflow: 'hidden' }}>
-                                    <Instagram color={(isDark(footerColor ) ? "primary" : "info")} />
+                                    <Instagram color={(isDark(footerColor ) ? "info" : "primary")} />
                                 </a>
                             )}
                             {opcions?.twitter && (
                                 <a href={opcions?.twitter} target={"_blank"} rel="noreferrer" style={{ background: opcions?.primary, height: '30px', width: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '100%', overflow: 'hidden' }}>
-                                    <Twitter color={(isDark(footerColor ) ? "primary" : "info")} />
+                                    <Twitter color={(isDark(footerColor ) ? "info" : "primary")} />
                                 </a>
                             )}
                             {opcions?.youtube && (
                                 <a href={opcions?.youtube} target={"_blank"} rel="noreferrer" style={{ background: opcions?.primary, height: '30px', width: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '100%', overflow: 'hidden' }}>
-                                    <YouTubeIcon color={(isDark(footerColor ) ? "primary" : "info")} />
+                                    <YouTubeIcon color={(isDark(footerColor ) ? "info" : "primary")} />
                                 </a>
                             )}
                         </Stack>
@@ -81,7 +81,7 @@ const FooterCustom4 = ({ footerColor }) => {
                         <Box textAlign={matches ? "left" : "center"} display={'flex'} flexDirection={'column'}>
                             {itemsMenu.map((item, index) => (
                                 <Link key={item.to} href={item.to} style={{ padding: 10 }}>
-                                    <Typography variant="footer" color={(isDark(footerColor ) ? "black" : "white")}>{item.title}</Typography>
+                                    <Typography variant="footer" color={(isDark(footerColor ) ? "white" : "black")}>{item.title}</Typography>
                                 </Link>
                             ))}
                         </Box>
@@ -91,7 +91,7 @@ const FooterCustom4 = ({ footerColor }) => {
                         <Box textAlign={matches ? "left" : "center"} display={'flex'} flexDirection={'column'}>
                             {items.map((item, index) => (
                                 <Link key={item.to} href={item.to} style={{ padding: 10 }}>
-                                    <Typography variant="footer" color={(isDark(footerColor ) ? "black" : "white")}>{item.title}</Typography>
+                                    <Typography variant="footer" color={(isDark(footerColor ) ? "white" : "black")}>{item.title}</Typography>
                                 </Link>
                             ))}
                         </Box>

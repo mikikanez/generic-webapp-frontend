@@ -38,6 +38,14 @@ import Component37 from "./video/Component37";
 import Component38 from "./galeria/Component38";
 import Component40 from "./altres/Component40";
 import Component23 from "./galeria/Component23";
+import Component39 from "./imatgeText/Component39";
+import Component41 from "./boto/Component41";
+import Component42 from "./imatgeText/Component42";
+import Component43 from "./galeria/Component43";
+import Component44 from "./imatgeText/Component44";
+import Component45 from "./imatgeText/Component45";
+import Component46 from "./imatgeText/Component46";
+import Component47 from "./imatgeTitol/Component47";
 
 export const components = [
 	{ id: 1, component: Component1 },
@@ -78,7 +86,15 @@ export const components = [
 	{ id: 36, component: Component36 },
 	{ id: 37, component: Component37 },
 	{ id: 38, component: Component38 },
+	{ id: 39, component: Component39 },
 	{ id: 40, component: Component40 },
+	{ id: 41, component: Component41 },
+	{ id: 42, component: Component42 },
+	{ id: 43, component: Component43 },
+	{ id: 44, component: Component44 },
+	{ id: 45, component: Component45 },
+	{ id: 46, component: Component46 },
+	{ id: 47, component: Component47 },
 ];
 
 export const valor = (index, component) => {
