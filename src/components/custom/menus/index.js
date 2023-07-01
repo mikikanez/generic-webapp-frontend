@@ -11,5 +11,5 @@ export const menus = [
 	{ id: 3, component: MenuCustom3, marginTop: 90 },
 	{ id: 4, component: MenuCustom4, marginTop: 90 },
 	{ id: 5, component: MenuCustom5, marginTop: 0 },
-	{ id: 6, component: MenuCustom6, marginTop: 140 },
+	{ id: 6, component: MenuCustom6, marginTop: 90 },
 ];

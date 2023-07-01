@@ -25,6 +25,7 @@ export default function ComponentWrap({ Component, component, ...props }) {
 		component?.component_pagina_element.map((element, index) => {
 			if (element.element?.nom === "imatge") {
 				if (element?.valor[0]?.name) {
+				// if (element?.valor[0]?.name) {
 					let reader = new FileReader();
 
 					reader.onloadend = () => {
