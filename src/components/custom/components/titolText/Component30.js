@@ -11,7 +11,7 @@ export default function Component30({ component, matches, imatges, theme, router
                         <Grid item md={6} xs={12}>
                             <Box display={'flex'}>
                                 <Box mr={2.5}>
-                                    {valor(4, component) ? <Box width={32} height={32} position={'relative'}>
+                                    {valor(4, component) ? <Box width={32} height={32} position={'relative'} borderRadius={'100%'} overflow={'hidden'}>
                                         <Image alt="Imatge" src={imatges.filter((i) => i.id === 4)[0]?.imatge} fill style={{ objectFit: "cover" }} />
                                     </Box> : <></>}
                                 </Box>
@@ -31,7 +31,7 @@ export default function Component30({ component, matches, imatges, theme, router
                         <Grid item md={6} xs={12}>
                             <Box display={'flex'}>
                                 <Box mr={2.5}>
-                                    {valor(5, component) ? <Box width={32} height={32} position={'relative'}>
+                                    {valor(5, component) ? <Box width={32} height={32} position={'relative'} borderRadius={'100%'} overflow={'hidden'}>
                                         <Image alt="Imatge" src={imatges.filter((i) => i.id === 5)[0]?.imatge} fill style={{ objectFit: "cover" }} />
                                     </Box> : <></>}
                                 </Box>

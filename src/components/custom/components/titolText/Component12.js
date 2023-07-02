@@ -1,25 +1,35 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
-import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component12({ component, matches, imatges, theme, router, ...props }) {
 	return (
 		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
-			<Container disableGutters maxWidth="lg" style={{ position: "relative" }}>
-				<Box display={"flex"} flexDirection={"column"} alignItems={"flex-start"} py={10} px={3}>
-					<Typography variant="h2" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={4} color={component.dark ? "white" : "black"}>
-						{valor(0, component)}
-					</Typography>
-					<Box my={5}>
-						<Typography
-							dangerouslySetInnerHTML={{ __html: valor(1, component) }}
-							variant="body1"
-							textAlign={"left"}
-							color={component.dark ? "white" : "black"}
-						></Typography>
-					</Box>
-				</Box>
+			<Container maxWidth={'lg'}>
+				<Box py={2}>
+                    <Grid container spacing={8}>
+                        <Grid item md={12} xs={12}>
+                            <Box display={'flex'} maxWidth={'90%'} margin={'0 auto'}>
+                                <Box mr={2.5}>
+                                    {valor(2, component) ? <Box width={32} height={32} position={'relative'} borderRadius={'100%'} overflow={'hidden'}>
+                                        <Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
+                                    </Box> : <></>}
+                                </Box>
+                                <Box>
+                                    <Typography variant="h4" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={4} color={component.dark ? "white" : "black"}>
+                                        {valor(0, component)}
+                                    </Typography>
+                                    <Typography
+                                        dangerouslySetInnerHTML={{ __html: valor(1, component) }}
+                                        variant="body1"
+                                        textAlign={"left"}
+                                        color={component.dark ? "white" : "black"}
+                                    ></Typography>
+                                </Box>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </Box>
 			</Container>
 		</Box>
 	);
