@@ -1,7 +1,7 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import { valor } from "..";
-import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
+import CustomLink from "@/components/elements/CustomLink";
 
 export default function Component45({ component, matches, imatges, theme, router, ...props }) {
 	return (
@@ -40,7 +40,7 @@ export default function Component45({ component, matches, imatges, theme, router
                                         mb={2}
 									></Typography>
 								)}
-								<CustomButtonPublic
+								<CustomLink
 									title={valor(4, component)?.titol}
 									onClick={() => router.push(valor(4, component)?.link)}
 									light={component.dark}
@@ -78,7 +78,7 @@ export default function Component45({ component, matches, imatges, theme, router
                                         mb={2}
 									></Typography>
 								)}
-								<CustomButtonPublic
+								<CustomLink
 									title={valor(9, component)?.titol}
 									onClick={() => router.push(valor(9, component)?.link)}
 									light={component.dark}

@@ -35,19 +35,10 @@ export default function Component43({ component, matches, imatges, theme, router
 			ref={div}
 		>
 			<Container maxWidth={'lg'} style={{ position: "relative"}}>
-                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'}>
+                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} py={2}>
                     {valor(0, component)?.map((slide, index) => (
-                            <Box
-                                style={{
-                                    backgroundImage: `url(${imatges.filter((i) => i.id === index)[0]?.imatge})`,
-                                    backgroundSize: "contain",
-                                    height: 100,
-                                    width: '100%',
-                                    maxWidth: 300
-                                }}
-                                margin={1}
-                            >
-                                
+                            <Box style={{minHeight: matches ? 100 : 100, height: "100%", position: "relative", display: 'flex', alignItems: 'center', justifyContent: 'center'}} m={5}>
+                                <img alt="Imatge" src={imatges.filter((i) => i.id === index)[0]?.imatge} fill objectFit="cover" />
                             </Box>
                     ))}
                 </Box>

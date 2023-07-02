@@ -1,4 +1,3 @@
-import { VerticalSplit } from "@mui/icons-material";
 import Component1 from "./imatgeText/Component1";
 import Component2 from "./imatgeText/Component2";
 import Component3 from "./imatgeText/Component3";
@@ -46,6 +45,9 @@ import Component44 from "./imatgeText/Component44";
 import Component45 from "./imatgeText/Component45";
 import Component46 from "./imatgeText/Component46";
 import Component47 from "./imatgeTitol/Component47";
+import Component48 from "./imatgeText/Component48";
+import Component49 from "./video/Component49";
+import Component50 from "./video/Component50";
 
 export const components = [
 	{ id: 1, component: Component1 },
@@ -95,6 +97,9 @@ export const components = [
 	{ id: 45, component: Component45 },
 	{ id: 46, component: Component46 },
 	{ id: 47, component: Component47 },
+	{ id: 48, component: Component48 },
+	{ id: 49, component: Component49 },
+	{ id: 50, component: Component50 },
 ];
 
 export const valor = (index, component) => {

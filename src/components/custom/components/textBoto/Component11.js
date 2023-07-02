@@ -41,7 +41,6 @@ export default function Component11({ component, matches, imatges, theme, router
 											title={valor(3, component)?.titol}
 											onClick={() => router.push(valor(3, component)?.link)}
 											light={component.dark}
-											fullWidth
 										/>
 									)}
 								</Grid>
@@ -52,7 +51,6 @@ export default function Component11({ component, matches, imatges, theme, router
 											title={valor(4, component)?.titol}
 											onClick={() => router.push(valor(4, component)?.link)}
 											light={component.dark}
-											fullWidth
 										/>
 									)}
 								</Grid>
