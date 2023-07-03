@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit } from "@mui/icons-material";
+import { CircleOutlined, Delete, Edit, Inventory } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { addElement, deleteElement, getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Chip, Fab, Grid, Typography } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Box, Checkbox, Chip, Collapse, Fab, FormControlLabel, Grid, Typography } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
-import CustomSelect from "@/components/elements/CustomSelect";
 import { constructPagina, slugify } from "@/core/utils";
 import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
 import Thumb from "@/components/elements/Thumb";
 import InputImage from "@/components/elements/InputImage";
 import CustomTiny from "@/components/elements/CustomTiny";
-import { DialogAddCategoria } from "@/views/entrades/DialogAddCategoria";
 import { constructFormProducte } from "@/lib/ConstructForm";
 
 export default function ProducteAdd({ producte, idiomes, categories }) {
@@ -25,8 +23,6 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 	const [loading, setLoading] = useState(false);
 	const { enqueueSnackbar } = useSnackbar();
 	const { user } = useAuth();
-
-	console.log(producte);
 
 	const {
 		register,
@@ -76,10 +72,7 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 			enqueueSnackbar(result.message, {
 				variant: "success",
 			});
-			router.push("/admin/pagina/" + (values.slug === "inici" ? "" : values.slug));
-			setTimeout(() => {
-				router.reload();
-			}, 500);
+			router.push(producte ? "/admin/producte/" + values.slug : "/admin/productes");
 		} catch (e) {
 			enqueueSnackbar("Error: Alguna cosa no ha anat bé", {
 				variant: "error",
@@ -90,7 +83,7 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 	};
 
 	return (
-		<PageAdmin title={producte?.titol === undefined ? "Nou producte" : producte.titol} Icon={CircleOutlined}>
+		<PageAdmin title={producte ? producte.nom + " - " + producte?.preu + "€" : "Nou producte"} Icon={Inventory}>
 			<form onSubmit={handleSubmit(guardar)}>
 				<CustomCard>
 					<CustomTextField
@@ -103,20 +96,31 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 					/>
 				</CustomCard>
 				<Grid container spacing={3}>
-					<Grid md={8} item>
+					<Grid md={8} xs={12} item>
 						<CustomCard title={"Descripció"}>
 							<CustomTiny
 								name={"descripcio"}
 								type="text"
 								register={register}
 								setValue={setValue}
-								height={800}
+								height={300}
+								getValues={getValues}
+								watch={watch}
+							/>
+						</CustomCard>
+						<CustomCard title={"Especificacions"}>
+							<CustomTiny
+								name={"especificacions"}
+								type="text"
+								register={register}
+								setValue={setValue}
+								height={300}
 								getValues={getValues}
 								watch={watch}
 							/>
 						</CustomCard>
 					</Grid>
-					<Grid md={4} item>
+					<Grid md={4} xs={12} item>
 						<CustomCard title={"Informació"}>
 							<CustomTextField
 								register={register}
@@ -130,23 +134,50 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 							/>
 							<CustomTextField
 								register={register}
-								name={"keywords"}
-								label={"Paraules clau"}
-								InputLabelProps={{
-									shrink: true,
-								}}
-								mt={3}
-							/>
-
-							<CustomTextField
-								register={register}
 								name={"preu"}
+								type="double"
 								label={"Preu"}
 								InputLabelProps={{
 									shrink: true,
 								}}
 								mt={3}
 							/>
+							<FormControlLabel
+								control={
+									<Controller
+										name={"stock_activat"}
+										control={control}
+										defaultValue={String(producte?.stock_activat) === "1"}
+										render={({ field: { value, ref, ...field } }) => (
+											<Checkbox
+												{...field}
+												inputRef={ref}
+												checked={String(value) === "1"}
+												color="primary"
+												size={"medium"}
+												value={1}
+												disableRipple
+												defaultChecked={watch("stock_activat")}
+												onChange={(event) => setValue("stock_activat", event.target.checked ? "1" : "0")}
+											/>
+										)}
+									/>
+								}
+								label={"Activar stock"}
+								labelPlacement="end"
+							/>
+							<Collapse in={String(watch("stock_activat")) === "1"}>
+								<CustomTextField
+									register={register}
+									name={"stock"}
+									label={"Stock"}
+									type={"number"}
+									InputLabelProps={{
+										shrink: true,
+									}}
+									mt={1}
+								/>
+							</Collapse>
 
 							<Box style={{ border: "1px solid #cacaca", borderRadius: 5 }} my={2} p={2}>
 								<Typography>Imatge destacada</Typography>

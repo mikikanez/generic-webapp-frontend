@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Box, Typography } from "@mui/material";
+import { useOpcions } from "@/context/OpcionsContext";
+import { useTheme } from "@emotion/react";
 
 export default function CustomTiny({ register, name, setValue, label, getValues, height, watch }) {
 	const editorRef = useRef(null);
-
-	console.log(name);
+	const opcions = useOpcions();
+	const theme = useTheme();
 
 	return (
 		<Box mt={3}>
@@ -27,11 +29,31 @@ export default function CustomTiny({ register, name, setValue, label, getValues,
 						"lists",
 					],
 					toolbar:
-						"undo redo | formatselect | " +
-						"bold italic backcolor | alignleft aligncenter " +
+						"undo redo | formatselect | blocks | " +
+						"bold italic forecolor | alignleft aligncenter " +
 						"alignright alignjustify | bullist numlist outdent indent | " +
 						"image link table",
 					content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+					block_formats: "Paragraph=p; Header 2=h2; Header 3=h3; Header 4=h4; Header 5=h5",
+
+					color_map: [
+						opcions?.primary,
+						"Primari",
+						opcions?.secondary,
+						"Secundari",
+						opcions?.details,
+						"Detalls",
+						opcions?.background,
+						"Fons",
+						opcions?.background_dark,
+						"Fons fosc",
+						"000000",
+						"Negre",
+					],
+					formats: {
+						// Changes the default format for h1 to have a class of heading
+						h2: { block: "h2", styles: { fontSize: theme.typography.h2.fontSize } },
+					},
 				}}
 			/>
 			<input {...register(name)} hidden />

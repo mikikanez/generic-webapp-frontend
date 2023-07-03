@@ -72,7 +72,7 @@ const CrearTema = (data) => {
 				...font(data).style,
 			},
 			h2: {
-				fontSize: "2.5rem",
+				fontSize: "2.8rem",
 				color: data?.primary ?? "#000",
 				fontWeight: 400,
 				lineHeight: 0.9,

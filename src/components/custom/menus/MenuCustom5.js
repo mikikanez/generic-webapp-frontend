@@ -67,7 +67,7 @@ export default function MenuCustom5({ premenu, scrollY = 0, menuColor }) {
 				<Hidden mdDown>
 					<Box
 						style={{
-							flex: 1,
+							flex: 3,
 							display: "flex",
 							justifyContent: "center",
 						}}

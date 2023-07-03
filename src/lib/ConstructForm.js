@@ -62,8 +62,10 @@ export function constructFormProducte(values) {
 	data.append("nom", values.nom);
 	data.append("preu", values.preu);
 	data.append("slug", values.slug ?? "");
-	data.append("keywords", values.keywords ?? "");
-	data.append("descripcio", values.descripcio);
+	data.append("stock_activat", values.stock_activat);
+	data.append("stock", values.stock);
+	data.append("especificacions", values.especificacions ?? "");
+	data.append("descripcio", values.descripcio ?? "");
 
 	return data;
 }
