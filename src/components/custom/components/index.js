@@ -1,4 +1,3 @@
-import { VerticalSplit } from "@mui/icons-material";
 import Component1 from "./imatgeText/Component1";
 import Component2 from "./imatgeText/Component2";
 import Component3 from "./imatgeText/Component3";
@@ -38,6 +37,17 @@ import Component37 from "./video/Component37";
 import Component38 from "./galeria/Component38";
 import Component40 from "./altres/Component40";
 import Component23 from "./galeria/Component23";
+import Component39 from "./imatgeText/Component39";
+import Component41 from "./boto/Component41";
+import Component42 from "./imatgeText/Component42";
+import Component43 from "./galeria/Component43";
+import Component44 from "./imatgeText/Component44";
+import Component45 from "./imatgeText/Component45";
+import Component46 from "./imatgeText/Component46";
+import Component47 from "./imatgeTitol/Component47";
+import Component48 from "./imatgeText/Component48";
+import Component49 from "./video/Component49";
+import Component50 from "./video/Component50";
 
 export const components = [
 	{ id: 1, component: Component1 },
@@ -78,7 +88,18 @@ export const components = [
 	{ id: 36, component: Component36 },
 	{ id: 37, component: Component37 },
 	{ id: 38, component: Component38 },
+	{ id: 39, component: Component39 },
 	{ id: 40, component: Component40 },
+	{ id: 41, component: Component41 },
+	{ id: 42, component: Component42 },
+	{ id: 43, component: Component43 },
+	{ id: 44, component: Component44 },
+	{ id: 45, component: Component45 },
+	{ id: 46, component: Component46 },
+	{ id: 47, component: Component47 },
+	{ id: 48, component: Component48 },
+	{ id: 49, component: Component49 },
+	{ id: 50, component: Component50 },
 ];
 
 export const valor = (index, component) => {

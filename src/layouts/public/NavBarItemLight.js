@@ -12,7 +12,7 @@ const LinkCustom = styled(Link)(({ theme }) => ({
 	marginLeft: 10,
 	marginRight: 10,
 	"& .MuiTypography-root": {
-		color: theme.palette.primary.main,
+		color: theme.palette.background.main,
 		padding: 5,
 		fontWeight: 600,
 		fontSize: 14,

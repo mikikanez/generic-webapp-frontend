@@ -19,6 +19,7 @@ const CrearTema = (data) => {
 			background: {
 				main: data?.background ?? "#000",
 				dark: data?.background_dark ?? "#000",
+				dark_opacity: data?.background_dark + "50" ?? "#000",
 				footer: data?.footerColor ?? "#000",
 			},
 			primary: {
@@ -61,7 +62,7 @@ const CrearTema = (data) => {
 		},
 		typography: {
 			h1: {
-				fontSize: "3rem",
+				fontSize: "3.5rem",
 				color: data?.details ?? "#000",
 				fontWeight: 800,
 				lineHeight: 0.9,
@@ -86,7 +87,7 @@ const CrearTema = (data) => {
 				...font(data).style,
 			},
 			h3: {
-				fontSize: "1.3rem",
+				fontSize: "2rem",
 				textTransform: "uppercase",
 				fontWeight: 400,
 				color: "#1d1d1b",
@@ -96,7 +97,7 @@ const CrearTema = (data) => {
 				...font(data).style,
 			},
 			h4: {
-				fontSize: "1.2rem",
+				fontSize: "1.3rem",
 				textTransform: "uppercase",
 				fontWeight: 600,
 				color: data?.primary ?? "#000",

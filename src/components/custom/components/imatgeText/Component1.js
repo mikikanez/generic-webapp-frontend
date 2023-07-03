@@ -11,10 +11,7 @@ export default function Component1({ component, matches, imatges, theme, router,
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>
-								<Typography variant="h1" mb={4} color={component.dark ? "white" : "dark"} textTransform={'unset'}>
-									{valor(0, component)}
-								</Typography>
-								{/* <Divider sx={{ borderWidth: 5, width: "40%", borderColor: theme.palette.secondary.main }} /> */}
+								<Typography dangerouslySetInnerHTML={{ __html: valor(0, component) }} variant="h2" mb={4} color={component.dark ? "white" : theme.palette.background.dark} textTransform={'unset'} fontWeight={'bold'}></Typography>
 								<Box my={5}>
 									<Typography variant="body2" color={component.dark ? "white" : "dark"}>
 										{valor(1, component)}

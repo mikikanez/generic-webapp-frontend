@@ -13,7 +13,7 @@ const TitolCustom1 = ({ title = "Títol pàgina", hidden = false, scrollY = 0 })
 			style={{
 				backgroundSize: "contain",
 				backgroundAttachment: "fixed",
-				backgroundColor: theme.palette.background.main,
+				backgroundColor: theme.palette.background.dark_opacity
 			}}
 			display={hidden ? "none" : ""}
 			displayPrint="none"
@@ -21,7 +21,7 @@ const TitolCustom1 = ({ title = "Títol pàgina", hidden = false, scrollY = 0 })
 		>
 			<Container maxWidth={"lg"}>
 				<Box style={{ opacity: 1 - scrollY / 300 }}>
-					<Typography variant="h1">{title}</Typography>
+					<Typography variant="h1" textTransform={'capitalize'}>{title}</Typography>
 				</Box>
 			</Container>
 		</Box>
