@@ -47,7 +47,7 @@ export default function MenuCustom3({ premenu, scrollY = 0, menuColor }) {
 				<Hidden mdDown>
 					<Box
 						style={{
-							flex: 1,
+							flex: 4,
 							display: "flex",
 							justifyContent: "flex-start",
 							alignItems: "center",

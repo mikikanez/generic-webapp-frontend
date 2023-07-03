@@ -22,7 +22,7 @@ export default function ComponentWrap({ Component, component, ...props }) {
 	};
 
 	useEffect(() => {
-		component?.component_pagina_element.map((element, index) => {
+		component?.component_pagina_element?.map((element, index) => {
 			if (element.element?.nom === "imatge") {
 				if (element?.valor?.name) {
 				// if (element?.valor[0]?.name) {
