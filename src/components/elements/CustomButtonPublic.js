@@ -14,7 +14,7 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 		<Boto
 			style={{
 				width: fullWidth ? "100%" : "auto",
-				padding: small ? "2px 10px" : "18px 32px",
+				padding: small ? "5px 10px" : "18px 32px",
 			}}
 			color={danger ? "danger" : success ? "success" : light ? "details" : secondary ? "secondary" : "primary"}
 			{...rest}
@@ -25,7 +25,7 @@ const CustomButtonPublic = ({ title, danger, loading, fullWidth, success, small,
 			) : (
 				<Typography
 					style={{
-						fontSize: 18,
+						fontSize: small ? 14 : 18,
 						transition: "0.2s",
 					}}
 					color={light ? "white" : secondary ? (isDark(theme.palette.secondary.main) ? "white" : "black") : "black"}

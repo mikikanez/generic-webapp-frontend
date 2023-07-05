@@ -1,5 +1,6 @@
+import { useAuth } from "@/core/hooks/useAuth";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 const url = "http://localhost:8000/api/";
 
@@ -28,8 +29,13 @@ export async function getList(element, token) {
 		},
 	};
 
-	const data = await axios.get(url + element, config).then((response) => response.data.data);
-	return data;
+	try {
+		const data = await axios.get(url + element, config).then((response) => response.data.data);
+		return data;
+	} catch (error) {
+		await signOut({ redirect: true });
+		router.push("/login");
+	}
 }
 
 export async function getDataIds(element) {
@@ -81,19 +87,25 @@ export const addElement = async (element, values, token) => {
 			Authorization: "Bearer " + token,
 		},
 	};
-	await axios
-		.post(url + element, values, config)
-		.then((response) => {
-			if (response.status === 200) {
-				message = response.data.message;
-			}
-			if (response.data.status === "failed" && response.data.success === undefined) {
-				message = response.data.message;
-			}
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+	try {
+		await axios
+			.post(url + element, values, config)
+			.then((response) => {
+				if (response.status === 200) {
+					message = response.data.message;
+				}
+				if (response.data.status === "failed" && response.data.success === undefined) {
+					message = response.data.message;
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	} catch (error) {
+		await signOut({ redirect: true });
+		router.push("/login");
+	}
+
 	return { message };
 };
 

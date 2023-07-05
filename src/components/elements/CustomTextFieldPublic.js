@@ -39,14 +39,14 @@ const CssTextField = styled(TextField)({
 	},
 });
 
-export default function CustomTextField({ errors, label, name, type, register, size, light, mt, adornment, ...rest }) {
+export default function CustomTextFieldPublic({ errors, label, name, type, register, size, light, mt, adornment, ...rest }) {
 	const classes = useStyles();
 	return (
 		<Box mt={mt} style={{ width: "100%" }}>
 			{light ? (
 				<CssTextField
-					error={Boolean(errors?.[name])}
-					helperText={errors?.[name]?.message}
+					error={Boolean(errors)}
+					helperText={errors?.message}
 					fullWidth
 					label={label}
 					name={name}
@@ -57,8 +57,8 @@ export default function CustomTextField({ errors, label, name, type, register, s
 				/>
 			) : (
 				<TextField
-					error={Boolean(errors?.[name])}
-					helperText={errors?.[name]?.message}
+					error={Boolean(errors)}
+					helperText={errors?.message}
 					fullWidth
 					label={label}
 					name={name}

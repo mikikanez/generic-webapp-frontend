@@ -26,11 +26,7 @@ function CustomCard({ title, children, button, onClick, addOn, sticky }) {
 				<div className={sticky && scrollY >= 200 ? styles.is_sticky : ""}>
 					<Box p={2} display="flex" justifyContent={"flex-start"} alignItems="center">
 						<Typography variant="h5">{title}</Typography>
-						{button && (
-							<IconButton onClick={onClick}>
-								<Add />
-							</IconButton>
-						)}
+						{button}
 						{addOn ?? ""}
 					</Box>
 					<Divider />

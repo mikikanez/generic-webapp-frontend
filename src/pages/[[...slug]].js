@@ -10,18 +10,18 @@ export default function Pagina({ pagina }) {
 		<Page title={pagina?.titol} img={pagina?.imatge}>
 			<Box>
 				{constructPagina(pagina).components.map((com) => (
-					<ComponentChooser key={com.id} com={com} />
+					<ComponentChooser key={com.id} com={com} pagina={pagina} />
 				))}
 			</Box>
 		</Page>
 	);
 }
 export async function getStaticPaths() {
-	const data = await getDataIds("pagines");
+	const data = await getDataIds("paginesPublic");
 	const paths = data.map((item) => {
 		return {
 			params: {
-				slug: [item.slug],
+				slug: item.slug.split("/"),
 			},
 		};
 	});
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const pagina = await getData("pagines", params.slug ? params.slug[0] : "-");
+	const pagina = await getData("paginesPublic", params.slug ? params.slug : "-");
 
 	return {
 		props: { pagina },

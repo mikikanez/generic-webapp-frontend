@@ -48,6 +48,9 @@ import Component47 from "./imatgeTitol/Component47";
 import Component48 from "./imatgeText/Component48";
 import Component49 from "./video/Component49";
 import Component50 from "./video/Component50";
+import ComponentProducte from "./productes/ComponentProducte";
+import Component51 from "./productes/Component51";
+import Component52 from "./productes/Component52";
 
 export const components = [
 	{ id: 1, component: Component1 },
@@ -100,6 +103,11 @@ export const components = [
 	{ id: 48, component: Component48 },
 	{ id: 49, component: Component49 },
 	{ id: 50, component: Component50 },
+	{ id: 51, component: Component51 },
+	{ id: 52, component: Component52 },
+
+	//Producte
+	{ id: "producte", component: ComponentProducte },
 ];
 
 export const valor = (index, component) => {

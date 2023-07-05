@@ -1,7 +1,7 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
-import { Close, Instagram, Twitter } from "@mui/icons-material";
-import { AppBar, Box, Drawer, Hidden, IconButton, Menu, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
+import { Close, Instagram, Menu, Twitter } from "@mui/icons-material";
+import { AppBar, Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
 import NavBarItemLight from "@/layouts/public/NavBarItemLight";
+import CistellaMenu from "./CistellaMenu";
+import XXSS from "./XXSS";
 
 export default function MenuCustom3({ premenu, scrollY = 0, menuColor }) {
 	const router = useRouter();
@@ -86,7 +88,17 @@ export default function MenuCustom3({ premenu, scrollY = 0, menuColor }) {
 				</Hidden>
 
 				<Hidden mdUp>
-					<Box onClick={() => router.push("/")}>{/* <Logo width={150} fill="white" /> */}</Box>
+					<Box onClick={() => router.push("/")}>
+						{opcions?.logo ? (
+							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={60} width={100} alt="G" style={{ objectFit: "contain" }} />
+						) : (
+							<Box height={60} display={"flex"} alignItems={"center"}>
+								<Typography variant="h3" color={isDark(menuColor) ? "white" : "black"}>
+									{opcions?.titol}
+								</Typography>
+							</Box>
+						)}
+					</Box>
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
 						<Menu color={isDark(menuColor) ? "info" : "primary"} />
 					</IconButton>
@@ -107,20 +119,9 @@ export default function MenuCustom3({ premenu, scrollY = 0, menuColor }) {
 						alignItems: "center",
 					}}
 				>
-					{premenu !== "1" && (
-						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-							{opcions?.instagram && (
-								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-							{opcions?.twitter && (
-								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-						</Stack>
-					)}
+					<XXSS premenu={premenu} opcions={opcions} menuColor={menuColor} />
+
+					<CistellaMenu />
 				</Box>
 			</Box>
 		</Toolbar>

@@ -59,11 +59,11 @@ export function constructFormProducte(values) {
 	if (values.imatge?.[0]?.name) {
 		data.append("imatge", values.imatge[0], values.imatge[0].name);
 	}
-	data.append("nom", values.nom);
+	data.append("titol", values.titol);
 	data.append("preu", values.preu);
 	data.append("slug", values.slug ?? "");
-	data.append("stock_activat", values.stock_activat);
-	data.append("stock", values.stock);
+	data.append("stock_activat", values.stock_activat === "1" ? "1" : "0");
+	data.append("stock", values.stock ?? "");
 	data.append("especificacions", values.especificacions ?? "");
 	data.append("descripcio", values.descripcio ?? "");
 

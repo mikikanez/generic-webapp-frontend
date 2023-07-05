@@ -10,14 +10,27 @@ export default function Component11({ component, matches, imatges, theme, router
 				<Box py={2}>
 					<Grid container spacing={4}>
 						<Grid item md={6} xs={12} display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"flex-start"}>
-
 							{valor(2, component) && (
-								<Typography variant="body1" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={3} color={component.dark ? theme.palette.details.main: theme.palette.secondary.main}>
+								<Typography
+									variant="body1"
+									textAlign={"left"}
+									fontWeight={"bold"}
+									textTransform={"unset"}
+									mb={3}
+									color={component.dark ? theme.palette.details.main : theme.palette.secondary.main}
+								>
 									{valor(2, component)}
 								</Typography>
 							)}
 							{valor(0, component) && (
-								<Typography variant="h2" textAlign={"left"} fontWeight={"bold"} textTransform={"unset"} mb={3} color={component.dark ? "white" : "black"}>
+								<Typography
+									variant="h2"
+									textAlign={"left"}
+									fontWeight={"bold"}
+									textTransform={"unset"}
+									mb={3}
+									color={component.dark ? "white" : "black"}
+								>
 									{valor(0, component)}
 								</Typography>
 							)}
