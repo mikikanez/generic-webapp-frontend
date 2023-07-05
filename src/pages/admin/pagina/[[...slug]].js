@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit } from "@mui/icons-material";
+import { Add, CircleOutlined, Delete, Edit } from "@mui/icons-material";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { deleteElement, getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Chip, Fab, Grid, Typography } from "@mui/material";
+import { Box, Chip, Fab, Grid, IconButton, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
@@ -136,7 +136,16 @@ export default function PaginesAdmin({ pagina, components }) {
 
 				<Grid container spacing={3} direction={{ xs: "column-reverse", xl: "row" }}>
 					<Grid item lg={12} xl={8} xs={12}>
-						<CustomCard title="Editor" sticky button onClick={() => setOpen(true)} style={{ overflow: "hidden" }}>
+						<CustomCard
+							title="Editor"
+							sticky
+							button={
+								<IconButton onClick={() => setOpen(true)}>
+									<Add />
+								</IconButton>
+							}
+							style={{ overflow: "hidden" }}
+						>
 							{componentsPreview?.map((com) => (
 								<Box key={com.id} style={{ position: "relative", overflow: "hidden" }}>
 									<Overlay>

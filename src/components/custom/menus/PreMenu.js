@@ -4,6 +4,7 @@ import { Email, Instagram, Phone, Twitter } from "@mui/icons-material";
 import { Box, Container, Hidden, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
+import XXSS from "./XXSS";
 
 export const PreMenu = ({ scrollY = 0 }) => {
 	const theme = useTheme();
@@ -55,18 +56,7 @@ export const PreMenu = ({ scrollY = 0 }) => {
 						alignItems: "center",
 					}}
 				>
-					<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-						{opcions?.instagram && (
-							<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-								<Instagram color={isDark(opcions?.secondary) ? "info" : "primary"} />
-							</a>
-						)}
-						{opcions?.twitter && (
-							<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-								<Twitter color={isDark(opcions?.secondary) ? "info" : "primary"} />
-							</a>
-						)}
-					</Stack>
+					<XXSS premenu={1} opcions={opcions} menuColor={opcions?.secondary} />
 				</Box>
 			</Box>
 		</Box>

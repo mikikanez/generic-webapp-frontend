@@ -88,7 +88,6 @@ const CrearTema = (data) => {
 			},
 			h3: {
 				fontSize: "2rem",
-				textTransform: "uppercase",
 				fontWeight: 400,
 				color: "#1d1d1b",
 				[breakpoints.down("sm")]: {

@@ -1,6 +1,6 @@
 import Dashboard from "@mui/icons-material/Dashboard";
 import Group from "@mui/icons-material/Group";
-import { CircleOutlined, Inventory, Layers, Newspaper, Settings, ShoppingCart } from "@mui/icons-material";
+import { CircleOutlined, Inventory, Layers, LocalShipping, Newspaper, Settings, ShoppingCart } from "@mui/icons-material";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Divider, List, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";
@@ -42,6 +42,11 @@ const PaginesItems = ({ onMobileClose }) => {
 			href: "/admin/productes",
 			icon: Inventory,
 			title: "Productes",
+		},
+		opcions?.botiga === "1" && {
+			href: "/admin/comandes",
+			icon: LocalShipping,
+			title: "Comandes",
 		},
 		{
 			title: "Pàgines",

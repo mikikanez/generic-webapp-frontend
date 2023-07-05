@@ -8,6 +8,8 @@ import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
+import CistellaMenu from "./CistellaMenu";
+import XXSS from "./XXSS";
 
 export default function MenuCustom4({ premenu, scrollY = 0, menuColor }) {
 	const router = useRouter();
@@ -83,23 +85,17 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuColor }) {
 						alignItems: "center",
 					}}
 				>
-					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
+					<XXSS premenu={premenu} opcions={opcions} menuColor={menuColor} />
+					<CistellaMenu />
+					<IconButton
+						style={{ zIndex: 10, marginTop: 5, marginRight: 5 }}
+						color="primary"
+						aria-controls="simple-menu"
+						aria-haspopup="true"
+						onClick={openMenu}
+					>
 						<Menu color={isDark(menuColor) ? "info" : "primary"} />
 					</IconButton>
-					{premenu !== "1" && (
-						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-							{opcions?.instagram && (
-								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-							{opcions?.twitter && (
-								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-						</Stack>
-					)}
 				</Box>
 			</Box>
 		</Toolbar>

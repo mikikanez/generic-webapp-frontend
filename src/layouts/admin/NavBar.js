@@ -21,6 +21,7 @@ const BoxMenu = styled(Box)(({ theme }) => ({
 
 const DrawerCustom = styled(Drawer)(({ theme }) => ({
 	"& .MuiPaper-root": {
+		backgroundColor: "#f5f5f5",
 		width: 256,
 		height: "calc(100%)",
 		border: 0 + " !important",

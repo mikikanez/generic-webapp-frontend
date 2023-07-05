@@ -1,6 +1,6 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
 import { Close, Email, Instagram, Menu, Phone, Twitter } from "@mui/icons-material";
-import { AppBar, Box, Container, Drawer, Hidden, IconButton, Stack, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material/styles";
@@ -10,8 +10,10 @@ import { PreMenu } from "./PreMenu";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
 import { useState } from "react";
 import NavBarItemLight from "@/layouts/public/NavBarItemLight";
+import CistellaMenu from "./CistellaMenu";
 
 export default function MenuCustom2({ scrollY = 0, premenu, menuColor }) {
+	const matches = useMediaQuery("(min-width:960px)");
 	const theme = useTheme();
 	const router = useRouter();
 	const opcions = useOpcions();
@@ -62,7 +64,7 @@ export default function MenuCustom2({ scrollY = 0, premenu, menuColor }) {
 							<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} fill alt="G" style={{ objectFit: "contain" }} />
 						</Box>
 					) : (
-						<Box height={140} display={"flex"} alignItems={"center"}>
+						<Box height={matches ? 140 : 120} display={"flex"} alignItems={"center"}>
 							<Typography variant="h3" color={isDark(menuColor) ? "white" : "black"} my={3}>
 								{opcions?.titol}
 							</Typography>
@@ -84,14 +86,19 @@ export default function MenuCustom2({ scrollY = 0, premenu, menuColor }) {
 								<NavBarItemLight to={item.to} key={item.title} title={item.title} />
 							)
 						)}
+						<CistellaMenu />
 					</Box>
 				</Hidden>
 
 				<Hidden mdUp>
 					<Box onClick={() => router.push("/")}>{/* <Logo width={150} fill="white" /> */}</Box>
-					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
-						<Menu style={{ color: isDark(menuColor) ? "white" : "black" }} />
-					</IconButton>
+					<Box display={"flex"}>
+						<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
+							<Menu style={{ color: isDark(menuColor) ? "white" : "black" }} />
+						</IconButton>
+						<CistellaMenu />
+					</Box>
+
 					<Drawer open={menu} onClose={closeMenu} style={{ zIndex: 10000 }} anchor={"top"}>
 						<IconButton onClick={closeMenu}>
 							<Close />

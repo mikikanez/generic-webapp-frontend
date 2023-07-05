@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { addElement, deleteElement, getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Checkbox, Chip, Collapse, Fab, FormControlLabel, Grid, Typography } from "@mui/material";
+import { Box, Checkbox, Chip, Collapse, Fab, FormControlLabel, Grid, Stack, Typography } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
@@ -37,9 +37,9 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 	} = useForm({ shouldUnregister: false, defaultValues: producte });
 
 	useEffect(() => {
-		const slug = slugify(watch("nom") ?? "");
+		const slug = slugify(watch("titol") ?? "");
 		setValue("slug", slug);
-	}, [watch("nom")]);
+	}, [watch("titol")]);
 
 	const deleteProducte = async () => {
 		setLoading(true);
@@ -83,12 +83,12 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 	};
 
 	return (
-		<PageAdmin title={producte ? producte.nom + " - " + producte?.preu + "€" : "Nou producte"} Icon={Inventory}>
+		<PageAdmin title={producte ? producte.titol + " - " + producte?.preu + "€" : "Nou producte"} Icon={Inventory}>
 			<form onSubmit={handleSubmit(guardar)}>
 				<CustomCard>
 					<CustomTextField
 						register={register}
-						name={"nom"}
+						name={"titol"}
 						label={"Nom"}
 						InputLabelProps={{
 							shrink: true,
@@ -129,7 +129,7 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 								InputLabelProps={{
 									shrink: true,
 								}}
-								adornment={"/botiga/"}
+								adornment={"/producte/"}
 								disabled
 							/>
 							<CustomTextField
@@ -157,7 +157,7 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 												size={"medium"}
 												value={1}
 												disableRipple
-												defaultChecked={watch("stock_activat")}
+												defaultChecked={watch("stock_activat") === "1"}
 												onChange={(event) => setValue("stock_activat", event.target.checked ? "1" : "0")}
 											/>
 										)}
@@ -184,7 +184,10 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 								<InputImage name={"imatge"} register={register} trigger={trigger} text={"Imatge destacada"} />
 								<Thumb file={watch("imatge") ?? "exemple.jpg"} />
 							</Box>
-							<CustomButton title={"Guardar"} success type="submit" fullWidth />
+							<Stack spacing={2} direction={"row"}>
+								{producte && <CustomButton title={"Veure producte"} href={"/producte/" + producte.slug} target="_blank" fullWidth />}
+								<CustomButton title={"Guardar"} success type="submit" fullWidth />
+							</Stack>
 						</CustomCard>
 					</Grid>
 				</Grid>

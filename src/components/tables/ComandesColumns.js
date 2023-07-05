@@ -6,14 +6,16 @@ import Chip from "@mui/material/Chip";
 import { Stack } from "@mui/system";
 import moment from "moment";
 import { useRouter } from "next/router";
+import { Estat } from "../elements/Estat";
+import { Check, Remove } from "@mui/icons-material";
 
-const ProductesColumns = (maquines) => {
+const ComandesColumns = (comandes) => {
 	const router = useRouter();
 
 	const columns = [
 		{
-			name: "slug",
-			label: "URL",
+			name: "id",
+			label: "ID",
 			options: {
 				filter: false,
 				sort: true,
@@ -22,18 +24,27 @@ const ProductesColumns = (maquines) => {
 			},
 		},
 		{
-			name: "imatge",
-			label: "Imatge",
+			name: "comanda_estat",
+			label: "Nom",
 			options: {
 				filter: false,
 				sort: true,
 				sortOrder: "desc",
-				customBodyRender: (value) => <Avatar src={process.env.NEXT_PUBLIC_STORAGE + value} />,
+				customBodyRender: (value) => <Estat estat={value} />,
 			},
 		},
-
 		{
-			name: "titol",
+			name: "unique_id",
+			label: "ID",
+			options: {
+				filter: false,
+				sort: true,
+				sortOrder: "desc",
+				customBodyRender: (value) => <Chip label={value} />,
+			},
+		},
+		{
+			name: "nom",
 			label: "Nom",
 			options: {
 				filter: false,
@@ -41,15 +52,14 @@ const ProductesColumns = (maquines) => {
 				sortOrder: "desc",
 			},
 		},
-
 		{
-			name: "stock",
-			label: "Stock",
+			name: "id",
+			label: "Cognoms",
 			options: {
 				filter: false,
 				sort: true,
 				sortOrder: "desc",
-				customBodyRender: (value) => (value ? value + " u" : "-"),
+				customBodyRenderLite: (dataIndex) => comandes[dataIndex].cognom1 + " " + comandes[dataIndex].cognom2,
 			},
 		},
 		{
@@ -63,13 +73,24 @@ const ProductesColumns = (maquines) => {
 			},
 		},
 		{
-			name: "slug",
-			label: "URL",
+			name: "factura",
+			label: "Factura",
 			options: {
 				filter: false,
 				sort: true,
 				sortOrder: "desc",
-				customBodyRender: (value) => "/" + value,
+				customBodyRender: (value) => (value === 1 ? <Check /> : <Remove />),
+			},
+		},
+		{
+			name: "productes",
+			label: "Productes",
+			options: {
+				filter: false,
+				sort: true,
+				sortOrder: "desc",
+				customBodyRender: (value) =>
+					value.map((item) => <Chip key={item?.id} label={item?.titol + " x" + item?.pivot?.quantitat} style={{ marginRight: 5 }} />),
 			},
 		},
 		{
@@ -91,7 +112,7 @@ const ProductesColumns = (maquines) => {
 		// 		empty: true,
 		// 		customBodyRenderLite: (dataIndex) => {
 		// 			return (
-		// 				<IconButton onClick={() => router.push(`/admin/pagina/${maquines[dataIndex].slug}`)}>
+		// 				<IconButton onClick={() => router.push(`/admin/pagina/${comandes[dataIndex].slug}`)}>
 		// 					<RemoveRedEye />
 		// 				</IconButton>
 		// 			);
@@ -102,4 +123,4 @@ const ProductesColumns = (maquines) => {
 	return columns;
 };
 
-export default ProductesColumns;
+export default ComandesColumns;

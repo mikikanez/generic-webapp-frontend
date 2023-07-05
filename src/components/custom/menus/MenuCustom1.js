@@ -1,6 +1,6 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
-import { Close, Instagram, Menu, Twitter } from "@mui/icons-material";
+import { Close, Instagram, Menu, ShoppingBag, Twitter } from "@mui/icons-material";
 import { AppBar, Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
 import NavBarItemLight from "@/layouts/public/NavBarItemLight";
+import CistellaMenu from "./CistellaMenu";
+import XXSS from "./XXSS";
 
 export default function MenuCustom1({ premenu, scrollY = 0, menuColor }) {
 	const router = useRouter();
@@ -90,20 +92,8 @@ export default function MenuCustom1({ premenu, scrollY = 0, menuColor }) {
 						alignItems: "center",
 					}}
 				>
-					{premenu !== "1" && (
-						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-							{opcions?.instagram && (
-								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-							{opcions?.twitter && (
-								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-						</Stack>
-					)}
+					<XXSS premenu={premenu} opcions={opcions} menuColor={menuColor} />
+					<CistellaMenu />
 				</Box>
 				<Hidden mdUp>
 					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>

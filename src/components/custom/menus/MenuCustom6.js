@@ -10,7 +10,9 @@ import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
 import { PreMenu } from "./PreMenu";
 import NavBarItemLight from "@/layouts/public/NavBarItemLight";
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import XXSS from "./XXSS";
+import CistellaMenu from "./CistellaMenu";
 
 export default function MenuCustom6({ premenu, scrollY = 0, menuColor }) {
 	const router = useRouter();
@@ -49,7 +51,7 @@ export default function MenuCustom6({ premenu, scrollY = 0, menuColor }) {
 					style={{
 						display: "flex",
 						justifyContent: "flex-start",
-                        alignItems: 'center',
+						alignItems: "center",
 						cursor: "pointer",
 						padding: 15,
 					}}
@@ -59,57 +61,60 @@ export default function MenuCustom6({ premenu, scrollY = 0, menuColor }) {
 						<Image src={process.env.NEXT_PUBLIC_STORAGE + opcions?.logo} height={60} width={100} alt="G" style={{ objectFit: "contain" }} />
 					) : (
 						<Box height={60} display={"flex"} alignItems={"center"}>
-							<Typography variant="h3" color={isDark(menuColor) ? "white" : "black"} textTransform={'capitalize'} fontWeight={'bold'}>
+							<Typography variant="h3" color={isDark(menuColor) ? "white" : "black"} textTransform={"capitalize"} fontWeight={"bold"}>
 								{opcions?.titol}
 							</Typography>
 						</Box>
 					)}
 				</Box>
-				<Hidden mdDown>
+				<Box display={"flex"}>
+					<Hidden mdDown>
+						<Box
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+							}}
+							mr={3}
+						>
+							{items?.map((item) =>
+								isDark(menuColor) ? (
+									<NavBarItemLight to={item.to} key={item.title} title={item.title} />
+								) : (
+									<NavBarItem to={item.to} key={item.title} title={item.title} />
+								)
+							)}
+						</Box>
+					</Hidden>
+
 					<Box
 						style={{
 							display: "flex",
-							justifyContent: "center",
-							alignItems: "center"
+							justifyContent: "flex-end",
+							alignItems: "center",
 						}}
 					>
-						{items?.map((item) =>
-							isDark(menuColor) ? (
-								<NavBarItemLight to={item.to} key={item.title} title={item.title} />
-							) : (
-								<NavBarItem to={item.to} key={item.title} title={item.title} />
-							)
-						)}
+						<XXSS premenu={premenu} opcions={opcions} menuColor={menuColor} />
+						<CistellaMenu />
 					</Box>
-				</Hidden>
-
-				<Box
-					style={{
-						display: "flex",
-						justifyContent: "flex-end",
-						alignItems: "center",
-					}}
-				>
-					{premenu !== "1" && (
-						<Stack direction={"row"} spacing={2} justifyContent={"center"} mt={1}>
-							{opcions?.instagram && (
-								<a href={opcions?.instagram} target={"_blank"} rel="noreferrer">
-									<Instagram color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-							{opcions?.twitter && (
-								<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
-									<Twitter color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-							{opcions?.youtube && (
-								<a href={opcions?.youtube} target={"_blank"} rel="noreferrer">
-									<YouTubeIcon color={isDark(menuColor) ? "info" : "primary"} />
-								</a>
-							)}
-						</Stack>
-					)}
 				</Box>
+				<Hidden mdUp>
+					<IconButton style={{ zIndex: 10 }} color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={openMenu}>
+						<Menu style={{ color: isDark(menuColor) ? "white" : "black" }} />
+					</IconButton>
+					<Drawer style={{ zIndex: 10000 }} open={menu} onClose={closeMenu} anchor={"top"}>
+						<Box justifyContent={"center"} display={"flex"} flexDirection={"column"} pb={2}>
+							<Box textAlign={"center"} my={2}>
+								<IconButton onClick={closeMenu}>
+									<Close />
+								</IconButton>
+							</Box>
+							{items?.map((item) => (
+								<NavBarItemMobile to={item.to} key={item.title} title={item.title} closeMenu={closeMenu} />
+							))}
+						</Box>
+					</Drawer>
+				</Hidden>
 			</Box>
 		</Toolbar>
 	);
