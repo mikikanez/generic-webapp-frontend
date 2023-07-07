@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "moment/locale/ca";
-import CustomCard from "@/components/layout/CustomCard";
-import { Box, Grid, Radio, Typography } from "@mui/material";
-import { menus } from "@/components/custom/menus";
+import { Box, Typography } from "@mui/material";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { DragHandle } from "@mui/icons-material";
+import DragHandle from "@mui/icons-material/DragHandle";
 
 export default function OrdreComponents({ components, setComponentsPreview }) {
 	const handleDrop = (droppedItem) => {

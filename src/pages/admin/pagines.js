@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { Layers } from "@mui/icons-material";
+import Layers from "@mui/icons-material/Layers";
 import { getServerSession } from "next-auth";
 import { getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
 import CustomCard from "@/components/layout/CustomCard";
-import { useRouter } from "next/router";
 import CustomButton from "@/components/elements/CustomButton";
 import { DialogAddPagina } from "@/views/pagines/DialogAddPagina";
 import { ThemeProvider } from "@emotion/react";
@@ -16,7 +15,6 @@ import PaginesColumns from "@/components/tables/PaginesColumns";
 
 export default function PaginesAdmin({ pagines }) {
 	const [open, setOpen] = useState(false);
-	const router = useRouter();
 	const columns = PaginesColumns(pagines);
 	const options = TableOptions("pagina");
 

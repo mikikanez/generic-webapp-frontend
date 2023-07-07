@@ -4,8 +4,7 @@ import CustomCard from "@/components/layout/CustomCard";
 import { Box, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Radio, Select, Typography } from "@mui/material";
 import { menus } from "@/components/custom/menus";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { DragHandle } from "@mui/icons-material";
-import CustomCheckbox from "@/components/elements/CustomCheckbox";
+import DragHandle from "@mui/icons-material/DragHandle";
 import { Controller } from "react-hook-form";
 
 export default function Menus({ watch, setValue, opcions, control, opcio, register }) {

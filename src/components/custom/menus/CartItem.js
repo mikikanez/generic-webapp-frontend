@@ -1,6 +1,5 @@
-import { Close } from "@mui/icons-material";
+import Close from "@mui/icons-material/Close";
 import { Avatar, IconButton, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
-import moment from "moment";
 
 export default function CartItem({ item, removeItem }) {
 	return (

@@ -1,16 +1,16 @@
 import React from "react";
-import { Box, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
-import Instagram from "@mui/icons-material/Instagram";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import { useOpcions } from "@/context/OpcionsContext";
-import { Twitter } from "@mui/icons-material";
+import Instagram from "@mui/icons-material/Instagram";
+import Twitter from "@mui/icons-material/Twitter";
+import YouTube from "@mui/icons-material/YouTube";
 import Link from "next/link";
 import { useTheme } from "@mui/material/styles";
 import { isDark } from "@/core/createTheme";
 
 const FooterCustom1 = ({ footerColor }) => {
 	const opcions = useOpcions();
-	const theme = useTheme();
 
 	const items = [
 		...opcions?.pagines
@@ -70,6 +70,11 @@ const FooterCustom1 = ({ footerColor }) => {
 								{opcions?.twitter && (
 									<a href={opcions?.twitter} target={"_blank"} rel="noreferrer">
 										<Twitter color={isDark(footerColor) ? "info" : "primary"} />
+									</a>
+								)}
+								{opcions?.youtube && (
+									<a href={opcions?.youtube} target={"_blank"} rel="noreferrer">
+										<YouTube color={isDark(footerColor) ? "info" : "primary"} />
 									</a>
 								)}
 							</Stack>

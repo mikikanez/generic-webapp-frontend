@@ -3,6 +3,7 @@ import { makeStyles } from "@mui/styles";
 import TopBarPublic from "./TopBarPublic";
 import Footer from "./Footer";
 import { useTheme } from "@mui/material/styles";
+import { motion, AnimatePresence } from "framer-motion";
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -28,6 +29,11 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
+const variants = {
+	hidden: { opacity: 0, x: -200, y: 0 },
+	enter: { opacity: 1, x: 0, y: 0 },
+	exit: { opacity: 0, x: 0, y: -100 },
+};
 const PublicLayout = ({ children }) => {
 	const classes = useStyles();
 	const [isMobileNavOpen, setMobileNavOpen] = useState(false);
@@ -36,6 +42,7 @@ const PublicLayout = ({ children }) => {
 	return (
 		<div className={classes.root}>
 			<TopBarPublic onMobileNavOpen={() => setMobileNavOpen(true)} />
+
 			<div className={classes.wrapper}>
 				<div className={classes.contentContainer}>
 					<div className={classes.content} style={{ backgroundColor: theme.palette.background.main }}>

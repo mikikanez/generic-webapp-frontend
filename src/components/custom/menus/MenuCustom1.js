@@ -1,10 +1,10 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
-import { Close, Instagram, Menu, ShoppingBag, Twitter } from "@mui/icons-material";
-import { AppBar, Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
+import Close from "@mui/icons-material/Close";
+import Menu from "@mui/icons-material/Menu";
+import { Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useTheme } from "@mui/material/styles";
 import { isDark } from "@/core/createTheme";
 import { useState } from "react";
 import { useOpcions } from "@/context/OpcionsContext";
@@ -17,7 +17,6 @@ export default function MenuCustom1({ premenu, scrollY = 0, menuColor }) {
 	const router = useRouter();
 	const [menu, setMenu] = useState(false);
 	const opcions = useOpcions();
-	const theme = useTheme();
 
 	const items = [
 		...opcions?.pagines

@@ -7,34 +7,19 @@ import ImageInput from "./InputImage";
 import CustomTiny from "./CustomTiny";
 import CustomButton from "./CustomButton";
 import Thumb from "./Thumb";
-import { Delete } from "@mui/icons-material";
+import Delete from "@mui/icons-material/Delete";
 
-export function RenderElement({ element, defaultValue, register, control, name, setValue, watch, trigger, getValues }) {
+export function RenderElement({ element, defaultValue, register, control, name, setValue, watch, trigger, getValues, desc }) {
 	const opcions = useOpcions();
-	console.log(element);
+	console.log("desc");
+	console.log(desc);
 
 	const render = () => {
 		switch (element?.nom) {
 			case "titol":
-				return (
-					<CustomTextField
-						name={String(name)}
-						type="text"
-						label={element?.pivot?.descripcio ?? "Títol"}
-						register={register}
-						defaultValue={defaultValue}
-					/>
-				);
+				return <CustomTextField name={String(name)} type="text" label={desc ?? "Títol"} register={register} defaultValue={defaultValue} />;
 			case "text":
-				return (
-					<CustomTextField
-						name={String(name)}
-						type="text"
-						label={element?.pivot?.descripcio ?? "Text"}
-						register={register}
-						defaultValue={defaultValue}
-					/>
-				);
+				return <CustomTextField name={String(name)} type="text" label={desc ?? "Text"} register={register} defaultValue={defaultValue} />;
 			case "imatge":
 				return (
 					<ImageInputText
@@ -44,7 +29,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 						defaultValue={defaultValue}
 						getValues={getValues}
 						trigger={trigger}
-						descripcio={element?.pivot?.descripcio ?? "Imatge"}
+						descripcio={element?.pivot?.descripcio ?? desc ?? "Imatge"}
 					/>
 				);
 			case "boto":
@@ -92,7 +77,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 					<CustomTiny
 						name={String(name)}
 						type="text"
-						label={element?.pivot?.descripcio ?? "Textarea"}
+						label={desc ?? "Textarea"}
 						register={register}
 						defaultValue={defaultValue}
 						setValue={setValue}
@@ -118,18 +103,9 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 				);
 
 			case "numero":
-				return (
-					<CustomTextField
-						name={String(name)}
-						type="number"
-						label={element?.pivot?.descripcio ?? "Espai"}
-						register={register}
-						defaultValue={defaultValue}
-					/>
-				);
+				return <CustomTextField name={String(name)} type="number" label={desc ?? "Espai"} register={register} defaultValue={defaultValue} />;
 			case "galeria":
 				const galeria = watch(String(name)) ?? [];
-				console.log(watch(String(name)));
 				return (
 					<Box my={4}>
 						{galeria?.map((item, index) => (
@@ -246,7 +222,7 @@ export function RenderElement({ element, defaultValue, register, control, name, 
 					</Box>
 				);
 			case "video":
-				return <CustomTextField name={String(name)} type="text" label={"id Video Youtube"} register={register} defaultValue={defaultValue} />;
+				return <CustomTextField label={desc ?? "ID Vídeo Youtube"} name={String(name)} type="text" register={register} defaultValue={defaultValue} />;
 			default:
 		}
 	};

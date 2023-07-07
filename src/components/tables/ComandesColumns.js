@@ -1,13 +1,9 @@
-import PrecisionManufacturing from "@mui/icons-material/PrecisionManufacturing";
-import RemoveRedEye from "@mui/icons-material/RemoveRedEye";
-import IconButton from "@mui/material/IconButton";
-import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
-import { Stack } from "@mui/system";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { Estat } from "../elements/Estat";
-import { Check, Remove } from "@mui/icons-material";
+import Check from "@mui/icons-material/Check";
+import Remove from "@mui/icons-material/Remove";
 
 const ComandesColumns = (comandes) => {
 	const router = useRouter();

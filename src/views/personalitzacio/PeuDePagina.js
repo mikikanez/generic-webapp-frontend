@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import "moment/locale/ca";
 import CustomCard from "@/components/layout/CustomCard";
-import { Box, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Radio, Select, Typography } from "@mui/material";
+import { Box, FormControl, Grid, InputLabel, MenuItem, Radio, Select, Typography } from "@mui/material";
 import { footers } from "@/components/custom/footers";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { DragHandle } from "@mui/icons-material";
-import { Controller } from "react-hook-form";
 
 export default function PeuDePagina({ watch, setValue, opcions = [], control, opcio, register }) {
 	const [pagines, setPagines] = useState(opcions.filter((m) => m.menu === 2));

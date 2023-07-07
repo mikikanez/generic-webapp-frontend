@@ -1,17 +1,12 @@
-import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { valor } from "..";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/navigation";
-import { Autoplay, FreeMode, Navigation, Thumbs, Pagination, EffectFade } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useWindowSize } from "@/core/utils";
 import { useCallback, useEffect, useState } from "react";
-import { Overlay } from "@/components/elements/Overlay";
-import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
-import { Margin } from "@mui/icons-material";
 
 export default function Component43({ component, matches, imatges, theme, router, ...props }) {
 	const size = useWindowSize();
@@ -29,19 +24,26 @@ export default function Component43({ component, matches, imatges, theme, router
 	}, [component]);
 
 	return (
-		<Box
-			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main}}
-			{...props}
-			ref={div}
-		>
-			<Container maxWidth={'lg'} style={{ position: "relative"}}>
-                <Box display={'flex'} flexWrap={'wrap'} justifyContent={'center'} py={2}>
-                    {valor(0, component)?.map((slide, index) => (
-                            <Box style={{minHeight: matches ? 100 : 100, height: "100%", position: "relative", display: 'flex', alignItems: 'center', justifyContent: 'center'}} m={5}>
-                                <img alt="Imatge" src={imatges.filter((i) => i.id === index)[0]?.imatge} fill objectFit="cover" />
-                            </Box>
-                    ))}
-                </Box>
+		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props} ref={div}>
+			<Container maxWidth={"lg"} style={{ position: "relative" }}>
+				<Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"} py={2}>
+					{valor(0, component)?.map((slide, index) => (
+						<Box
+							key={index}
+							style={{
+								minHeight: matches ? 100 : 100,
+								height: "100%",
+								position: "relative",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+							}}
+							m={5}
+						>
+							<img alt="Imatge" src={imatges.filter((i) => i.id === index)[0]?.imatge} fill objectFit="cover" />
+						</Box>
+					))}
+				</Box>
 			</Container>
 		</Box>
 	);

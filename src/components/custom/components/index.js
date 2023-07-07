@@ -51,6 +51,7 @@ import Component50 from "./video/Component50";
 import ComponentProducte from "./productes/ComponentProducte";
 import Component51 from "./productes/Component51";
 import Component52 from "./productes/Component52";
+import Component53 from "./productes/Component53";
 
 export const components = [
 	{ id: 1, component: Component1 },
@@ -105,6 +106,7 @@ export const components = [
 	{ id: 50, component: Component50 },
 	{ id: 51, component: Component51 },
 	{ id: 52, component: Component52 },
+	{ id: 53, component: Component53 },
 
 	//Producte
 	{ id: "producte", component: ComponentProducte },

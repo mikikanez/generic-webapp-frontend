@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit } from "@mui/icons-material";
+import CircleOutlined from "@mui/icons-material/CircleOutlined";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { deleteElement, getData, getList, updateElement } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Box, Chip, Fab, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CustomTextField from "@/components/elements/CustomTextField";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/elements/CustomSelect";
-import { constructPagina, slugify } from "@/core/utils";
+import { slugify } from "@/core/utils";
 import { useSnackbar } from "notistack";
 import { useAuth } from "@/core/hooks/useAuth";
 import Thumb from "@/components/elements/Thumb";
 import InputImage from "@/components/elements/InputImage";
 import CustomTiny from "@/components/elements/CustomTiny";
-import { DialogAddCategoria } from "@/views/entrades/DialogAddCategoria";
 
 export default function EntradaAdd({ entrada, idiomes, categories }) {
 	const router = useRouter();
@@ -36,7 +35,6 @@ export default function EntradaAdd({ entrada, idiomes, categories }) {
 		control,
 		formState: { errors },
 		trigger,
-		reset,
 	} = useForm({ shouldUnregister: false, defaultValues: entrada });
 
 	useEffect(() => {

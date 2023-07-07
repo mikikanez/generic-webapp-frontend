@@ -7,9 +7,8 @@ import ColorPicker from "mui-color-picker";
 import Thumb from "@/components/elements/Thumb";
 import ImageInput from "@/components/elements/InputImage";
 import { tipografies } from "@/core/fonts";
-import { Circle } from "@mui/icons-material";
+import Circle from "@mui/icons-material/Circle";
 import { botons } from "@/components/custom/botons";
-import CustomButton from "@/components/elements/CustomButton";
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Disseny({ register, opcio, watch, setValue, control, trigger, getValues }) {

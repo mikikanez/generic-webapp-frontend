@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 
 const Boto = styled(Box)(({ theme }) => ({
 	padding: "10px 20px",
-	fontSize: 14,
+	fontSize: 13,
 	borderRadius: 10,
 	lineHeight: 1.5,
 	color: "white",
@@ -21,6 +21,7 @@ const Boto = styled(Box)(({ theme }) => ({
 	"& .MuiTypography-root": {
 		transition: "0.2s",
 		color: "white",
+		fontSize: 13,
 	},
 	"&:hover": {
 		color: theme.palette.primary.main,
@@ -61,7 +62,7 @@ export default function ImageInput({ errors, name, register, trigger, multiple, 
 							<Add size={15} />
 							<Typography
 								style={{
-									fontSize: 15,
+									fontSize: 13,
 								}}
 							>
 								{" "}
