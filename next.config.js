@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: false,
+	env: {
+		NEXT_PUBLIC: "http://localhost:8000/api/",
+	},
 	modularizeImports: {
 		"@mui/material": {
 			transform: "@mui/material/{{member}}",

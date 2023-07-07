@@ -1,8 +1,5 @@
-import { useAuth } from "@/core/hooks/useAuth";
 import axios from "axios";
 import { signOut } from "next-auth/react";
-
-const url = "http://localhost:8000/api/";
 
 // GENERIC
 
@@ -13,7 +10,7 @@ export async function getOptions() {
 		},
 	};
 
-	const data = await axios.get(url + "opcions", config).then((response) => response.data.data);
+	const data = await axios.get(process.env.NEXT_PUBLIC + "opcions", config).then((response) => response.data.data);
 	const result = data.reduce((o, s) => {
 		o[s.nom] = s.valor;
 		return o;
@@ -30,7 +27,7 @@ export async function getList(element, token) {
 	};
 
 	try {
-		const data = await axios.get(url + element, config).then((response) => response.data.data);
+		const data = await axios.get(process.env.NEXT_PUBLIC + element, config).then((response) => response.data.data);
 		return data;
 	} catch (error) {
 		await signOut({ redirect: true });
@@ -39,14 +36,14 @@ export async function getList(element, token) {
 }
 
 export async function getDataIds(element) {
-	const data = await axios.get(url + element).then((response) => response.data.data);
+	const data = await axios.get(process.env.NEXT_PUBLIC + element).then((response) => response.data.data);
 
 	return data;
 }
 
 export async function getData(element, slug) {
 	const data = await axios
-		.get(url + element + "/" + slug)
+		.get(process.env.NEXT_PUBLIC + element + "/" + slug)
 		.then((response) => response.data.data)
 		.catch((err) => console.log(err.response.data.message));
 	return data;
@@ -62,7 +59,7 @@ export const updateElement = async (element, key, values, token) => {
 		},
 	};
 	await axios
-		.post(url + element + "/" + key, values, config)
+		.post(process.env.NEXT_PUBLIC + element + "/" + key, values, config)
 		.then((response) => {
 			console.log(response);
 			if (response.status === 200) {
@@ -89,7 +86,7 @@ export const addElement = async (element, values, token) => {
 	};
 	try {
 		await axios
-			.post(url + element, values, config)
+			.post(process.env.NEXT_PUBLIC + element, values, config)
 			.then((response) => {
 				if (response.status === 200) {
 					message = response.data.message;
@@ -118,7 +115,7 @@ export const deleteElement = async (element, key, token) => {
 		},
 	};
 	await axios
-		.delete(url + element + "/" + key, config)
+		.delete(process.env.NEXT_PUBLIC + element + "/" + key, config)
 		.then((response) => {
 			if (response.status === 200) {
 				message = response.data.message;
