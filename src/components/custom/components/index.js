@@ -113,5 +113,5 @@ export const components = [
 ];
 
 export const valor = (index, component) => {
-	return component?.component_pagina_element[index]?.valor;
+	return component?.component_pagina_element?.[index]?.valor;
 };
