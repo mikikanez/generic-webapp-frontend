@@ -1,6 +1,7 @@
 import NavBarItem from "@/layouts/public/NavBarItem";
 import NavBarItemMobile from "@/layouts/public/NavBarItemMobile";
-import { Close, Instagram, Menu, Twitter } from "@mui/icons-material";
+import Close from "@mui/icons-material/Close";
+import Menu from "@mui/icons-material/Menu";
 import { AppBar, Box, Drawer, Hidden, IconButton, Stack, Toolbar, Typography, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";

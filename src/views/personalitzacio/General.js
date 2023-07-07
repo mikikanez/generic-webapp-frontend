@@ -1,7 +1,11 @@
 import React from "react";
 import "moment/locale/ca";
-import { Api, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import Api from "@mui/icons-material/Api";
+import Email from "@mui/icons-material/Email";
+import Instagram from "@mui/icons-material/Instagram";
+import Phone from "@mui/icons-material/Phone";
+import Twitter from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
 import { Checkbox, FormControlLabel, Grid, InputAdornment } from "@mui/material";

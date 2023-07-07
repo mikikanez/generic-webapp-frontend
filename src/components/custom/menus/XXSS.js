@@ -1,4 +1,5 @@
-import { Instagram, Twitter } from "@mui/icons-material";
+import Instagram from "@mui/icons-material/Instagram";
+import Twitter from "@mui/icons-material/Twitter";
 import { Hidden, Stack } from "@mui/material";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { isDark } from "@/core/createTheme";

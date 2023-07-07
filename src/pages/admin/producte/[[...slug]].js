@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit, Inventory } from "@mui/icons-material";
+import Inventory from "@mui/icons-material/Inventory";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { addElement, deleteElement, getData, getList, updateElement } from "@/lib/API";
@@ -17,6 +17,7 @@ import Thumb from "@/components/elements/Thumb";
 import InputImage from "@/components/elements/InputImage";
 import CustomTiny from "@/components/elements/CustomTiny";
 import { constructFormProducte } from "@/lib/ConstructForm";
+import CustomSelect from "@/components/elements/CustomSelect";
 
 export default function ProducteAdd({ producte, idiomes, categories }) {
 	const router = useRouter();
@@ -40,6 +41,14 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 		const slug = slugify(watch("titol") ?? "");
 		setValue("slug", slug);
 	}, [watch("titol")]);
+
+	useEffect(() => {
+		producte &&
+			setValue(
+				"categories",
+				producte?.categories.map((i) => Number(i.id))
+			);
+	}, [producte]);
 
 	const deleteProducte = async () => {
 		setLoading(true);
@@ -132,6 +141,18 @@ export default function ProducteAdd({ producte, idiomes, categories }) {
 								adornment={"/producte/"}
 								disabled
 							/>
+							<CustomSelect
+								multiple
+								list={categories.map((i) => {
+									return { id: i.id, nom: i.nom };
+								})}
+								label={"Categories"}
+								control={control}
+								defaultValue={producte ? watch("categories") : []}
+								name={"categories"}
+								register={register}
+								mt={3}
+							/>
 							<CustomTextField
 								register={register}
 								name={"preu"}
@@ -203,7 +224,7 @@ export const getServerSideProps = async (context) => {
 	let idiomes = [];
 	try {
 		session = await getServerSession(context.req, context.res, authOptions);
-		categories = await getList("categories", session?.user?.token?.accessToken);
+		categories = await getList("categoriesProducte", session?.user?.token?.accessToken);
 		idiomes = await getList("idiomes", session?.user?.token?.accessToken);
 		producte = await getData("productes", context?.query.slug);
 	} catch (error) {

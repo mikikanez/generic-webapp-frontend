@@ -1,6 +1,7 @@
 import { useOpcions } from "@/context/OpcionsContext";
 import { isDark } from "@/core/createTheme";
-import { Email, Instagram, Phone, Twitter } from "@mui/icons-material";
+import Email from "@mui/icons-material/Email";
+import Phone from "@mui/icons-material/Phone";
 import { Box, Container, Hidden, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";

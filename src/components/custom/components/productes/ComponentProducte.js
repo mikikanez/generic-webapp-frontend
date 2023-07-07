@@ -1,11 +1,10 @@
 import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
-import CustomTextField from "@/components/elements/CustomTextField";
 import { isDark } from "@/core/createTheme";
-import { Add, Remove } from "@mui/icons-material";
+import Add from "@mui/icons-material/Add";
+import Remove from "@mui/icons-material/Remove";
 import { Box, Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
@@ -15,12 +14,9 @@ export default function ComponentProducte({ component, matches, theme, router, .
 	const [cart, setCart] = useLocalStorage("cart", []);
 
 	const {
-		register,
 		handleSubmit,
 		watch,
 		setValue,
-		getValues,
-		control,
 		formState: { errors },
 		reset,
 	} = useForm({ defaultValues: { quantitat: 0 } });
@@ -35,7 +31,6 @@ export default function ComponentProducte({ component, matches, theme, router, .
 		if (values.quantitat > 0) {
 			values.producte = props.pagina;
 			values.index = cart.length + 1;
-			console.log(values);
 
 			setCart([...cart, values]);
 			enqueueSnackbar('Producte "' + values.producte.titol + '" afegit', {

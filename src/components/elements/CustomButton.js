@@ -14,7 +14,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 	width: 150,
 	"& .MuiTypography-root": {
 		color: isDark(theme.palette.primary.main) ? "white" : "black",
-		fontSize: 14,
+		fontSize: 13,
 	},
 	"&:hover": {
 		backgroundColor: theme.palette.secondary.main,
@@ -22,7 +22,7 @@ const BootstrapButton = styled(Button)(({ theme }) => ({
 		boxShadow: "0 0 0 0.2rem " + theme.palette.secondary.main,
 		"& .MuiTypography-root": {
 			color: isDark(theme.palette.primary.main) ? "white" : "black",
-			fontSize: 14,
+			fontSize: 13,
 		},
 	},
 	"&:active": {

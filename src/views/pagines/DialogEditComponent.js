@@ -69,8 +69,9 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 							{componentLive && <ComponentChooser com={componentLive} height={1000} display="flex" alignItems="center" justifyContent="center" />}
 						</Box>
 					</FitToViewport>
+					<CustomCheckbox control={control} setValue={setValue} label="Mode fosc/alternatiu" name="dark" />
 					<Grid spacing={2} container mt={1}>
-						{componentSel?.component_pagina_element?.map((el) => (
+						{componentSel?.component_pagina_element?.map((el, index) => (
 							<Grid item md={el.element.nom === "textarea" || el.element.nom === "maps" || el.element.nom === "galeria" ? 12 : 6} key={el.id}>
 								<RenderElement
 									defaultValue={el.valor}
@@ -82,11 +83,11 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 									watch={watch}
 									trigger={trigger}
 									getValues={getValues}
+									desc={componentSel?.component?.elements?.[index].pivot.descripcio}
 								/>
 							</Grid>
 						))}
 					</Grid>
-					<CustomCheckbox control={control} setValue={setValue} label="Mode fosc/alternatiu" name="dark" />
 				</DialogContent>
 				<DialogActions>
 					<CustomButton onClick={() => setOpen(false)} title="Tancar" fullWidth />

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const Overlay = styled(Box)(({ theme, light }) => ({
-	backgroundColor: light ? "white" : theme.palette.primary.main,
+	backgroundColor: light ? "white" : "black",
 	opacity: 0.4,
 	width: "100%",
 	height: "100%",

@@ -66,6 +66,7 @@ export function constructFormProducte(values) {
 	data.append("stock", values.stock ?? "");
 	data.append("especificacions", values.especificacions ?? "");
 	data.append("descripcio", values.descripcio ?? "");
+	data.append("categories", JSON.stringify(values.categories) ?? []);
 
 	return data;
 }

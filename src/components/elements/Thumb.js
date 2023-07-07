@@ -1,4 +1,4 @@
-import { Image as ImageIcon } from "@mui/icons-material/Image";
+import ImageIcon from "@mui/icons-material/Image";
 import { Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Image from "next/image";
@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 
 const Thumb = (props) => {
 	const [thumb, setThumb] = useState();
-
-	console.log(props);
 
 	useEffect(() => {
 		if (props?.file?.[0]?.name) {

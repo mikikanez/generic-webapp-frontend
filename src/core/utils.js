@@ -100,7 +100,7 @@ export const componentDefault = (componentSel, id) => {
 					{ imatge: "exemple.jpg", titol: "Títol 2", subtitol: "Subtítol 2", boto: { titolBoto: "Text botó", extern: 0, link: "/" } },
 				];
 			case "numero":
-				return 300;
+				return 100;
 			case "video":
 				return "D2DwYzxYgT4";
 			default:
@@ -120,6 +120,19 @@ export const componentDefault = (componentSel, id) => {
 				valor: returnElement(elementSel),
 			};
 		}),
+	};
+};
+
+export const productDefault = () => {
+	return {
+		descripcio:
+			"<p>Maecenas placerat quis odio a dignissim. Praesent vel ex feugiat, pharetra diam et, varius nisl. In vulputate consectetur magna eget scelerisque. Quisque pharetra in nibh et consequat. Aliquam et tortor sit amet nibh efficitur ultricies vitae at ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis tincidunt eros sit amet dolor aliquet, non lobortis nunc aliquam. Vestibulum venenatis ligula quis sapien scelerisque porttitor. Donec in justo tincidunt, finibus magna at, dapibus lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>",
+		especificacions: "<ul><li>Lorem ipsum</li><li>Lorem ipsum</li><li>Lorem ipsum</li></ul>",
+		id: 1,
+		imatge: "exemple.jpg",
+		preu: 10,
+		slug: "exemple",
+		titol: "Lorem ipsum",
 	};
 };
 

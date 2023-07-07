@@ -1,10 +1,3 @@
-import PrecisionManufacturing from "@mui/icons-material/PrecisionManufacturing";
-import RemoveRedEye from "@mui/icons-material/RemoveRedEye";
-import IconButton from "@mui/material/IconButton";
-import Avatar from "@mui/material/Avatar";
-import Chip from "@mui/material/Chip";
-import { Stack } from "@mui/system";
-import moment from "moment";
 import { useRouter } from "next/router";
 
 const CategoriesColumns = (maquines) => {
@@ -30,16 +23,16 @@ const CategoriesColumns = (maquines) => {
 				sortOrder: "desc",
 			},
 		},
-		{
-			name: "idioma",
-			label: "Idioma",
-			options: {
-				filter: false,
-				sort: true,
-				sortOrder: "desc",
-				customBodyRender: (value) => value.nom,
-			},
-		},
+		// {
+		// 	name: "idioma",
+		// 	label: "Idioma",
+		// 	options: {
+		// 		filter: false,
+		// 		sort: true,
+		// 		sortOrder: "desc",
+		// 		customBodyRender: (value) => value.nom,
+		// 	},
+		// },
 
 		// {
 		// 	name: "id",

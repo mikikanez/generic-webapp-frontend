@@ -6,6 +6,7 @@ import theme from "@/styles/theme";
 import { useOpcions } from "@/context/OpcionsContext";
 import { menus } from "../custom/menus";
 import { titols } from "../custom/titols";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Page = ({ children, title = "", img = "exemple.jpg", ...rest }) => {
 	const [appear, setApperar] = useState(false);
@@ -41,27 +42,41 @@ const Page = ({ children, title = "", img = "exemple.jpg", ...rest }) => {
 		return <Titol title={title} hidden={router.asPath === "/"} scrollY={scrollY} img={img} />;
 	};
 
+	const variants = {
+		hidden: { opacity: 0, x: 0, y: 50 },
+		enter: { opacity: 1, x: 0, y: 0 },
+		exit: { opacity: 0, x: 0, y: -100 },
+	};
+
 	return (
 		<div {...rest}>
 			<Head>
 				<title>{title}</title>
 				<link rel="canonical" href={process.env.NEXT_URL + router.asPath} />
 			</Head>
-			<Fade in={appear} timeout={400}>
-				<div
-					style={{
-						backgroundColor: "white",
-						backgroundImage: `url(fons.jpg)`,
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						marginTop: marginTop + (opcions?.premenu === "1" ? 40 : 0),
-						zIndex: 0,
-					}}
-				>
-					{returnTitol()}
-					{children}
-				</div>
-			</Fade>
+			<motion.div
+				variants={variants} // Pass the variant object into Framer Motion
+				initial="hidden" // Set the initial state to variants.hidden
+				animate="enter" // Animated state to variants.enter
+				exit="exit" // Exit state (used later) to variants.exit
+				transition={{ type: "linear" }}
+			>
+				<AnimatePresence>
+					<div
+						style={{
+							backgroundColor: "white",
+							backgroundImage: `url(fons.jpg)`,
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+							marginTop: marginTop + (opcions?.premenu === "1" ? 40 : 0),
+							zIndex: 0,
+						}}
+					>
+						{returnTitol()}
+						{children}
+					</div>
+				</AnimatePresence>
+			</motion.div>
 		</div>
 	);
 };

@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { CircleOutlined, Delete, Edit, LocalShipping, RemoveRedEye } from "@mui/icons-material";
+import LocalShipping from "@mui/icons-material/LocalShipping";
+import RemoveRedEye from "@mui/icons-material/RemoveRedEye";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
-import { deleteElement, getData, getList, updateElement } from "@/lib/API";
+import { getData } from "@/lib/API";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { Avatar, Box, Chip, Divider, Fab, Fade, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography } from "@mui/material";
-import { useForm } from "react-hook-form";
-import CustomTextField from "@/components/elements/CustomTextField";
+import { Avatar, Box, Divider, Grid, IconButton, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography } from "@mui/material";
 import CustomButton from "@/components/elements/CustomButton";
 import { useRouter } from "next/router";
-import CustomSelect from "@/components/elements/CustomSelect";
-import { constructPagina, slugify } from "@/core/utils";
-import { useSnackbar } from "notistack";
-import { useAuth } from "@/core/hooks/useAuth";
-import Thumb from "@/components/elements/Thumb";
-import InputImage from "@/components/elements/InputImage";
-import CustomTiny from "@/components/elements/CustomTiny";
-import { DialogAddCategoria } from "@/views/entrades/DialogAddCategoria";
-import CartItem from "@/components/custom/menus/CartItem";
 import moment from "moment";
 import { Estat } from "@/components/elements/Estat";
 
 export default function EntradaAdd({ comanda }) {
-	console.log(comanda);
 	const router = useRouter();
-	const [loading, setLoading] = useState(false);
-	const { enqueueSnackbar } = useSnackbar();
 
 	return (
 		<PageAdmin title={"Comanda " + comanda.unique_id} Icon={LocalShipping}>

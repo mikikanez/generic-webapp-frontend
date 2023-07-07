@@ -1,6 +1,11 @@
 import Dashboard from "@mui/icons-material/Dashboard";
-import Group from "@mui/icons-material/Group";
-import { CircleOutlined, Inventory, Layers, LocalShipping, Newspaper, Settings, ShoppingCart } from "@mui/icons-material";
+import CircleOutlined from "@mui/icons-material/CircleOutlined";
+import Inventory from "@mui/icons-material/Inventory";
+import Layers from "@mui/icons-material/Layers";
+import LocalShipping from "@mui/icons-material/LocalShipping";
+import Newspaper from "@mui/icons-material/Newspaper";
+import Settings from "@mui/icons-material/Settings";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { useOpcions } from "@/context/OpcionsContext";
 import { Divider, List, Typography } from "@mui/material";
 import NavBarItem from "./NavBarItem";

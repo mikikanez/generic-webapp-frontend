@@ -1,13 +1,10 @@
 import React from "react";
 import "moment/locale/ca";
-import { Api, Email, Instagram, Phone, Twitter } from "@mui/icons-material";
-import YouTubeIcon from "@mui/icons-material/YouTube";
 import CustomCard from "@/components/layout/CustomCard";
 import CustomTextField from "@/components/elements/CustomTextField";
-import { Checkbox, FormControlLabel, Grid, InputAdornment } from "@mui/material";
-import { Controller } from "react-hook-form";
+import { Grid } from "@mui/material";
 
-export default function Parametres({ opcio, register, control, setValue }) {
+export default function Parametres({ opcio, register }) {
 	return (
 		<Grid spacing={3} container>
 			<Grid item md={8}>

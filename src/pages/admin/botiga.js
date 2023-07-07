@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { Inventory, LocalShipping, Newspaper, Palette, Settings, ShoppingCart } from "@mui/icons-material";
+import LocalShipping from "@mui/icons-material/LocalShipping";
+import Palette from "@mui/icons-material/Palette";
+import Settings from "@mui/icons-material/Settings";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { getServerSession } from "next-auth";
-import { getList } from "@/lib/API";
+import { addElement, getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";
-import CustomCard from "@/components/layout/CustomCard";
 import { useRouter } from "next/router";
 import CustomButton from "@/components/elements/CustomButton";
-import { ThemeProvider } from "@emotion/react";
-import MUIDataTable from "mui-datatables";
-import getMuiTheme from "@/components/tables/getMuiTheme";
-import { Box, Grid, Typography } from "@mui/material";
-import TableOptions from "@/components/tables/TableOptions";
-import ProductesColumns from "@/components/tables/ProductesColumns";
+import { Box, Typography } from "@mui/material";
 import { useAuth } from "@/core/hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { TabContext, TabPanel } from "@mui/lab";
 import { CustomTab, CustomTabs } from "@/components/elements/CustomTabs";
 import Parametres from "@/views/botiga/Parametres";
+import Disseny from "@/views/botiga/Disseny";
 
 export default function EntradesAdmin({ configuracio }) {
 	const [tab, setTab] = useState(1);
 	const { enqueueSnackbar } = useSnackbar();
-	const { register, trigger, getValues, watch, control, setValue, handleSubmit } = useForm();
+	const { register, watch, control, setValue, handleSubmit } = useForm();
 	const [loading, setLoading] = useState(false);
 	const { user } = useAuth();
 	const router = useRouter();
@@ -66,7 +64,7 @@ export default function EntradesAdmin({ configuracio }) {
 
 	return (
 		<form onSubmit={handleSubmit(enviar)}>
-			<PageAdmin title="Botiga" Icon={ShoppingCart} button={<CustomButton title={"Crear producte"} onClick={() => router.push("producte")} />}>
+			<PageAdmin title="Botiga" Icon={ShoppingCart} button={<CustomButton type="submit" title={"Guardar"} loading={loading} success />}>
 				<TabContext value={tab}>
 					<Box my={3}>
 						<CustomTabs onChange={handleChange} aria-label="alta select">
@@ -95,7 +93,9 @@ export default function EntradesAdmin({ configuracio }) {
 					<TabPanel value={1} index={0} style={{ padding: 0 }}>
 						<Parametres opcio={opcio} register={register} control={control} setValue={setValue} />
 					</TabPanel>
-					<TabPanel value={2} index={0} style={{ padding: 0 }}></TabPanel>
+					<TabPanel value={2} index={0} style={{ padding: 0 }}>
+						<Disseny watch={watch} setValue={setValue} />
+					</TabPanel>
 					<TabPanel value={3} index={0} style={{ padding: 0 }}></TabPanel>
 				</TabContext>
 

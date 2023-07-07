@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { Add, CircleOutlined, Delete, Edit } from "@mui/icons-material";
+import Add from "@mui/icons-material/Add";
+import CircleOutlined from "@mui/icons-material/CircleOutlined";
+import Delete from "@mui/icons-material/Delete";
+import Edit from "@mui/icons-material/Edit";
 import { getServerSession } from "next-auth";
 import CustomCard from "@/components/layout/CustomCard";
 import { deleteElement, getData, getList, updateElement } from "@/lib/API";
@@ -24,6 +27,7 @@ import { constructFormPagina } from "@/lib/ConstructForm";
 import OrdreComponents from "@/views/pagines/OrdreComponents";
 import Thumb from "@/components/elements/Thumb";
 import InputImage from "@/components/elements/InputImage";
+import ContentCopy from "@mui/icons-material/ContentCopy";
 
 export default function PaginesAdmin({ pagina, components }) {
 	const [open, setOpen] = useState(false);
@@ -76,6 +80,10 @@ export default function PaginesAdmin({ pagina, components }) {
 	const deleteComponent = (id) => {
 		setComponentsPreview((prev) => prev.filter((i) => i.id !== id));
 		setOpenEliminar(false);
+	};
+
+	const duplicateComponent = (id) => {
+		setComponentsPreview((prev) => [...prev, prev.filter((i) => i.id === id)[0]]);
 	};
 
 	const deletePagina = async () => {
@@ -160,6 +168,16 @@ export default function PaginesAdmin({ pagina, components }) {
 												style={{ marginRight: 10 }}
 											>
 												<Edit />
+											</Fab>
+
+											<Fab
+												onClick={() => {
+													duplicateComponent(com.id);
+												}}
+												size="small"
+												style={{ marginRight: 10 }}
+											>
+												<ContentCopy />
 											</Fab>
 											<Fab
 												onClick={() => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PageAdmin from "@/components/layout/PageAdmin";
-import { Newspaper } from "@mui/icons-material";
+import Newspaper from "@mui/icons-material/Newspaper";
 import { getServerSession } from "next-auth";
 import { getList } from "@/lib/API";
 import { authOptions } from "../api/auth/[...nextauth]";

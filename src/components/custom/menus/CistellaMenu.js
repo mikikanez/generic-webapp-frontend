@@ -1,4 +1,4 @@
-import { ShoppingCart } from "@mui/icons-material";
+import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { Badge, Divider, IconButton, List, Popover, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
