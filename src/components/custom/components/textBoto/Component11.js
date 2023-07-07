@@ -5,7 +5,7 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component11({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} py={2} px={3} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} py={2} px={3} {...props}>
 			<Container disableGutters maxWidth="lg">
 				<Box py={2}>
 					<Grid container spacing={4}>
@@ -17,7 +17,7 @@ export default function Component11({ component, matches, imatges, theme, router
 									fontWeight={"bold"}
 									textTransform={"unset"}
 									mb={3}
-									color={component.dark ? theme.palette.details.main : theme.palette.secondary.main}
+									color={Number(component.dark) ? theme.palette.details.main : theme.palette.secondary.main}
 								>
 									{valor(2, component)}
 								</Typography>
@@ -29,7 +29,7 @@ export default function Component11({ component, matches, imatges, theme, router
 									fontWeight={"bold"}
 									textTransform={"unset"}
 									mb={3}
-									color={component.dark ? "white" : "black"}
+									color={Number(component.dark) ? "white" : "black"}
 								>
 									{valor(0, component)}
 								</Typography>
@@ -40,7 +40,7 @@ export default function Component11({ component, matches, imatges, theme, router
 										dangerouslySetInnerHTML={{ __html: valor(1, component) }}
 										variant="body1"
 										textAlign={"left"}
-										color={component.dark ? "white" : theme.palette.background.dark}
+										color={Number(component.dark) ? "white" : theme.palette.background.dark}
 									></Typography>
 								</Box>
 							)}
@@ -53,7 +53,7 @@ export default function Component11({ component, matches, imatges, theme, router
 											background
 											title={valor(3, component)?.titol}
 											onClick={() => router.push(valor(3, component)?.link)}
-											light={component.dark}
+											light={Number(component.dark)}
 										/>
 									)}
 								</Grid>
@@ -63,7 +63,7 @@ export default function Component11({ component, matches, imatges, theme, router
 											background
 											title={valor(4, component)?.titol}
 											onClick={() => router.push(valor(4, component)?.link)}
-											light={component.dark}
+											light={Number(component.dark)}
 										/>
 									)}
 								</Grid>

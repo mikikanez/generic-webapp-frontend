@@ -75,7 +75,7 @@ export default function ComponentProducte({ component, matches, theme, router, .
 							dangerouslySetInnerHTML={{ __html: props.pagina.descripcio }}
 							variant="body1"
 							textAlign={"left"}
-							color={component.dark ? "white" : "black"}
+							color={Number(component.dark) ? "white" : "black"}
 							mt={4}
 						></Typography>
 						<form onSubmit={handleSubmit(afegir)}>

@@ -4,7 +4,7 @@ import { valor } from "..";
 
 export default function Component20({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth="lg">
 				<Box py={20}>
 					<Grid container spacing={8} display={"flex"} justifyContent={"center"}>

@@ -18,7 +18,7 @@ export default function Component36({ component, matches, imatges, theme, router
 	return (
 		<Box
 			style={{
-				backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main,
+				backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main,
 				minHeight: matches ? 300 : 500,
 				display: "flex",
 				flexDirection: "column",
@@ -67,7 +67,7 @@ export default function Component36({ component, matches, imatges, theme, router
 							style={{ filter: isHover == 0 ? "brightness(100) saturate(0%)" : "unset" }}
 						/>
 					</div>
-					<Typography variant="body1" textAlign={"center"} color={component.dark ? "white" : theme.palette.secondary.main} mt={1}>
+					<Typography variant="body1" textAlign={"center"} color={Number(component.dark) ? "white" : theme.palette.secondary.main} mt={1}>
 						{valor(0, component)}
 					</Typography>
 				</div>
@@ -110,7 +110,7 @@ export default function Component36({ component, matches, imatges, theme, router
 							style={{ filter: isHover == 1 ? "brightness(100) saturate(0%)" : "unset" }}
 						/>
 					</div>
-					<Typography variant="body1" textAlign={"center"} color={component.dark ? "white" : theme.palette.secondary.main} mt={1}>
+					<Typography variant="body1" textAlign={"center"} color={Number(component.dark) ? "white" : theme.palette.secondary.main} mt={1}>
 						{valor(2, component)}
 					</Typography>
 				</div>
@@ -153,7 +153,7 @@ export default function Component36({ component, matches, imatges, theme, router
 							style={{ filter: isHover == 2 ? "brightness(100) saturate(0%)" : "unset" }}
 						/>
 					</div>
-					<Typography variant="body1" textAlign={"center"} color={component.dark ? "white" : theme.palette.secondary.main} mt={1}>
+					<Typography variant="body1" textAlign={"center"} color={Number(component.dark) ? "white" : theme.palette.secondary.main} mt={1}>
 						{valor(4, component)}
 					</Typography>
 				</div>
@@ -162,7 +162,7 @@ export default function Component36({ component, matches, imatges, theme, router
 				<Typography
 					variant="h1"
 					textAlign={"center"}
-					color={component.dark ? "white" : theme.palette.secondary.main}
+					color={Number(component.dark) ? "white" : theme.palette.secondary.main}
 					mb={4}
 					fontWeight={400}
 					textTransform={"unset"}

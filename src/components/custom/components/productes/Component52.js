@@ -26,7 +26,7 @@ export default function Component52({ component, matches, imatges, theme, router
 	};
 
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth={"lg"}>
 				<Grid container spacing={3} display={"flex"}>
 					{productes?.map((producte) => (

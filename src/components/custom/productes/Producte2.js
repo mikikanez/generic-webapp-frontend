@@ -18,7 +18,7 @@ export const Producte2 = ({ producte, component }) => {
 					dangerouslySetInnerHTML={{ __html: producte.descripcio.substring(0, 80) + "..." }}
 					variant="body1"
 					textAlign={"left"}
-					color={component.dark ? "white" : "black"}
+					color={Number(component.dark) ? "white" : "black"}
 					mt={4}
 					mb={4}
 				></Typography>

@@ -5,14 +5,20 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component35({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false}>
 				<Grid container spacing={8} display={"flex"} justifyContent={"center"}>
 					<Grid item md={12} xs={12}>
 						<div style={{ width: "100%", height: matches ? 900 : 500, position: "relative", textAlign: "left" }}>
 							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							<div
-								style={{ position: "absolute", width: "100%", height: "100%", background: component.dark ? "white" : "black", opacity: 0.2 }}
+								style={{
+									position: "absolute",
+									width: "100%",
+									height: "100%",
+									background: Number(component.dark) ? "white" : "black",
+									opacity: 0.2,
+								}}
 							></div>
 							<Box
 								position={"absolute"}
@@ -28,21 +34,21 @@ export default function Component35({ component, matches, imatges, theme, router
 								justifyContent={"center"}
 								alignItems={"center"}
 							>
-								<Typography variant="h1" textAlign={"center"} color={component.dark ? "black" : "white"} mb={4}>
+								<Typography variant="h1" textAlign={"center"} color={Number(component.dark) ? "black" : "white"} mb={4}>
 									{valor(0, component)}
 								</Typography>
 								<Typography
 									dangerouslySetInnerHTML={{ __html: valor(1, component) }}
 									variant="body1"
 									textAlign={"center"}
-									color={component.dark ? "black" : "white"}
+									color={Number(component.dark) ? "black" : "white"}
 									mb={4}
 								></Typography>
 								<CustomButtonPublic
 									secondary
 									title={valor(3, component)?.titol}
 									onClick={() => router.push(valor(3, component)?.link)}
-									light={component.dark}
+									light={Number(component.dark)}
 								/>
 							</Box>
 						</div>

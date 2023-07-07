@@ -20,7 +20,7 @@ export default function MenuCustom4({ premenu, scrollY = 0, menuColor }) {
 
 	const items = [
 		...opcions?.pagines
-			?.filter((i) => i.menu === 1)
+			?.filter((i) => Number(i.menu) === 1)
 			?.map((item) => {
 				return { title: item.titol, to: "/" + item.slug };
 			}),

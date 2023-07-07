@@ -7,7 +7,11 @@ import { styled } from "@mui/material/styles";
 export default function Component2({ component, matches, imatges, theme, router, ...props }) {
 	return (
 		<Box
-			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", overflow: "hidden" }}
+			style={{
+				backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main,
+				position: "relative",
+				overflow: "hidden",
+			}}
 			{...props}
 		>
 			<Container maxWidth="lg">
@@ -15,16 +19,16 @@ export default function Component2({ component, matches, imatges, theme, router,
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>
-								<Typography variant="h1" mb={4} color={component.dark ? "white" : "dark"}>
+								<Typography variant="h1" mb={4} color={Number(component.dark) ? "white" : "dark"}>
 									{valor(0, component)}
 								</Typography>
 								<Divider sx={{ borderWidth: 5, width: "40%", borderColor: theme.palette.secondary.main }} />
 								<Box my={5}>
-									<Typography variant="body2" color={component.dark ? "white" : "dark"}>
+									<Typography variant="body2" color={Number(component.dark) ? "white" : "dark"}>
 										{valor(1, component)}
 									</Typography>
 								</Box>
-								<CustomButtonPublic title={"Veure"} light={component.dark} />
+								<CustomButtonPublic title={"Veure"} light={Number(component.dark)} />
 							</Box>
 						</Grid>
 						<Grid item md={7} xs={12}>

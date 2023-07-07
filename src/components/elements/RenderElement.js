@@ -11,8 +11,6 @@ import Delete from "@mui/icons-material/Delete";
 
 export function RenderElement({ element, defaultValue, register, control, name, setValue, watch, trigger, getValues, desc }) {
 	const opcions = useOpcions();
-	console.log("desc");
-	console.log(desc);
 
 	const render = () => {
 		switch (element?.nom) {

@@ -18,7 +18,7 @@ export const Producte1 = ({ producte, component }) => {
 					dangerouslySetInnerHTML={{ __html: producte.descripcio.substring(0, 80) + "..." }}
 					variant="body1"
 					textAlign={"left"}
-					color={component.dark ? "white" : "black"}
+					color={Number(component.dark) ? "white" : "black"}
 					mt={4}
 					mb={4}
 				></Typography>
@@ -32,7 +32,7 @@ export const Producte1 = ({ producte, component }) => {
 					dangerouslySetInnerHTML={{ __html: producte.especificacions.substring(0, 80) + "..." }}
 					variant="body1"
 					textAlign={"left"}
-					color={component.dark ? "white" : "black"}
+					color={Number(component.dark) ? "white" : "black"}
 					mt={4}
 				></Typography>
 				<Typography variant="h2" textAlign={"right"} mt={2} fontWeight={500}>

@@ -29,7 +29,11 @@ export default function Component23({ component, matches, imatges, theme, router
 
 	return (
 		<Box
-			style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative", overflow: "hidden" }}
+			style={{
+				backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main,
+				position: "relative",
+				overflow: "hidden",
+			}}
 			{...props}
 			ref={div}
 		>
@@ -51,8 +55,8 @@ export default function Component23({ component, matches, imatges, theme, router
 						clickable: true,
 					}}
 					style={{
-						"--swiper-navigation-color": component.dark ? "white" : "black",
-						"--swiper-pagination-color": component.dark ? "white" : "black",
+						"--swiper-navigation-color": Number(component.dark) ? "white" : "black",
+						"--swiper-pagination-color": Number(component.dark) ? "white" : "black",
 					}}
 				>
 					{valor(0, component)?.map((slide, index) => (
@@ -67,19 +71,19 @@ export default function Component23({ component, matches, imatges, theme, router
 								alignItems={"center"}
 							>
 								<Container style={{ textAlign: matches ? "" : "center", zIndex: 100 }}>
-									<Typography variant="h1" mb={4} color={component.dark ? "white" : "black"}>
+									<Typography variant="h1" mb={4} color={Number(component.dark) ? "white" : "black"}>
 										{slide?.titol}
 									</Typography>
 									<Divider
 										sx={{
 											borderWidth: 3,
 											width: "40%",
-											borderColor: component.dark ? "white" : "black",
+											borderColor: Number(component.dark) ? "white" : "black",
 											justifyContent: "center",
 											margin: matches ? "" : "auto",
 										}}
 									/>
-									<Typography variant="h2" textTransform={"none"} mt={4} color={component.dark ? "white" : "black"}>
+									<Typography variant="h2" textTransform={"none"} mt={4} color={Number(component.dark) ? "white" : "black"}>
 										{slide?.subtitol}
 									</Typography>
 									{slide?.boto?.titolBoto && (
@@ -88,13 +92,13 @@ export default function Component23({ component, matches, imatges, theme, router
 												background
 												title={slide?.boto?.titolBoto}
 												onClick={() => router.push(slide?.boto?.link)}
-												light={component.dark}
+												light={Number(component.dark)}
 											/>
 										</Box>
 									)}
 								</Container>
 							</Box>
-							<Overlay light={!component.dark} />
+							<Overlay light={!Number(component.dark)} />
 						</SwiperSlide>
 					))}
 				</Swiper>

@@ -5,7 +5,7 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component8({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false} style={{ position: "relative" }}>
 				<Grid container spacing={4}>
 					<Grid
@@ -13,14 +13,14 @@ export default function Component8({ component, matches, imatges, theme, router,
 						md={6}
 						xs={12}
 						style={{
-							backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+							backgroundColor: Number(component.dark) ? theme.palette.background.main : theme.palette.primary.main,
 						}}
 						paddingY={"0 !important"}
 					>
 						<Box
 							p={10}
 							style={{
-								backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+								backgroundColor: Number(component.dark) ? theme.palette.background.main : theme.palette.primary.main,
 								display: "flex",
 								justifyContent: "center",
 								alignItems: "center",
@@ -51,12 +51,12 @@ export default function Component8({ component, matches, imatges, theme, router,
 								fontWeight={"bold"}
 								textTransform={"unset"}
 								mb={4}
-								color={component.dark ? "white" : "black"}
+								color={Number(component.dark) ? "white" : "black"}
 							>
 								{valor(0, component)}
 							</Typography>
 							<Box my={5}>
-								<Typography variant="body1" textAlign={"left"} color={component.dark ? "white" : "black"}>
+								<Typography variant="body1" textAlign={"left"} color={Number(component.dark) ? "white" : "black"}>
 									{valor(1, component)}
 								</Typography>
 							</Box>
@@ -64,7 +64,7 @@ export default function Component8({ component, matches, imatges, theme, router,
 								background
 								title={valor(3, component)?.titol}
 								onClick={() => router.push(valor(3, component)?.link)}
-								light={component.dark}
+								light={Number(component.dark)}
 							/>
 						</Box>
 					</Grid>

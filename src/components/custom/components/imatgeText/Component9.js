@@ -5,7 +5,7 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component9({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth="lg" style={{ position: "relative", padding: "5% 0" }}>
 				<Grid container spacing={4}>
 					<Grid item md={6} xs={12} display={"flex"} justifyContent={"flex-end"} alignItems={"center"}>
@@ -21,12 +21,12 @@ export default function Component9({ component, matches, imatges, theme, router,
 								fontWeight={"bold"}
 								textTransform={"unset"}
 								mb={4}
-								color={component.dark ? "white" : "black"}
+								color={Number(component.dark) ? "white" : "black"}
 							>
 								{valor(0, component)}
 							</Typography>
 							<Box my={5}>
-								<Typography variant="body1" textAlign={"left"} color={component.dark ? "white" : "black"}>
+								<Typography variant="body1" textAlign={"left"} color={Number(component.dark) ? "white" : "black"}>
 									{valor(1, component)}
 								</Typography>
 							</Box>
@@ -35,7 +35,7 @@ export default function Component9({ component, matches, imatges, theme, router,
 									dangerouslySetInnerHTML={{ __html: valor(3, component) }}
 									variant="body1"
 									textAlign={"left"}
-									color={component.dark ? "white" : "black"}
+									color={Number(component.dark) ? "white" : "black"}
 								></Typography>
 							</Box>
 						</Box>

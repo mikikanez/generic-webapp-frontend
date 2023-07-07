@@ -7,7 +7,7 @@ export default function Component15({ component, matches, imatges, theme, router
 	const opcions = useOpcions();
 
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false} style={{ position: "relative" }}>
 				<Grid container spacing={4}>
 					<Grid
@@ -15,14 +15,14 @@ export default function Component15({ component, matches, imatges, theme, router
 						md={6}
 						xs={12}
 						style={{
-							backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+							backgroundColor: Number(component.dark) ? theme.palette.background.main : theme.palette.primary.main,
 						}}
 						paddingY={"0 !important"}
 					>
 						<Box
 							p={10}
 							style={{
-								backgroundColor: component.dark ? theme.palette.background.main : theme.palette.primary.main,
+								backgroundColor: Number(component.dark) ? theme.palette.background.main : theme.palette.primary.main,
 								display: "flex",
 								justifyContent: "center",
 								alignItems: "center",
@@ -50,7 +50,7 @@ export default function Component15({ component, matches, imatges, theme, router
 						zIndex={100}
 						justifyContent={"center"}
 						style={{
-							backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main,
+							backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main,
 						}}
 					>
 						<Box p={10}>
@@ -58,7 +58,7 @@ export default function Component15({ component, matches, imatges, theme, router
 								dangerouslySetInnerHTML={{ __html: valor(0, component) }}
 								variant="body1"
 								textAlign={"left"}
-								color={component.dark ? "white" : "black"}
+								color={Number(component.dark) ? "white" : "black"}
 							></Typography>
 						</Box>
 					</Grid>

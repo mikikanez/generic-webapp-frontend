@@ -70,23 +70,23 @@ const PaginesItems = ({ onMobileClose }) => {
 			title: "Inici",
 		},
 		...opcions?.pagines
-			?.filter((i) => i.menu === 1)
+			?.filter((i) => Number(i.menu) === 1)
 			?.map((item) => {
 				return item.slug && { title: item.titol, href: "/admin/pagina/" + item.slug, icon: CircleOutlined, pagines: true };
 			}),
 		{
-			title: opcions?.pagines?.filter((i) => i.menu === 2).length ? "Peu de pàgina" : "",
+			title: opcions?.pagines?.filter((i) => Number(i.menu) === 2).length ? "Peu de pàgina" : "",
 		},
 		...opcions?.pagines
-			?.filter((i) => i.menu === 2)
+			?.filter((i) => Number(i.menu) === 2)
 			?.map((item) => {
 				return item.slug && { title: item.titol, href: "/admin/pagina/" + item.slug, icon: CircleOutlined, pagines: true };
 			}),
 		{
-			title: opcions?.pagines?.filter((i) => i.menu === 0).length ? "Altres" : "",
+			title: opcions?.pagines?.filter((i) => Number(i.menu) === 0).length ? "Altres" : "",
 		},
 		...opcions?.pagines
-			?.filter((i) => i.menu === 0)
+			?.filter((i) => Number(i.menu) === 0)
 			?.map((item) => {
 				return item.slug && { title: item.titol, href: "/admin/pagina/" + item.slug, icon: CircleOutlined, pagines: true };
 			}),

@@ -4,16 +4,30 @@ import { useOpcions } from "@/context/OpcionsContext";
 
 export default function Component13({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth="lg" style={{ position: "relative" }}>
 				<Box display={"flex"} flexDirection={"column"} alignItems={"center"} py={2} px={3}>
 					{valor(2, component) && (
-						<Typography variant="body1" textAlign={"center"} fontWeight={"bold"} textTransform={"unset"} mb={3} color={component.dark ? theme.palette.details.main: theme.palette.secondary.main}>
+						<Typography
+							variant="body1"
+							textAlign={"center"}
+							fontWeight={"bold"}
+							textTransform={"unset"}
+							mb={3}
+							color={Number(component.dark) ? theme.palette.details.main : theme.palette.secondary.main}
+						>
 							{valor(2, component)}
 						</Typography>
 					)}
 					{valor(0, component) && (
-						<Typography variant="h2" textAlign={"center"} fontWeight={"bold"} textTransform={"unset"} mb={3} color={component.dark ? "white" : "black"}>
+						<Typography
+							variant="h2"
+							textAlign={"center"}
+							fontWeight={"bold"}
+							textTransform={"unset"}
+							mb={3}
+							color={Number(component.dark) ? "white" : "black"}
+						>
 							{valor(0, component)}
 						</Typography>
 					)}
@@ -23,7 +37,7 @@ export default function Component13({ component, matches, imatges, theme, router
 								dangerouslySetInnerHTML={{ __html: valor(1, component) }}
 								variant="body1"
 								textAlign={"center"}
-								color={component.dark ? "white" : theme.palette.background.dark}
+								color={Number(component.dark) ? "white" : theme.palette.background.dark}
 							></Typography>
 						</Box>
 					)}

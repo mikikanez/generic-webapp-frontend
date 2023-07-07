@@ -22,7 +22,7 @@ export default function MenuCustom2({ scrollY = 0, premenu, menuColor }) {
 
 	const items = [
 		...opcions?.pagines
-			?.filter((i) => i.menu === 1)
+			?.filter((i) => Number(i.menu) === 1)
 			?.map((item) => {
 				return { title: item.titol, to: "/" + item.slug };
 			}),

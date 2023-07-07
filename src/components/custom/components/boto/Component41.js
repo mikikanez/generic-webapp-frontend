@@ -5,7 +5,7 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component41({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth={"lg"}>
 				<Box py={2}>
 					<Grid container spacing={8}>

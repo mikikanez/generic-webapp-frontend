@@ -5,15 +5,22 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component1({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth="lg">
 				<Box py={2}>
 					<Grid container spacing={8}>
 						<Grid item md={5} xs={12} display={"flex"} flexDirection={"column"} mt={10} zIndex={100} justifyContent={"space-between"}>
 							<Box>
-								<Typography dangerouslySetInnerHTML={{ __html: valor(0, component) }} variant="h2" mb={4} color={component.dark ? "white" : theme.palette.background.dark} textTransform={'unset'} fontWeight={'bold'}></Typography>
+								<Typography
+									dangerouslySetInnerHTML={{ __html: valor(0, component) }}
+									variant="h2"
+									mb={4}
+									color={Number(component.dark) ? "white" : theme.palette.background.dark}
+									textTransform={"unset"}
+									fontWeight={"bold"}
+								></Typography>
 								<Box my={5}>
-									<Typography variant="body2" color={component.dark ? "white" : "dark"}>
+									<Typography variant="body2" color={Number(component.dark) ? "white" : "dark"}>
 										{valor(1, component)}
 									</Typography>
 								</Box>
@@ -21,7 +28,7 @@ export default function Component1({ component, matches, imatges, theme, router,
 									background
 									title={valor(3, component)?.titol}
 									onClick={() => router.push(valor(3, component)?.link)}
-									light={component.dark}
+									light={Number(component.dark)}
 								/>
 							</Box>
 						</Grid>

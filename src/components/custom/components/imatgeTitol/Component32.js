@@ -4,14 +4,20 @@ import { valor } from "..";
 
 export default function Component32({ component, matches, imatges, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth={false}>
 				<Grid container spacing={0}>
 					<Grid item md={6} xs={12}>
 						<div style={{ width: "100%", height: matches ? 900 : 500, position: "relative", textAlign: "left" }}>
 							<Image alt="Imatge" src={imatges.filter((i) => i.id === 0)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							<div
-								style={{ position: "absolute", width: "100%", height: "100%", background: component.dark ? "white" : "black", opacity: 0.2 }}
+								style={{
+									position: "absolute",
+									width: "100%",
+									height: "100%",
+									background: Number(component.dark) ? "white" : "black",
+									opacity: 0.2,
+								}}
 							></div>
 							<Box
 								position={"absolute"}
@@ -32,7 +38,7 @@ export default function Component32({ component, matches, imatges, theme, router
 									fontWeight={"bold"}
 									textTransform={"unset"}
 									mb={4}
-									color={component.dark ? "black" : "white"}
+									color={Number(component.dark) ? "black" : "white"}
 								>
 									{valor(1, component)}
 								</Typography>
@@ -43,7 +49,13 @@ export default function Component32({ component, matches, imatges, theme, router
 						<div style={{ width: "100%", height: matches ? 900 : 500, position: "relative", textAlign: "left" }}>
 							<Image alt="Imatge" src={imatges.filter((i) => i.id === 2)[0]?.imatge} fill style={{ objectFit: "cover" }} />
 							<div
-								style={{ position: "absolute", width: "100%", height: "100%", background: component.dark ? "white" : "black", opacity: 0.2 }}
+								style={{
+									position: "absolute",
+									width: "100%",
+									height: "100%",
+									background: Number(component.dark) ? "white" : "black",
+									opacity: 0.2,
+								}}
 							></div>
 							<Box
 								position={"absolute"}
@@ -64,7 +76,7 @@ export default function Component32({ component, matches, imatges, theme, router
 									fontWeight={"bold"}
 									textTransform={"unset"}
 									mb={4}
-									color={component.dark ? "black" : "white"}
+									color={Number(component.dark) ? "black" : "white"}
 								>
 									{valor(3, component)}
 								</Typography>

@@ -5,19 +5,23 @@ import CustomButtonPublic from "@/components/elements/CustomButtonPublic";
 
 export default function Component3({ component, theme, router, ...props }) {
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main, position: "relative" }} {...props}>
 			<Container maxWidth="md">
 				<Box py={30} px={5} style={{ zIndex: 100, position: "relative" }}>
 					<Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-						<Typography variant="h1" textAlign={"center"} textTransform={"capitalize"} mb={4} color={component.dark ? "white" : "dark"}>
+						<Typography variant="h1" textAlign={"center"} textTransform={"capitalize"} mb={4} color={Number(component.dark) ? "white" : "dark"}>
 							{valor(0, component)}
 						</Typography>
 						<Box my={5}>
-							<Typography variant="body1" textAlign={"center"} color={component.dark ? "white" : "dark"}>
+							<Typography variant="body1" textAlign={"center"} color={Number(component.dark) ? "white" : "dark"}>
 								{valor(1, component)}
 							</Typography>
 						</Box>
-						<CustomButtonPublic title={valor(2, component)?.titol} onClick={() => router.push(valor(2, component)?.link)} light={component.dark} />
+						<CustomButtonPublic
+							title={valor(2, component)?.titol}
+							onClick={() => router.push(valor(2, component)?.link)}
+							light={Number(component.dark)}
+						/>
 					</Box>
 				</Box>
 				<BoxBlur />

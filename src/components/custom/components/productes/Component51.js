@@ -22,7 +22,7 @@ export default function Component51({ component, matches, imatges, theme, router
 	};
 
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container maxWidth={"lg"}>
 				<Grid container spacing={3} display={"flex"} justifyContent={"center"}>
 					{productes?.map((producte) => (

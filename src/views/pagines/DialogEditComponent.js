@@ -26,8 +26,10 @@ export function DialogEditComponent({ open, setOpen, componentSel, setComponents
 	} = useForm({ shouldUnregister: false, defaultValues: componentLive });
 
 	useEffect(() => {
+		console.log(componentSel);
 		setComponentLive(componentSel);
 		reset(componentSel);
+		setValue("dark", Number(componentSel?.dark));
 		componentSel?.component_pagina_element?.map((element) => setValue(String(element.id), element.valor));
 	}, [componentSel]);
 

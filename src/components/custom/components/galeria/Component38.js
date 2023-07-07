@@ -27,7 +27,7 @@ export default function Component38({ component, matches, imatges, theme, router
 	return (
 		<Box
 			style={{
-				backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main,
+				backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main,
 				overflow: "hidden",
 				position: "relative",
 			}}
@@ -52,8 +52,8 @@ export default function Component38({ component, matches, imatges, theme, router
 						clickable: true,
 					}}
 					style={{
-						"--swiper-navigation-color": component.dark ? "white" : "black",
-						"--swiper-pagination-color": component.dark ? "white" : "black",
+						"--swiper-navigation-color": Number(component.dark) ? "white" : "black",
+						"--swiper-pagination-color": Number(component.dark) ? "white" : "black",
 					}}
 				>
 					{valor(0, component)?.map((slide, index) => (
@@ -69,14 +69,14 @@ export default function Component38({ component, matches, imatges, theme, router
 								justifyContent={"center"}
 								flexDirection={"column"}
 							>
-								<Typography variant="h1" mb={4} color={component.dark ? "white" : "black"} textAlign={"center"} zIndex={100}>
+								<Typography variant="h1" mb={4} color={Number(component.dark) ? "white" : "black"} textAlign={"center"} zIndex={100}>
 									{slide?.titol}
 								</Typography>
 								<Typography
 									variant="h2"
 									textTransform={"none"}
 									mt={4}
-									color={component.dark ? "white" : "black"}
+									color={Number(component.dark) ? "white" : "black"}
 									textAlign={"center"}
 									zIndex={100}
 								>
@@ -88,12 +88,12 @@ export default function Component38({ component, matches, imatges, theme, router
 											background
 											title={slide?.boto?.titolBoto}
 											onClick={() => router.push(slide?.boto?.link)}
-											light={component.dark}
+											light={Number(component.dark)}
 										/>
 									</Box>
 								)}
 							</Box>
-							<Overlay light={!component.dark} />
+							<Overlay light={!Number(component.dark)} />
 						</SwiperSlide>
 					))}
 				</Swiper>

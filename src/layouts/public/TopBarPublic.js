@@ -20,7 +20,7 @@ const TopBarPublic = ({ className, onMobileNavOpen, ...rest }) => {
 	};
 
 	const returnMenu = () => {
-		const Menu = menus.filter((menu) => menu.id === Number(opcions?.menu))[0].component;
+		const Menu = menus.filter((menu) => menu.id === Number(opcions?.menu))?.[0]?.component;
 		return <Menu scrollY={scrollY} premenu={opcions?.premenu} menuColor={opcions?.menuColor} />;
 	};
 

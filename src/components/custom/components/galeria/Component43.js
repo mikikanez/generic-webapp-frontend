@@ -24,7 +24,7 @@ export default function Component43({ component, matches, imatges, theme, router
 	}, [component]);
 
 	return (
-		<Box style={{ backgroundColor: component.dark ? theme.palette.primary.main : theme.palette.background.main }} {...props} ref={div}>
+		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props} ref={div}>
 			<Container maxWidth={"lg"} style={{ position: "relative" }}>
 				<Box display={"flex"} flexWrap={"wrap"} justifyContent={"center"} py={2}>
 					{valor(0, component)?.map((slide, index) => (
