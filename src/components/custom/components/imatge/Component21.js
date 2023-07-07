@@ -1,6 +1,5 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import { valor } from "..";
 
 export default function Component21({ component, matches, imatges, theme, router, ...props }) {
 	return (
