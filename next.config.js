@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: false,
 	env: {
-		NEXT_PUBLIC: "http://localhost:8000/api/",
+		NEXT_PUBLIC: "https://gw.covcontrol.net/api/",
 	},
 	modularizeImports: {
 		"@mui/material": {
