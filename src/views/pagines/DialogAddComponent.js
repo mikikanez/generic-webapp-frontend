@@ -81,7 +81,7 @@ export function DialogAddComponent({ open, setOpen, componentsList, componentsPr
 								<TabPanel key={tipus.id} value={tipus.id} index={0} style={{ padding: 0 }}>
 									<Grid spacing={2} container mt={1}>
 										{tipus.components?.map((c, index) => {
-											const Component = components.filter((com) => c.id === com.id)?.[0]?.component;
+											const Component = components.filter((com) => c.id === Number(com.id))?.[0]?.component;
 											return (
 												<Grid item md={3} key={c.id} xs={12}>
 													<ComponentMiniPreview

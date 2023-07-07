@@ -70,7 +70,7 @@ export function constructComponent(componentSel, value) {
 
 	return {
 		id: componentSel?.id,
-		component_id: componentSel?.component_id,
+		component_id: String(componentSel?.component_id),
 		component: componentSel.component,
 		dark: value["dark"] ? 1 : 0,
 		component_pagina_element: componentSel?.component_pagina_element?.map((elementSel) => {
@@ -110,7 +110,7 @@ export const componentDefault = (componentSel, id) => {
 
 	return {
 		id: id,
-		component_id: componentSel.id,
+		component_id: String(componentSel.id),
 		component: componentSel,
 		dark: 0,
 		component_pagina_element: componentSel.elements.map((elementSel, index) => {
