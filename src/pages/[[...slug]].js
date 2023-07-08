@@ -13,6 +13,8 @@ export default function Pagina({ pagina }) {
 		exit: { opacity: 0, x: 0, y: -100 },
 	};
 
+	console.log(pagina);
+
 	return (
 		<AnimatePresence initial={false} mode="wait">
 			<Page title={pagina?.titol} img={pagina?.imatge}>
@@ -41,6 +43,7 @@ export async function getStaticPaths() {
 		return {
 			params: {
 				slug: item.slug.split("/"),
+				fallback: "blocking",
 			},
 		};
 	});
