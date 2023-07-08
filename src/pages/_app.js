@@ -17,7 +17,6 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import CrearTema from "@/core/createTheme";
 import { Opcions } from "@/context/OpcionsContext";
 import useGetOptions from "@/core/hooks/useOptions";
-import { motion, LayoutGroup } from "framer-motion";
 
 const clientSideEmotionCache = createEmotionCache();
 

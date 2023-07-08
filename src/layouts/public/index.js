@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 import TopBarPublic from "./TopBarPublic";
 import Footer from "./Footer";
 import { useTheme } from "@mui/material/styles";
-import { motion, AnimatePresence } from "framer-motion";
 
 const useStyles = makeStyles(() => ({
 	root: {

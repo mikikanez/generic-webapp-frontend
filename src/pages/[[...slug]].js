@@ -47,7 +47,7 @@ export async function getStaticPaths() {
 
 	return {
 		paths,
-		fallback: false,
+		fallback: 'blocking',
 	};
 }
 
@@ -56,5 +56,9 @@ export async function getStaticProps({ params }) {
 
 	return {
 		props: { pagina },
+		// Next.js will attempt to re-generate the page:
+		// - When a request comes in
+		// - At most once every 10 seconds
+		revalidate: 10, // In seconds
 	};
 }
