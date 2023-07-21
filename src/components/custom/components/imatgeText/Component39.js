@@ -20,7 +20,7 @@ export default function Component39({ component, matches, imatges, theme, router
 					<Grid container spacing={8}>
 						<Grid item md={3} xs={12}>
 							<Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-								{valor(0, component) != "" ? (
+								{valor(0, component) != "exemple.jpg" ? (
 									<Box mb={3} width={90} height={90} position={"relative"}>
 										<Image alt="Imatge" src={imatges.filter((i) => i.id === 0)[0]?.imatge} fill style={{ objectFit: "contain" }} />
 									</Box>
@@ -47,7 +47,7 @@ export default function Component39({ component, matches, imatges, theme, router
 						</Grid>
 						<Grid item md={3} xs={12}>
 							<Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-								{valor(3, component) != "" ? (
+								{valor(3, component) != "exemple.jpg" ? (
 									<Box mb={3} width={90} height={90} position={"relative"}>
 										<Image alt="Imatge" src={imatges.filter((i) => i.id === 3)[0]?.imatge} fill style={{ objectFit: "contain" }} />
 									</Box>
@@ -74,7 +74,7 @@ export default function Component39({ component, matches, imatges, theme, router
 						</Grid>
 						<Grid item md={3} xs={12}>
 							<Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-								{valor(6, component) != "" ? (
+								{valor(6, component) != "exemple.jpg" ? (
 									<Box mb={3} width={90} height={90} position={"relative"}>
 										<Image alt="Imatge" src={imatges.filter((i) => i.id === 6)[0]?.imatge} fill style={{ objectFit: "contain" }} />
 									</Box>
@@ -101,7 +101,7 @@ export default function Component39({ component, matches, imatges, theme, router
 						</Grid>
 						<Grid item md={3} xs={12}>
 							<Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-								{valor(9, component) != "" ? (
+								{valor(9, component) != "exemple.jpg" ? (
 									<Box mb={3} width={90} height={90} position={"relative"}>
 										<Image alt="Imatge" src={imatges.filter((i) => i.id === 9)[0]?.imatge} fill style={{ objectFit: "contain" }} />
 									</Box>
