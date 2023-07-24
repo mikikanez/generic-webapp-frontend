@@ -51,11 +51,12 @@ export default function Checkout() {
 				variant: "success",
 			});
 			setCart([]);
-			// router.push("/");
+			router.push("/ok");
 		} catch (error) {
 			enqueueSnackbar("Algo no ha ido bien...", {
 				variant: "error",
-			});
+			});			
+			router.push("/ko");
 		}
 	};
 

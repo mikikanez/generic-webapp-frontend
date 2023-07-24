@@ -6,7 +6,7 @@ export default function Component13({ component, matches, imatges, theme, router
 	return (
 		<Box style={{ backgroundColor: Number(component.dark) ? theme.palette.primary.main : theme.palette.background.main }} {...props}>
 			<Container disableGutters maxWidth="lg" style={{ position: "relative" }}>
-				<Box display={"flex"} flexDirection={"column"} alignItems={"center"} py={2} px={3}>
+				<Box display={"flex"} flexDirection={"column"} alignItems={"center"} py={2} px={3} maxWidth={matches ? '60%' : '90%'} margin={'0 auto'}>
 					{valor(2, component) && (
 						<Typography
 							variant="body1"
